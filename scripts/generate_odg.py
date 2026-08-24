@@ -182,11 +182,13 @@ STYLES_XML = """\
 
 
 def build_shape(feat, style_name, stroke_w):
-    """Construit les lignes XML style + shape pour une feature GeoJSON."""
+    """Construit les lignes XML style + shape pour une feature GeoJSON.
+    Retourne (None, None) si la geometrie est absente (geometry: null)."""
     code = escape_xml(feat["properties"].get("code", ""))
     nom  = escape_xml(feat["properties"].get("nom", ""))
     geom = feat["geometry"]
-
+    if geom is None or not geom.get("coordinates"):
+        return None, None
     lon_min, lon_max, lat_min, lat_max = get_bbox(geom)
     lon_rng = max(lon_max - lon_min, 0.0001)
     lat_rng = max(lat_max - lat_min, 0.0001)
@@ -320,6 +322,7 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
         print(f"  {len(feats_rhone)} communes du Rhône en fond.")
         for feat in feats_rhone:
             sl, sh = build_shape(feat, f"m{i}", cfg["stroke_w"])
+            if sl is None: continue
             styles_lines.append(sl); shapes_lines.append(sh); i += 1
 
     # 2. Arrondissements municipaux (Paris, Lyon, Marseille)
@@ -328,15 +331,22 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
         print(f"  {len(feats_arr)} arrondissements municipaux.")
         for feat in feats_arr:
             sl, sh = build_shape(feat, f"a{i}", cfg["stroke_w"])
+            if sl is None: continue
             styles_lines.append(sl); shapes_lines.append(sh); i += 1
 
     # 3. Entités principales (régions / départements / cantons / communes)
     log_step = 1000 if len(features_main) > 5000 else 25
+    skipped = 0
     for feat in features_main:
         sl, sh = build_shape(feat, f"s{i}", cfg["stroke_w"])
+        if sl is None:
+            skipped += 1
+            continue
         styles_lines.append(sl); shapes_lines.append(sh); i += 1
         if i % log_step == 0:
-            print(f"  {i} / {len(features_main) + (i - len(features_main))} traités...")
+            print(f"  {i} traités...")
+    if skipped:
+        print(f"  {skipped} entités ignorées (geometry null).")
 
     print(f"  -> {i} formes au total.")
 
