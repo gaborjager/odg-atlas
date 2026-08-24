@@ -1,0 +1,97 @@
+name: Génération des cartes ODG
+
+on:
+  # Vérification toutes les nuits à 3h00 UTC
+  schedule:
+    - cron: "0 3 * * *"
+
+  # Déclenchement manuel depuis l'onglet Actions
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Forcer la régénération même si la source n'a pas changé"
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+      only:
+        description: "Cartes à générer (vide = toutes)"
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - "regions"
+          - "departements"
+          - "cantons"
+          - "communes"
+          - "regions,departements"
+          - "regions,departements,cantons"
+
+jobs:
+  generate:
+    name: Générer les ODG
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Vérifier Python
+        run: python --version
+
+      - name: Générer les ODG
+        id: generate
+        env:
+          FORCE_REGENERATE: ${{ github.event.inputs.force || 'false' }}
+        run: |
+          ONLY="${{ github.event.inputs.only }}"
+          if [ -n "$ONLY" ]; then
+            python scripts/generate_odg.py --only "$ONLY"
+          else
+            python scripts/generate_odg.py
+          fi
+
+      - name: Commit des fichiers générés
+        if: steps.generate.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/ cache/
+          git commit -m "chore: régénération automatique des cartes ODG
+
+          Fichiers mis à jour : ${{ steps.generate.outputs.changed_files }}
+          Déclencheur : ${{ github.event_name }}
+          Run : https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          git push
+
+      - name: Upload des ODG comme artefacts du workflow
+        if: steps.generate.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartes-odg
+          path: output/*.odg
+          retention-days: 90
+
+      - name: Résumé
+        run: |
+          if [ "${{ steps.generate.outputs.changed }}" = "true" ]; then
+            echo "### ✅ Cartes ODG régénérées" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Fichiers mis à jour : \`${{ steps.generate.outputs.changed_files }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Fichier | Taille |" >> $GITHUB_STEP_SUMMARY
+            echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+            for f in output/*.odg; do
+              size=$(du -sh "$f" | cut -f1)
+              echo "| \`$f\` | $size |" >> $GITHUB_STEP_SUMMARY
+            done
+          else
+            echo "### ℹ️ Aucun changement détecté" >> $GITHUB_STEP_SUMMARY
+            echo "Les sources GeoJSON n'ont pas été modifiées." >> $GITHUB_STEP_SUMMARY
+          fi
