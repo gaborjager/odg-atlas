@@ -25,18 +25,37 @@ $GeoJsonMetroUrl = "https://geo.api.gouv.fr/communes?codeDepartement=69&fields=n
 $PageW = 30.0
 $PageH = 25.0
 
-# Emprise geographique France metropolitaine
-$MLonMin = -5.5;  $MLonMax = 9.7
-$MLatMin = 41.2;  $MLatMax = 51.2
-$MLonRng = $MLonMax - $MLonMin
-$MLatRng = $MLatMax - $MLatMin
+# Emprise de la France metropolitaine (Corse incluse) en Lambert-93, en metres,
+# avec une petite marge. Identique pour toutes les cartes -> superposables.
+$MXMin = 80000.0;    $MXMax = 1260000.0
+$MYMin = 6030000.0;  $MYMax = 7130000.0
 
-# Projection equirectangulaire corrigee (cos de la latitude moyenne)
-$MidLat    = ($MLatMin + $MLatMax) / 2
-$CosMidLat = [Math]::Cos($MidLat * [Math]::PI / 180)
-$MapH = $PageH
-$MapW = [Math]::Min($MapH * ($MLonRng * $CosMidLat) / $MLatRng, $PageW)
-$XOff = ($PageW - $MapW) / 2
+# Echelle unique (cm par metre) pour X et Y : pas de deformation du ratio.
+$Scale = [Math]::Min($PageW / ($MXMax - $MXMin), $PageH / ($MYMax - $MYMin))
+$XOff  = ($PageW - ($MXMax - $MXMin) * $Scale) / 2
+$YOff  = ($PageH - ($MYMax - $MYMin) * $Scale) / 2
+
+# Projection Lambert-93 (EPSG:2154) -- conique conforme secante, ellipsoide GRS80
+# Formules IGN (NTG_71). Identique a scripts/generate_odg.py.
+$Deg     = [Math]::PI / 180
+$L93A    = 6378137.0
+$L93F    = 1.0 / 298.257222101
+$L93E    = [Math]::Sqrt(2 * $L93F - $L93F * $L93F)
+$L93Lon0 = 3.0 * $Deg
+$L93X0   = 700000.0
+$L93Y0   = 6600000.0
+
+function Get-L93M([double]$phi) {
+    [Math]::Cos($phi) / [Math]::Sqrt(1 - [Math]::Pow($L93E * [Math]::Sin($phi), 2))
+}
+function Get-L93T([double]$phi) {
+    $es = $L93E * [Math]::Sin($phi)
+    [Math]::Tan([Math]::PI / 4 - $phi / 2) / [Math]::Pow((1 - $es) / (1 + $es), $L93E / 2)
+}
+
+$L93N    = ([Math]::Log((Get-L93M (44.0 * $Deg))) - [Math]::Log((Get-L93M (49.0 * $Deg)))) / ([Math]::Log((Get-L93T (44.0 * $Deg))) - [Math]::Log((Get-L93T (49.0 * $Deg))))
+$L93AF   = $L93A * (Get-L93M (44.0 * $Deg)) / ($L93N * [Math]::Pow((Get-L93T (44.0 * $Deg)), $L93N))
+$L93Rho0 = $L93AF * [Math]::Pow((Get-L93T (46.5 * $Deg)), $L93N)
 
 # Couleur unique bleue
 $FillColor   = "#6AAED6"
@@ -44,32 +63,51 @@ $StrokeColor = "#1A4F7A"
 
 # ── Fonctions ─────────────────────────────────────────────────────────────────
 
-function Get-BBox($geometry) {
-    $lons = [System.Collections.Generic.List[double]]::new()
-    $lats = [System.Collections.Generic.List[double]]::new()
+# Anneaux projetes en Lambert-93 : liste d'anneaux, chaque anneau = liste de [x, y] en metres.
+function Get-ProjectedRings($geometry) {
     $rings = @()
     if ($geometry.type -eq "Polygon")      { $rings = $geometry.coordinates }
     if ($geometry.type -eq "MultiPolygon") { foreach ($p in $geometry.coordinates) { foreach ($r in $p) { $rings += ,$r } } }
-    foreach ($ring in $rings) { foreach ($pt in $ring) { $lons.Add($pt[0]); $lats.Add($pt[1]) } }
-    return @{
-        LonMin = ($lons | Measure-Object -Minimum).Minimum
-        LonMax = ($lons | Measure-Object -Maximum).Maximum
-        LatMin = ($lats | Measure-Object -Minimum).Minimum
-        LatMax = ($lats | Measure-Object -Maximum).Maximum
+    $out = [System.Collections.Generic.List[object]]::new()
+    foreach ($ring in $rings) {
+        $pts = [System.Collections.Generic.List[double[]]]::new()
+        foreach ($pt in $ring) {
+            # Calcul Lambert-93 en ligne (evite un appel de fonction par point)
+            $phi   = [double]$pt[1] * $Deg
+            $es    = $L93E * [Math]::Sin($phi)
+            $t     = [Math]::Tan([Math]::PI / 4 - $phi / 2) / [Math]::Pow((1 - $es) / (1 + $es), $L93E / 2)
+            $rho   = $L93AF * [Math]::Pow($t, $L93N)
+            $theta = $L93N * ([double]$pt[0] * $Deg - $L93Lon0)
+            $pts.Add([double[]]@(($L93X0 + $rho * [Math]::Sin($theta)),
+                                 ($L93Y0 + $L93Rho0 - $rho * [Math]::Cos($theta))))
+        }
+        $out.Add($pts)
     }
+    return ,$out
 }
 
-function Get-PathData($geometry, [double]$originLon, [double]$originLatMax,
+function Get-BBox($rings) {
+    $xMin = [double]::MaxValue; $xMax = [double]::MinValue
+    $yMin = [double]::MaxValue; $yMax = [double]::MinValue
+    foreach ($ring in $rings) {
+        foreach ($pt in $ring) {
+            if ($pt[0] -lt $xMin) { $xMin = $pt[0] }
+            if ($pt[0] -gt $xMax) { $xMax = $pt[0] }
+            if ($pt[1] -lt $yMin) { $yMin = $pt[1] }
+            if ($pt[1] -gt $yMax) { $yMax = $pt[1] }
+        }
+    }
+    return @{ XMin = $xMin; XMax = $xMax; YMin = $yMin; YMax = $yMax }
+}
+
+function Get-PathData($rings, [double]$originX, [double]$originYMax,
                       [double]$scaleX, [double]$scaleY) {
-    $rings = @()
-    if ($geometry.type -eq "Polygon")      { $rings = $geometry.coordinates }
-    if ($geometry.type -eq "MultiPolygon") { foreach ($p in $geometry.coordinates) { foreach ($r in $p) { $rings += ,$r } } }
     $parts = foreach ($ring in $rings) {
         $sb = New-Object System.Text.StringBuilder
         $first = $true
         foreach ($pt in $ring) {
-            $x = [Math]::Round(($pt[0] - $originLon)    * $scaleX, 1)
-            $y = [Math]::Round(($originLatMax - $pt[1]) * $scaleY, 1)
+            $x = [Math]::Round(($pt[0] - $originX)    * $scaleX, 1)
+            $y = [Math]::Round(($originYMax - $pt[1]) * $scaleY, 1)
             if ($first) { [void]$sb.Append("M $x $y"); $first = $false }
             else         { [void]$sb.Append(" L $x $y") }
         }
@@ -108,21 +146,23 @@ foreach ($feat in $GeoJsonMetro.features) {
     $code = $feat.properties.code
     $nom  = Escape-Xml $feat.properties.nom
 
-    $b      = Get-BBox $feat.geometry
-    $lonRng = [Math]::Max([double]($b.LonMax - $b.LonMin), [double]0.001)
-    $latRng = [Math]::Max([double]($b.LatMax - $b.LatMin), [double]0.001)
+    $rings  = Get-ProjectedRings $feat.geometry
+    if ($rings.Count -eq 0) { continue }   # geometry null : entite ignoree
+    $b      = Get-BBox $rings
+    $xRng   = [Math]::Max($b.XMax - $b.XMin, 1.0)
+    $yRng   = [Math]::Max($b.YMax - $b.YMin, 1.0)
 
-    $xCm = [Math]::Round($XOff + ($b.LonMin - $MLonMin) / $MLonRng * $MapW, 4)
-    $yCm = [Math]::Round(($MLatMax - $b.LatMax) / $MLatRng * $MapH, 4)
-    $wCm = [Math]::Round($lonRng / $MLonRng * $MapW, 4)
-    $hCm = [Math]::Round($latRng / $MLatRng * $MapH, 4)
+    $xCm = [Math]::Round($XOff + ($b.XMin - $MXMin) * $Scale, 4)
+    $yCm = [Math]::Round($YOff + ($MYMax - $b.YMax) * $Scale, 4)
+    $wCm = [Math]::Round($xRng * $Scale, 4)
+    $hCm = [Math]::Round($yRng * $Scale, 4)
 
     $vbW = [Math]::Max(1, [long]($wCm * 1000))
     $vbH = [Math]::Max(1, [long]($hCm * 1000))
-    $sX  = [double]$vbW / $lonRng
-    $sY  = [double]$vbH / $latRng
+    $sX  = [double]$vbW / $xRng
+    $sY  = [double]$vbH / $yRng
 
-    $pathData  = Get-PathData $feat.geometry $b.LonMin $b.LatMax $sX $sY
+    $pathData  = Get-PathData $rings $b.XMin $b.YMax $sX $sY
     $styleName = "m$i"
 
     [void]$sbStyles.AppendLine(
@@ -151,21 +191,23 @@ foreach ($feat in $GeoJsonArr.features) {
     $code = $feat.properties.code
     $nom  = Escape-Xml $feat.properties.nom
 
-    $b      = Get-BBox $feat.geometry
-    $lonRng = [Math]::Max([double]($b.LonMax - $b.LonMin), [double]0.001)
-    $latRng = [Math]::Max([double]($b.LatMax - $b.LatMin), [double]0.001)
+    $rings  = Get-ProjectedRings $feat.geometry
+    if ($rings.Count -eq 0) { continue }   # geometry null : entite ignoree
+    $b      = Get-BBox $rings
+    $xRng   = [Math]::Max($b.XMax - $b.XMin, 1.0)
+    $yRng   = [Math]::Max($b.YMax - $b.YMin, 1.0)
 
-    $xCm = [Math]::Round($XOff + ($b.LonMin - $MLonMin) / $MLonRng * $MapW, 4)
-    $yCm = [Math]::Round(($MLatMax - $b.LatMax) / $MLatRng * $MapH, 4)
-    $wCm = [Math]::Round($lonRng / $MLonRng * $MapW, 4)
-    $hCm = [Math]::Round($latRng / $MLatRng * $MapH, 4)
+    $xCm = [Math]::Round($XOff + ($b.XMin - $MXMin) * $Scale, 4)
+    $yCm = [Math]::Round($YOff + ($MYMax - $b.YMax) * $Scale, 4)
+    $wCm = [Math]::Round($xRng * $Scale, 4)
+    $hCm = [Math]::Round($yRng * $Scale, 4)
 
     $vbW = [Math]::Max(1, [long]($wCm * 1000))
     $vbH = [Math]::Max(1, [long]($hCm * 1000))
-    $sX  = [double]$vbW / $lonRng
-    $sY  = [double]$vbH / $latRng
+    $sX  = [double]$vbW / $xRng
+    $sY  = [double]$vbH / $yRng
 
-    $pathData  = Get-PathData $feat.geometry $b.LonMin $b.LatMax $sX $sY
+    $pathData  = Get-PathData $rings $b.XMin $b.YMax $sX $sY
     $styleName = "a$i"
 
     [void]$sbStyles.AppendLine(
@@ -192,21 +234,23 @@ foreach ($feat in $GeoJson.features) {
     $code = $feat.properties.code
     $nom  = Escape-Xml $feat.properties.nom
 
-    $b      = Get-BBox $feat.geometry
-    $lonRng = [Math]::Max([double]($b.LonMax - $b.LonMin), [double]0.001)
-    $latRng = [Math]::Max([double]($b.LatMax - $b.LatMin), [double]0.001)
+    $rings  = Get-ProjectedRings $feat.geometry
+    if ($rings.Count -eq 0) { continue }   # geometry null : entite ignoree
+    $b      = Get-BBox $rings
+    $xRng   = [Math]::Max($b.XMax - $b.XMin, 1.0)
+    $yRng   = [Math]::Max($b.YMax - $b.YMin, 1.0)
 
-    $xCm = [Math]::Round($XOff + ($b.LonMin - $MLonMin) / $MLonRng * $MapW, 4)
-    $yCm = [Math]::Round(($MLatMax - $b.LatMax) / $MLatRng * $MapH, 4)
-    $wCm = [Math]::Round($lonRng / $MLonRng * $MapW, 4)
-    $hCm = [Math]::Round($latRng / $MLatRng * $MapH, 4)
+    $xCm = [Math]::Round($XOff + ($b.XMin - $MXMin) * $Scale, 4)
+    $yCm = [Math]::Round($YOff + ($MYMax - $b.YMax) * $Scale, 4)
+    $wCm = [Math]::Round($xRng * $Scale, 4)
+    $hCm = [Math]::Round($yRng * $Scale, 4)
 
     $vbW = [Math]::Max(1, [long]($wCm * 1000))
     $vbH = [Math]::Max(1, [long]($hCm * 1000))
-    $sX  = [double]$vbW / $lonRng
-    $sY  = [double]$vbH / $latRng
+    $sX  = [double]$vbW / $xRng
+    $sY  = [double]$vbH / $yRng
 
-    $pathData  = Get-PathData $feat.geometry $b.LonMin $b.LatMax $sX $sY
+    $pathData  = Get-PathData $rings $b.XMin $b.YMax $sX $sY
     $styleName = "s$i"
 
     [void]$sbStyles.AppendLine(

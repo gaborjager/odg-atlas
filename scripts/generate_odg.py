@@ -1,7 +1,8 @@
 """
 generate_odg.py
-Traduit fidèlement les 4 scripts PowerShell geojson-*-to-odg.ps1.
-Génère des fichiers .odg (OpenDocument Graphics) pour LibreOffice / Collabora.
+Portage des 4 scripts PowerShell geojson-*-to-odg.ps1, en projection Lambert-93.
+Génère des fichiers .odg (OpenDocument Graphics) pour LibreOffice / Collabora,
+ainsi que le catalogue output/maps.json (URL + SHA-256 de chaque carte).
 
 Usage :
     python scripts/generate_odg.py [--force] [--only departements,regions,cantons,communes]
@@ -19,30 +20,79 @@ import zipfile
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
-# Mise en page — identique aux scripts PS
+# Projection Lambert-93 (EPSG:2154) — conique conforme sécante, ellipsoïde GRS80
+# Formules IGN (NTG_71), implémentées sans dépendance externe.
+# ---------------------------------------------------------------------------
+L93_A     = 6378137.0
+L93_F     = 1 / 298.257222101
+L93_E     = math.sqrt(2 * L93_F - L93_F ** 2)
+L93_LON0  = math.radians(3.0)
+L93_LAT0  = math.radians(46.5)
+L93_LAT1  = math.radians(44.0)
+L93_LAT2  = math.radians(49.0)
+L93_X0    = 700000.0
+L93_Y0    = 6600000.0
+
+
+def _l93_m(phi):
+    return math.cos(phi) / math.sqrt(1 - (L93_E * math.sin(phi)) ** 2)
+
+
+def _l93_t(phi):
+    es = L93_E * math.sin(phi)
+    return math.tan(math.pi / 4 - phi / 2) / ((1 - es) / (1 + es)) ** (L93_E / 2)
+
+
+L93_N    = ((math.log(_l93_m(L93_LAT1)) - math.log(_l93_m(L93_LAT2)))
+            / (math.log(_l93_t(L93_LAT1)) - math.log(_l93_t(L93_LAT2))))
+L93_AF   = L93_A * _l93_m(L93_LAT1) / (L93_N * _l93_t(L93_LAT1) ** L93_N)
+L93_RHO0 = L93_AF * _l93_t(L93_LAT0) ** L93_N
+
+
+def lambert93(lon, lat):
+    """(lon, lat) WGS84 en degrés -> (X, Y) Lambert-93 en mètres."""
+    rho   = L93_AF * _l93_t(math.radians(lat)) ** L93_N
+    theta = L93_N * (math.radians(lon) - L93_LON0)
+    return L93_X0 + rho * math.sin(theta), L93_Y0 + L93_RHO0 - rho * math.cos(theta)
+
+
+# ---------------------------------------------------------------------------
+# Mise en page
 # ---------------------------------------------------------------------------
 PAGE_W = 30.0
 PAGE_H = 25.0
 
-M_LON_MIN, M_LON_MAX = -5.5, 9.7
-M_LAT_MIN, M_LAT_MAX = 41.2, 51.2
-M_LON_RNG = M_LON_MAX - M_LON_MIN
-M_LAT_RNG = M_LAT_MAX - M_LAT_MIN
+# Emprise de la France métropolitaine (Corse incluse) en Lambert-93, en mètres,
+# avec une petite marge. Identique pour toutes les cartes -> superposables.
+M_X_MIN, M_X_MAX = 80000.0, 1260000.0
+M_Y_MIN, M_Y_MAX = 6030000.0, 7130000.0
 
-MID_LAT    = (M_LAT_MIN + M_LAT_MAX) / 2
-COS_MID    = math.cos(MID_LAT * math.pi / 180)
-MAP_H      = PAGE_H
-MAP_W      = min(MAP_H * (M_LON_RNG * COS_MID) / M_LAT_RNG, PAGE_W)
-X_OFF      = (PAGE_W - MAP_W) / 2
+# Échelle unique (cm par mètre) pour X et Y : pas de déformation du ratio.
+SCALE = min(PAGE_W / (M_X_MAX - M_X_MIN), PAGE_H / (M_Y_MAX - M_Y_MIN))
+X_OFF = (PAGE_W - (M_X_MAX - M_X_MIN) * SCALE) / 2
+Y_OFF = (PAGE_H - (M_Y_MAX - M_Y_MIN) * SCALE) / 2
+
+# Changer cette valeur force la régénération de toutes les cartes
+# (elle entre dans le hash de cache) quand l'algorithme de rendu évolue.
+GENERATOR_VERSION = "2-lambert93"
 
 FILL_COLOR   = "#6AAED6"
 STROKE_COLOR = "#1A4F7A"
+
+# ---------------------------------------------------------------------------
+# Catalogue JSON publié (référence pour le téléchargement automatique)
+# ---------------------------------------------------------------------------
+CATALOG_PATH     = "output/maps.json"
+CATALOG_VERSION  = 1
+DEFAULT_BASE_URL = "https://raw.githubusercontent.com/gaborjager/france-odg/main"
 
 # ---------------------------------------------------------------------------
 # Sources
 # ---------------------------------------------------------------------------
 SOURCES = {
     "regions": {
+        "title":       "France - Carte régionale",
+        "description": "Carte des 13 régions de France métropolitaine. Chaque forme porte le code INSEE de la région dans draw:name.",
         "label":       "Régions de France",
         "page_name":   "Regions de France",
         "url":         "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions-version-simplifiee.geojson",
@@ -52,6 +102,8 @@ SOURCES = {
         "extra_urls":  [],
     },
     "departements": {
+        "title":       "France - Carte départementale",
+        "description": "Carte des 96 départements de France métropolitaine. Chaque forme porte le code INSEE du département dans draw:name.",
         "label":       "Départements de France",
         "page_name":   "Departements de France",
         "url":         "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson",
@@ -61,6 +113,8 @@ SOURCES = {
         "extra_urls":  [],
     },
     "cantons": {
+        "title":       "France - Carte cantonale",
+        "description": "Carte des cantons de France métropolitaine, complétée par les arrondissements municipaux (Paris, Lyon, Marseille) et les communes du Rhône. Chaque forme porte le code INSEE dans draw:name.",
         "label":       "Cantons de France",
         "page_name":   "Cantons de France",
         "url":         "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/cantons-version-simplifiee.geojson",
@@ -83,6 +137,8 @@ SOURCES = {
         ],
     },
     "communes": {
+        "title":       "France - Carte communale",
+        "description": "Carte des communes de France métropolitaine (~35 000 formes, fichier lourd). Chaque forme porte le code INSEE de la commune dans draw:name.",
         "label":       "Communes de France",
         "page_name":   "Communes de France",
         "url":         "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/communes-version-simplifiee.geojson",
@@ -106,22 +162,25 @@ def get_rings(geometry):
         yield from geometry["coordinates"]
 
 
-def get_bbox(geometry):
-    lons, lats = [], []
-    for ring in get_rings(geometry):
-        for pt in ring:
-            lons.append(float(pt[0]))
-            lats.append(float(pt[1]))
-    return min(lons), max(lons), min(lats), max(lats)
+def project_rings(geometry):
+    """Liste des anneaux projetés en Lambert-93 : [[(x, y), ...], ...]."""
+    return [[lambert93(float(pt[0]), float(pt[1])) for pt in ring]
+            for ring in get_rings(geometry)]
 
 
-def get_path_data(geometry, origin_lon, origin_lat_max, sx, sy):
+def get_bbox(rings):
+    xs = [x for ring in rings for x, _ in ring]
+    ys = [y for ring in rings for _, y in ring]
+    return min(xs), max(xs), min(ys), max(ys)
+
+
+def get_path_data(rings, origin_x, origin_y_max, sx, sy):
     parts = []
-    for ring in get_rings(geometry):
+    for ring in rings:
         coords = []
-        for pt in ring:
-            x = round((float(pt[0]) - origin_lon) * sx, 1)
-            y = round((origin_lat_max - float(pt[1])) * sy, 1)
+        for px, py in ring:
+            x = round((px - origin_x) * sx, 1)
+            y = round((origin_y_max - py) * sy, 1)
             coords.append(f"{x} {y}")
         parts.append("M " + " L ".join(coords) + " Z")
     return " ".join(parts)
@@ -189,21 +248,22 @@ def build_shape(feat, style_name, stroke_w):
     geom = feat["geometry"]
     if geom is None or not geom.get("coordinates"):
         return None, None
-    lon_min, lon_max, lat_min, lat_max = get_bbox(geom)
-    lon_rng = max(lon_max - lon_min, 0.0001)
-    lat_rng = max(lat_max - lat_min, 0.0001)
+    rings = project_rings(geom)
+    x_min, x_max, y_min, y_max = get_bbox(rings)
+    x_rng = max(x_max - x_min, 1.0)
+    y_rng = max(y_max - y_min, 1.0)
 
-    x_cm = round(X_OFF + (lon_min - M_LON_MIN) / M_LON_RNG * MAP_W, 4)
-    y_cm = round((M_LAT_MAX - lat_max) / M_LAT_RNG * MAP_H, 4)
-    w_cm = round(lon_rng / M_LON_RNG * MAP_W, 4)
-    h_cm = round(lat_rng / M_LAT_RNG * MAP_H, 4)
+    x_cm = round(X_OFF + (x_min - M_X_MIN) * SCALE, 4)
+    y_cm = round(Y_OFF + (M_Y_MAX - y_max) * SCALE, 4)
+    w_cm = round(x_rng * SCALE, 4)
+    h_cm = round(y_rng * SCALE, 4)
 
     vb_w = max(1, int(w_cm * 1000))
     vb_h = max(1, int(h_cm * 1000))
-    s_x  = vb_w / lon_rng
-    s_y  = vb_h / lat_rng
+    s_x  = vb_w / x_rng
+    s_y  = vb_h / y_rng
 
-    path_data = get_path_data(geom, lon_min, lat_max, s_x, s_y)
+    path_data = get_path_data(rings, x_min, y_max, s_x, s_y)
 
     style_xml = (
         f'    <style:style style:name="{style_name}" style:family="graphic" '
@@ -248,19 +308,24 @@ def build_odg_bytes(page_name, styles_lines, shapes_lines):
         '</office:document-content>'
     )
 
+    # Horodatage fixe pour que le fichier (et donc son SHA-256) ne dépende
+    # que de son contenu : même source -> même hash dans maps.json.
+    def entry(name, compress):
+        zi = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+        zi.compress_type = compress
+        return zi
+
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w") as zf:
         # mimetype en premier, non compressé — obligatoire ODF
-        zf.writestr(
-            zipfile.ZipInfo("mimetype"),
-            "application/vnd.oasis.opendocument.graphics",
-        )
-        zf.writestr("META-INF/manifest.xml", MANIFEST_XML.encode("utf-8"),
-                    compress_type=zipfile.ZIP_DEFLATED)
-        zf.writestr("styles.xml",  STYLES_XML.encode("utf-8"),
-                    compress_type=zipfile.ZIP_DEFLATED)
-        zf.writestr("content.xml", content_xml.encode("utf-8"),
-                    compress_type=zipfile.ZIP_DEFLATED)
+        zf.writestr(entry("mimetype", zipfile.ZIP_STORED),
+                    "application/vnd.oasis.opendocument.graphics")
+        zf.writestr(entry("META-INF/manifest.xml", zipfile.ZIP_DEFLATED),
+                    MANIFEST_XML.encode("utf-8"))
+        zf.writestr(entry("styles.xml", zipfile.ZIP_DEFLATED),
+                    STYLES_XML.encode("utf-8"))
+        zf.writestr(entry("content.xml", zipfile.ZIP_DEFLATED),
+                    content_xml.encode("utf-8"))
     return buf.getvalue()
 
 
@@ -293,7 +358,7 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
     print(f"\n=== {cfg['label']} ===")
 
     raw_main = fetch(cfg["url"], "GeoJSON principal")
-    new_hash = sha256_bytes(raw_main)
+    new_hash = sha256_bytes(GENERATOR_VERSION.encode() + raw_main)
 
     # Pour les cantons, inclure les URLs extra dans le hash
     extra_raws = {}
@@ -362,6 +427,44 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
     return True
 
 # ---------------------------------------------------------------------------
+# Catalogue maps.json
+# ---------------------------------------------------------------------------
+def write_catalog(base_url: str) -> bool:
+    """(Ré)écrit output/maps.json à partir des ODG présents sur disque.
+    Retourne True si le fichier a changé."""
+    maps = []
+    for name, cfg in SOURCES.items():
+        out = Path(cfg["output"])
+        if not out.exists():
+            continue
+        data = out.read_bytes()
+        maps.append({
+            "id":          name,
+            "title":       cfg["title"],
+            "description": cfg["description"],
+            "url":         f"{base_url.rstrip('/')}/{cfg['output']}",
+            "filename":    out.name,
+            "format":      "application/vnd.oasis.opendocument.graphics",
+            "size":        len(data),
+            "sha256":      sha256_bytes(data),
+        })
+
+    catalog = {
+        "version":    CATALOG_VERSION,
+        "projection": "EPSG:2154 (Lambert-93)",
+        "maps":       maps,
+    }
+    text = json.dumps(catalog, ensure_ascii=False, indent=2) + "\n"
+
+    path = Path(CATALOG_PATH)
+    if path.exists() and path.read_text(encoding="utf-8") == text:
+        print(f"\nCatalogue {CATALOG_PATH} inchangé.")
+        return False
+    path.write_text(text, encoding="utf-8")
+    print(f"\nCatalogue {CATALOG_PATH} mis à jour ({len(maps)} cartes).")
+    return True
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
@@ -389,6 +492,8 @@ def main():
             print(f"  ERREUR [{name}] : {exc}", file=sys.stderr)
             sys.exit(1)
 
+    catalog_changed = write_catalog(os.environ.get("ODG_BASE_URL", DEFAULT_BASE_URL))
+
     if changed:
         print(f"\nFichiers régénérés : {', '.join(changed)}")
     else:
@@ -397,7 +502,7 @@ def main():
     gha = os.environ.get("GITHUB_OUTPUT", "")
     if gha:
         with open(gha, "a") as f:
-            f.write(f"changed={'true' if changed else 'false'}\n")
+            f.write(f"changed={'true' if changed or catalog_changed else 'false'}\n")
             f.write(f"changed_files={','.join(changed)}\n")
 
 if __name__ == "__main__":

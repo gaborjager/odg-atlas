@@ -18,6 +18,39 @@ GeoJSON (IGN) sont modifiées.
 | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2 000 cantons + arrond. municipaux + communes du Rhône | code INSEE (ex. `75056`) | ~500 Ko |
 | [`output/communes-france.odg`](output/communes-france.odg) | ~35 000 communes ⚠️ fichier lourd | code INSEE commune (ex. `75056`) | ~100 Mo |
 
+### 📇 Catalogue JSON (téléchargement automatique)
+
+Le fichier [`output/maps.json`](output/maps.json) liste les cartes disponibles et sert de
+référence aux projets qui téléchargent les ODG automatiquement :
+
+```
+https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
+```
+
+```json
+{
+  "version": 1,
+  "projection": "EPSG:2154 (Lambert-93)",
+  "maps": [
+    {
+      "id": "departements",
+      "title": "France - Carte départementale",
+      "description": "Carte des 96 départements de France métropolitaine. …",
+      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/departements-france.odg",
+      "filename": "departements-france.odg",
+      "format": "application/vnd.oasis.opendocument.graphics",
+      "size": 87649,
+      "sha256": "706b4e0b…"
+    }
+  ]
+}
+```
+
+- `id` est stable et sert de clé ; `sha256` est l'empreinte du fichier `.odg` téléchargé
+  (à vérifier après téléchargement, et à comparer pour savoir si une mise à jour est nécessaire).
+- Les ODG sont générés de façon déterministe : le hash ne change que si le contenu change.
+- Le catalogue est réécrit à chaque exécution du workflow.
+
 > **Note cantons :** Paris, Lyon (Métropole) et Marseille n'ont pas de cantons dans la source GeoJSON.
 > Ils sont complétés par leurs arrondissements municipaux (Paris, Marseille) et les communes
 > du département du Rhône (Métropole de Lyon), dans le même ordre d'empilement que le script PowerShell original.
@@ -100,7 +133,8 @@ Les fichiers ODG générés sont aussi disponibles comme **artefacts du workflow
 ## 💻 Génération locale sous Windows (PowerShell)
 
 Les scripts PowerShell originaux sont dans `scripts/ps/`. Ils fonctionnent
-**sans aucune dépendance** (stdlib .NET uniquement) :
+**sans aucune dépendance** (stdlib .NET uniquement). Ils utilisent la même projection
+Lambert-93 et la même mise en page que le script Python.
 
 ```powershell
 # Régions
@@ -123,8 +157,8 @@ Les scripts PowerShell originaux sont dans `scripts/ps/`. Ils fonctionnent
 
 ## 🐍 Génération locale sous Linux / macOS (Python)
 
-Le script Python `scripts/generate_odg.py` est la traduction fidèle des scripts PS,
-utilisé par GitHub Actions. Il nécessite **Python 3.8+**, sans dépendance externe :
+Le script Python `scripts/generate_odg.py` est le portage des scripts PS
+utilisé par GitHub Actions (projection Lambert-93, génération de `output/maps.json`). Il nécessite **Python 3.8+**, sans dépendance externe :
 
 ```bash
 # Toutes les cartes
@@ -146,7 +180,7 @@ python scripts/generate_odg.py --only regions,departements
 | Paramètre | Valeur |
 |---|---|
 | Format de sortie | ODF Graphics 1.3 (`.odg`) |
-| Projection | Équirectangulaire corrigée — cos(latitude moyenne 46,2°N) |
+| Projection | Lambert-93 (EPSG:2154), échelle identique en X et Y |
 | Dimensions de la page | 30 × 25 cm, orientation paysage |
 | Couleur de remplissage | `#6AAED6` (bleu clair) |
 | Couleur de contour | `#1A4F7A` (bleu foncé) |

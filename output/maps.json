@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "projection": "EPSG:2154 (Lambert-93)",
+  "maps": [
+    {
+      "id": "regions",
+      "title": "France - Carte régionale",
+      "description": "Carte des 13 régions de France métropolitaine. Chaque forme porte le code INSEE de la région dans draw:name.",
+      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/regions-france.odg",
+      "filename": "regions-france.odg",
+      "format": "application/vnd.oasis.opendocument.graphics",
+      "size": 37803,
+      "sha256": "c15bb76565e8b3c2fe82cd4ea6e62fdbcd31cf367bfed66e2ae4e0e67fe2c4b7"
+    },
+    {
+      "id": "departements",
+      "title": "France - Carte départementale",
+      "description": "Carte des 96 départements de France métropolitaine. Chaque forme porte le code INSEE du département dans draw:name.",
+      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/departements-france.odg",
+      "filename": "departements-france.odg",
+      "format": "application/vnd.oasis.opendocument.graphics",
+      "size": 87649,
+      "sha256": "706b4e0b5975c9620c6cd5f4d978b076fbf9139e22a622840f70206517bcface"
+    },
+    {
+      "id": "cantons",
+      "title": "France - Carte cantonale",
+      "description": "Carte des cantons de France métropolitaine, complétée par les arrondissements municipaux (Paris, Lyon, Marseille) et les communes du Rhône. Chaque forme porte le code INSEE dans draw:name.",
+      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/cantons-france.odg",
+      "filename": "cantons-france.odg",
+      "format": "application/vnd.oasis.opendocument.graphics",
+      "size": 963767,
+      "sha256": "76bf24d7cf45907b8903108ca1340f512c967f9ad99835aa522d09362d7cca4d"
+    },
+    {
+      "id": "communes",
+      "title": "France - Carte communale",
+      "description": "Carte des communes de France métropolitaine (~35 000 formes, fichier lourd). Chaque forme porte le code INSEE de la commune dans draw:name.",
+      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/communes-france.odg",
+      "filename": "communes-france.odg",
+      "format": "application/vnd.oasis.opendocument.graphics",
+      "size": 3402420,
+      "sha256": "4a7c630adbacb5e46be313ae8d64de36197bb44305440d639c4ea9536ed27bb7"
+    }
+  ]
+}
