@@ -40,7 +40,10 @@ https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
       "filename": "departements-france.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
       "size": 87649,
-      "sha256": "706b4e0b…"
+      "sha256": "706b4e0b…",
+      "objects": 96,
+      "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/departements.svg",
+      "preview_sha256": "31fbc494…"
     }
   ]
 }
@@ -48,7 +51,11 @@ https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
 
 - `id` est stable et sert de clé ; `sha256` est l'empreinte du fichier `.odg` téléchargé
   (à vérifier après téléchargement, et à comparer pour savoir si une mise à jour est nécessaire).
-- Les ODG sont générés de façon déterministe : le hash ne change que si le contenu change.
+- `objects` est le nombre de formes (zones) de la carte : un logiciel peut écarter les
+  cartes trop détaillées pour lui.
+- `preview` est un aperçu SVG de la carte (300 × 250 px, dans [`output/previews/`](output/previews/)),
+  produit à partir de l'ODG ; `preview_sha256` est son empreinte.
+- Les ODG et les aperçus sont générés de façon déterministe : le hash ne change que si le contenu change.
 - Le catalogue est réécrit à chaque exécution du workflow.
 
 > **Note cantons :** Paris, Lyon (Métropole) et Marseille n'ont pas de cantons dans la source GeoJSON.

@@ -2,7 +2,8 @@
 generate_odg.py
 Portage des 4 scripts PowerShell geojson-*-to-odg.ps1, en projection Lambert-93.
 Génère des fichiers .odg (OpenDocument Graphics) pour LibreOffice / Collabora,
-ainsi que le catalogue output/maps.json (URL + SHA-256 de chaque carte).
+ainsi que le catalogue output/maps.json (URL + SHA-256 de chaque carte, nombre
+d'objets) et un aperçu SVG de chaque carte (output/previews/).
 
 Usage :
     python scripts/generate_odg.py [--force] [--only departements,regions,cantons,communes]
@@ -16,6 +17,7 @@ import math
 import os
 import sys
 import urllib.request
+import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
 
@@ -83,6 +85,8 @@ STROKE_COLOR = "#1A4F7A"
 # Catalogue JSON publié (référence pour le téléchargement automatique)
 # ---------------------------------------------------------------------------
 CATALOG_PATH     = "output/maps.json"
+PREVIEW_DIR      = "output/previews"
+PREVIEW_PX_CM    = 10          # aperçu : 10 px par cm de page (300 x 250 px)
 CATALOG_VERSION  = 1
 DEFAULT_BASE_URL = "https://raw.githubusercontent.com/gaborjager/france-odg/main"
 
@@ -427,6 +431,60 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
     return True
 
 # ---------------------------------------------------------------------------
+# Aperçu SVG
+# ---------------------------------------------------------------------------
+NS_DRAW = "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0"
+NS_SVG  = "urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
+
+
+def _cm(valeur: str) -> float:
+    return float(valeur.replace("cm", ""))
+
+
+def build_preview(odg_bytes: bytes):
+    """Aperçu SVG d'un ODG produit par ce script : une forme par zone, points
+    arrondis au pixel (les doublons et les anneaux devenus plats sont retirés).
+    Retourne (texte SVG, nombre de formes de l'ODG)."""
+    with zipfile.ZipFile(io.BytesIO(odg_bytes)) as zf:
+        racine = ET.fromstring(zf.read("content.xml"))
+    chemins = []
+    nb_formes = 0
+    for forme in racine.iter(f"{{{NS_DRAW}}}path"):
+        nb_formes += 1
+        x0 = _cm(forme.get(f"{{{NS_SVG}}}x"))
+        y0 = _cm(forme.get(f"{{{NS_SVG}}}y"))
+        larg = _cm(forme.get(f"{{{NS_SVG}}}width"))
+        haut = _cm(forme.get(f"{{{NS_SVG}}}height"))
+        _, _, vb_l, vb_h = (float(v) for v in forme.get(f"{{{NS_SVG}}}viewBox").split())
+        sx, sy = larg / vb_l * PREVIEW_PX_CM, haut / vb_h * PREVIEW_PX_CM
+        ox, oy = x0 * PREVIEW_PX_CM, y0 * PREVIEW_PX_CM
+        anneaux, anneau = [], []
+        jetons = forme.get(f"{{{NS_SVG}}}d").split()
+        i = 0
+        while i < len(jetons):
+            j = jetons[i]
+            if j in ("M", "L"):
+                pt = (round(ox + float(jetons[i + 1]) * sx), round(oy + float(jetons[i + 2]) * sy))
+                if j == "M":
+                    anneau = [pt]
+                    anneaux.append(anneau)
+                elif pt != anneau[-1]:
+                    anneau.append(pt)
+                i += 3
+            else:
+                i += 1
+        morceaux = [a for a in anneaux if len(set(a)) >= 3]
+        if morceaux:
+            d = " ".join("M" + " L".join(f"{x} {y}" for x, y in a) + "Z" for a in morceaux)
+            chemins.append(f'<path d="{d}"/>')
+    l, h = round(PAGE_W * PREVIEW_PX_CM), round(PAGE_H * PREVIEW_PX_CM)
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{l}" height="{h}" viewBox="0 0 {l} {h}">\n'
+           f'<g fill="{FILL_COLOR}" stroke="{STROKE_COLOR}" stroke-width="0.4" stroke-linejoin="round">\n'
+           + "\n".join(chemins) + "\n</g>\n</svg>\n")
+    return svg, nb_formes
+
+
+# ---------------------------------------------------------------------------
 # Catalogue maps.json
 # ---------------------------------------------------------------------------
 def write_catalog(base_url: str) -> bool:
@@ -438,15 +496,25 @@ def write_catalog(base_url: str) -> bool:
         if not out.exists():
             continue
         data = out.read_bytes()
+        svg, nb_objets = build_preview(data)
+        apercu = Path(PREVIEW_DIR) / f"{name}.svg"
+        apercu.parent.mkdir(parents=True, exist_ok=True)
+        svg_bytes = svg.encode("utf-8")
+        if not apercu.exists() or apercu.read_bytes() != svg_bytes:
+            apercu.write_bytes(svg_bytes)
+            print(f"Aperçu {apercu} écrit ({len(svg_bytes) // 1024} Ko).")
         maps.append({
-            "id":          name,
-            "title":       cfg["title"],
-            "description": cfg["description"],
-            "url":         f"{base_url.rstrip('/')}/{cfg['output']}",
-            "filename":    out.name,
-            "format":      "application/vnd.oasis.opendocument.graphics",
-            "size":        len(data),
-            "sha256":      sha256_bytes(data),
+            "id":             name,
+            "title":          cfg["title"],
+            "description":    cfg["description"],
+            "url":            f"{base_url.rstrip('/')}/{cfg['output']}",
+            "filename":       out.name,
+            "format":         "application/vnd.oasis.opendocument.graphics",
+            "size":           len(data),
+            "sha256":         sha256_bytes(data),
+            "objects":        nb_objets,
+            "preview":        f"{base_url.rstrip('/')}/{apercu.as_posix()}",
+            "preview_sha256": sha256_bytes(svg_bytes),
         })
 
     catalog = {
