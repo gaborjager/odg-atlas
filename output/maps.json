@@ -12,6 +12,12 @@
       "size": 37803,
       "sha256": "c15bb76565e8b3c2fe82cd4ea6e62fdbcd31cf367bfed66e2ae4e0e67fe2c4b7",
       "objects": 13,
+      "code_examples": [
+        "11",
+        "24",
+        "27",
+        "28"
+      ],
       "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/regions.svg",
       "preview_sha256": "9551dcd2df551dadc49add6abaf2de378e6298fb418b89ab6f1b1e920b7def1b"
     },
@@ -25,6 +31,12 @@
       "size": 87649,
       "sha256": "706b4e0b5975c9620c6cd5f4d978b076fbf9139e22a622840f70206517bcface",
       "objects": 96,
+      "code_examples": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
       "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/departements.svg",
       "preview_sha256": "31fbc49458cbf50fc3083d5bb6c61a9442c529007d0a8ef9144227d11a483279"
     },
@@ -38,6 +50,12 @@
       "size": 963767,
       "sha256": "76bf24d7cf45907b8903108ca1340f512c967f9ad99835aa522d09362d7cca4d",
       "objects": 2306,
+      "code_examples": [
+        "01001",
+        "01002",
+        "01003",
+        "01004"
+      ],
       "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/cantons.svg",
       "preview_sha256": "12b1ef1698dca2428731e110a519fd1dff8275735dba35d448ea280b7035c8ab"
     },
@@ -51,6 +69,12 @@
       "size": 3402420,
       "sha256": "4a7c630adbacb5e46be313ae8d64de36197bb44305440d639c4ea9536ed27bb7",
       "objects": 35191,
+      "code_examples": [
+        "01001",
+        "01002",
+        "01004",
+        "01005"
+      ],
       "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/communes.svg",
       "preview_sha256": "d717d66ccf9690869401fcea23893ac6d6c49f0813f549f0ace2d8e427afc413"
     }

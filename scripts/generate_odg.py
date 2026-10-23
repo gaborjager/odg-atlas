@@ -87,6 +87,7 @@ STROKE_COLOR = "#1A4F7A"
 CATALOG_PATH     = "output/maps.json"
 PREVIEW_DIR      = "output/previews"
 PREVIEW_PX_CM    = 10          # aperçu : 10 px par cm de page (300 x 250 px)
+NB_CODE_EXAMPLES = 4           # exemples de codes (draw:name) publiés dans le catalogue
 CATALOG_VERSION  = 1
 DEFAULT_BASE_URL = "https://raw.githubusercontent.com/gaborjager/france-odg/main"
 
@@ -444,13 +445,16 @@ def _cm(valeur: str) -> float:
 def build_preview(odg_bytes: bytes):
     """Aperçu SVG d'un ODG produit par ce script : une forme par zone, points
     arrondis au pixel (les doublons et les anneaux devenus plats sont retirés).
-    Retourne (texte SVG, nombre de formes de l'ODG)."""
+    Retourne (texte SVG, nombre de formes de l'ODG, codes des zones triés)."""
     with zipfile.ZipFile(io.BytesIO(odg_bytes)) as zf:
         racine = ET.fromstring(zf.read("content.xml"))
     chemins = []
     nb_formes = 0
+    codes = set()
     for forme in racine.iter(f"{{{NS_DRAW}}}path"):
         nb_formes += 1
+        if forme.get(f"{{{NS_DRAW}}}name"):
+            codes.add(forme.get(f"{{{NS_DRAW}}}name"))
         x0 = _cm(forme.get(f"{{{NS_SVG}}}x"))
         y0 = _cm(forme.get(f"{{{NS_SVG}}}y"))
         larg = _cm(forme.get(f"{{{NS_SVG}}}width"))
@@ -481,7 +485,7 @@ def build_preview(odg_bytes: bytes):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{l}" height="{h}" viewBox="0 0 {l} {h}">\n'
            f'<g fill="{FILL_COLOR}" stroke="{STROKE_COLOR}" stroke-width="0.4" stroke-linejoin="round">\n'
            + "\n".join(chemins) + "\n</g>\n</svg>\n")
-    return svg, nb_formes
+    return svg, nb_formes, sorted(codes)
 
 
 # ---------------------------------------------------------------------------
@@ -496,7 +500,7 @@ def write_catalog(base_url: str) -> bool:
         if not out.exists():
             continue
         data = out.read_bytes()
-        svg, nb_objets = build_preview(data)
+        svg, nb_objets, codes = build_preview(data)
         apercu = Path(PREVIEW_DIR) / f"{name}.svg"
         apercu.parent.mkdir(parents=True, exist_ok=True)
         svg_bytes = svg.encode("utf-8")
@@ -513,6 +517,7 @@ def write_catalog(base_url: str) -> bool:
             "size":           len(data),
             "sha256":         sha256_bytes(data),
             "objects":        nb_objets,
+            "code_examples":  codes[:NB_CODE_EXAMPLES],
             "preview":        f"{base_url.rstrip('/')}/{apercu.as_posix()}",
             "preview_sha256": sha256_bytes(svg_bytes),
         })

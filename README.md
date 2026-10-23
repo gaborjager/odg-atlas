@@ -42,6 +42,7 @@ https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
       "size": 87649,
       "sha256": "706b4e0b…",
       "objects": 96,
+      "code_examples": ["01", "02", "03", "04"],
       "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/departements.svg",
       "preview_sha256": "31fbc494…"
     }
@@ -53,6 +54,8 @@ https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
   (à vérifier après téléchargement, et à comparer pour savoir si une mise à jour est nécessaire).
 - `objects` est le nombre de formes (zones) de la carte : un logiciel peut écarter les
   cartes trop détaillées pour lui.
+- `code_examples` donne les premiers codes des zones (`draw:name`, ordre alphabétique) :
+  un logiciel peut les montrer pour illustrer la codification attendue.
 - `preview` est un aperçu SVG de la carte (300 × 250 px, dans [`output/previews/`](output/previews/)),
   produit à partir de l'ODG ; `preview_sha256` est son empreinte.
 - Les ODG et les aperçus sont générés de façon déterministe : le hash ne change que si le contenu change.
