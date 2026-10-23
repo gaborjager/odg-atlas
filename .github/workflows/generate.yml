@@ -1,21 +1,28 @@
-name: Génération des cartes ODG
+name: Generate ODG maps
 
 on:
-  # Vérification toutes les nuits à 3h00 UTC
+  # Check every night at 03:00 UTC
   schedule:
     - cron: "0 3 * * *"
 
-  # Déclenchement manuel depuis l'onglet Actions
+  # A static map or the generator changed
+  push:
+    branches: [main]
+    paths:
+      - "static/**"
+      - "scripts/generate_odg.py"
+
+  # Manual run from the Actions tab
   workflow_dispatch:
     inputs:
       force:
-        description: "Forcer la régénération même si la source n'a pas changé"
+        description: "Regenerate even if the source has not changed"
         required: false
         default: "false"
         type: choice
         options: ["false", "true"]
       only:
-        description: "Cartes à générer (vide = toutes)"
+        description: "Maps to generate (empty = all)"
         required: false
         default: ""
         type: choice
@@ -25,12 +32,18 @@ on:
           - "departements"
           - "cantons"
           - "communes"
+          - "eu-countries"
           - "regions,departements"
           - "regions,departements,cantons"
 
+# One run at a time: two runs must not commit the catalog at the same time
+concurrency:
+  group: generate
+  cancel-in-progress: false
+
 jobs:
   generate:
-    name: Générer les ODG
+    name: Generate the ODG files
     runs-on: ubuntu-latest
 
     permissions:
@@ -42,14 +55,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Vérifier Python
+      - name: Check Python
         run: python --version
 
-      - name: Générer les ODG
+      - name: Generate the ODG files
         id: generate
         env:
           FORCE_REGENERATE: ${{ github.event.inputs.force || 'false' }}
-          # Base des URLs de téléchargement écrites dans output/maps.json
+          # Base of the download URLs written in output/maps.json
           ODG_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}
         run: |
           ONLY="${{ github.event.inputs.only }}"
@@ -59,43 +72,44 @@ jobs:
             python scripts/generate_odg.py
           fi
 
-      - name: Commit des fichiers générés
+      - name: Commit the generated files
         if: steps.generate.outputs.changed == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add output/ cache/
-          git commit -m "chore: régénération automatique des cartes ODG
+          git commit -m "chore: regenerate the ODG maps
 
-          Fichiers mis à jour : ${{ steps.generate.outputs.changed_files }}
-          Déclencheur : ${{ github.event_name }}
-          Run : https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          Updated files: ${{ steps.generate.outputs.changed_files }}
+          Trigger: ${{ github.event_name }}
+          Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           git push
 
-      - name: Upload des ODG comme artefacts du workflow
+      - name: Upload the ODG files as workflow artifacts
         if: steps.generate.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: cartes-odg
+          name: odg-maps
           path: |
             output/*.odg
             output/maps.json
           retention-days: 90
 
-      - name: Résumé
+      - name: Summary
         run: |
           if [ "${{ steps.generate.outputs.changed }}" = "true" ]; then
-            echo "### ✅ Cartes ODG régénérées" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ ODG maps updated" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Fichiers mis à jour : \`${{ steps.generate.outputs.changed_files }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "Regenerated files: \`${{ steps.generate.outputs.changed_files }}\`" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "| Fichier | Taille |" >> $GITHUB_STEP_SUMMARY
+            echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
             echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-            for f in output/*.odg; do
+            for f in output/*.odg static/*.odg; do
+              [ -f "$f" ] || continue
               size=$(du -sh "$f" | cut -f1)
               echo "| \`$f\` | $size |" >> $GITHUB_STEP_SUMMARY
             done
           else
-            echo "### ℹ️ Aucun changement détecté" >> $GITHUB_STEP_SUMMARY
-            echo "Les sources GeoJSON n'ont pas été modifiées." >> $GITHUB_STEP_SUMMARY
+            echo "### ℹ️ No change detected" >> $GITHUB_STEP_SUMMARY
+            echo "The GeoJSON sources and the static maps have not changed." >> $GITHUB_STEP_SUMMARY
           fi

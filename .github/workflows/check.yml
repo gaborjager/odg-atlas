@@ -1,0 +1,17 @@
+# Checks the static maps of a pull request (file names, metadata, named
+# zones), without downloading anything.
+name: Check static maps
+
+on:
+  pull_request:
+    paths:
+      - "static/**"
+      - "scripts/generate_odg.py"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the static maps
+        run: python scripts/generate_odg.py --check

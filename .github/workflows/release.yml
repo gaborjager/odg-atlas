@@ -1,0 +1,51 @@
+# Creates a GitHub release each time the maps change.
+#
+# Runs after each generation (the commits of the generation workflow do not
+# trigger other workflows by themselves), on a push that changes the catalog,
+# or manually. Compares output/maps.json with the catalog of the latest
+# release (tag maps-YYYY.MM.DD); if a map was added, updated or removed,
+# creates the release "ODG Atlas YYYY.MM.DD" with the list of changes and
+# all the maps attached.
+name: Release maps
+
+on:
+  workflow_run:
+    workflows: ["Generate ODG maps"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - "output/maps.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Compare with the latest release
+        id: notes
+        run: python scripts/release_notes.py
+
+      - name: Create the release
+        if: steps.notes.outputs.new == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.notes.outputs.tag }}" ${{ steps.notes.outputs.files }} \
+            --target "$(git rev-parse HEAD)" \
+            --title "${{ steps.notes.outputs.title }}" \
+            --notes-file release-notes.md

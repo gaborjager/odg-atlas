@@ -1,220 +1,273 @@
-# 🗺️ Cartes de France ODG — LibreOffice / Collabora
+# 🗺️ ODG Atlas - base maps for LibreOffice / Collabora
 
-Génération automatique de fichiers **`.odg`** (OpenDocument Graphics) découpés par
-entité administrative française, prêts à l'emploi dans LibreOffice Draw, LibreOffice Calc
-avec l'extension GeOOo, Collabora Office, et tout logiciel compatible ODF.
+Ready-to-use **`.odg`** base maps (OpenDocument Graphics), one shape per
+administrative zone, **named with the official code of the zone**: for
+LibreOffice Draw, LibreOffice Calc with the [CalcMap](https://github.com/gaborjager/calcmap)
+extension (thematic maps from a spreadsheet), Collabora Office and any ODF
+software.
 
-Les fichiers sont régénérés automatiquement via **GitHub Actions** dès que les sources
-GeoJSON (IGN) sont modifiées.
+Most maps are generated automatically from open GeoJSON sources by
+**GitHub Actions**, and regenerated when a source changes. Maps drawn by hand
+can be added too (*static maps*). Each change of the maps is published as a
+**release**.
+
+> This project was named *france-odg* until October 2026. The old addresses
+> are redirected to this repository; the ids and file names of the French
+> maps did not change.
 
 ---
 
-## 📦 Fichiers disponibles
+## 📦 Available maps
 
-| Fichier | Entités | `draw:name` | Taille |
-|---|---|---|---|
-| [`output/regions-france.odg`](output/regions-france.odg) | 13 régions | code région (ex. `84`) | ~40 Ko |
-| [`output/departements-france.odg`](output/departements-france.odg) | 96 départements | code INSEE (ex. `75`) | ~90 Ko |
-| [`output/cantons-france.odg`](output/cantons-france.odg) | ~2 000 cantons + arrond. municipaux + communes du Rhône | code INSEE (ex. `75056`) | ~500 Ko |
-| [`output/communes-france.odg`](output/communes-france.odg) | ~35 000 communes ⚠️ fichier lourd | code INSEE commune (ex. `75056`) | ~100 Mo |
+| Map | File | Zones | `draw:name` | Size |
+|---|---|---|---|---|
+| France - Regions | [`output/regions-france.odg`](output/regions-france.odg) | 13 regions | INSEE region code (e.g. `84`) | ~40 KB |
+| France - Departments | [`output/departements-france.odg`](output/departements-france.odg) | 96 departments | INSEE department code (e.g. `75`) | ~90 KB |
+| France - Cantons | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2,300 cantons + municipal districts + municipalities of the Rhône | INSEE code (e.g. `75056`) | ~950 KB |
+| France - Municipalities | [`output/communes-france.odg`](output/communes-france.odg) | ~35,000 municipalities ⚠️ heavy file | INSEE municipality code (e.g. `75056`) | ~3.2 MB |
+| European Union - Countries | [`output/eu-countries.odg`](output/eu-countries.odg) | 27 member states | ISO 3166-1 alpha-2 code (e.g. `FR`) | ~50 KB |
 
-### 📇 Catalogue JSON (téléchargement automatique)
+Download a single map from the links above, or all of them from the latest
+[release](https://github.com/gaborjager/odg-atlas/releases/latest).
 
-Le fichier [`output/maps.json`](output/maps.json) liste les cartes disponibles et sert de
-référence aux projets qui téléchargent les ODG automatiquement :
+**Notes**
+
+- French maps: metropolitan France, Lambert-93 projection, same extent for all
+  of them (they can be overlaid). Paris, Lyon (Metropolis) and Marseille have
+  no cantons in the source GeoJSON: the cantons map is completed by their
+  municipal districts (Paris, Marseille) and the municipalities of the Rhône
+  department (Lyon Metropolis).
+- European Union: mainland and nearby islands, ETRS89-LAEA Europe projection;
+  the outermost regions (Canary Islands, Azores, Madeira, overseas
+  departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
+  Eurostat data. Cyprus is the area under the control of the Republic of
+  Cyprus, as in Natural Earth.
+
+---
+
+## 📇 JSON catalog (automatic download)
+
+The file [`output/maps.json`](output/maps.json) lists the available maps and is
+the reference for software that downloads the maps automatically:
 
 ```
-https://raw.githubusercontent.com/gaborjager/france-odg/main/output/maps.json
+https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 ```
 
 ```json
 {
   "version": 1,
-  "projection": "EPSG:2154 (Lambert-93)",
+  "title": "ODG Atlas",
   "maps": [
     {
-      "id": "departements",
-      "title": "France - Carte départementale",
-      "description": "Carte des 96 départements de France métropolitaine. …",
-      "url": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/departements-france.odg",
-      "filename": "departements-france.odg",
+      "id": "eu-countries",
+      "title": "European Union - Countries",
+      "title_fr": "Union européenne - Pays",
+      "description": "Map of the 27 member states of the European Union …",
+      "description_fr": "Carte des 27 États membres de l'Union européenne …",
+      "area": "European Union",
+      "code_type": "ISO 3166-1 alpha-2",
+      "projection": "EPSG:3035 (ETRS89-LAEA Europe)",
+      "source": "Natural Earth 1:50m Admin 0 - Countries",
+      "license": "Public domain (Natural Earth)",
+      "kind": "generated",
+      "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/eu-countries.odg",
+      "filename": "eu-countries.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 87649,
-      "sha256": "706b4e0b…",
-      "objects": 96,
-      "code_examples": ["01", "02", "03", "04"],
-      "preview": "https://raw.githubusercontent.com/gaborjager/france-odg/main/output/previews/departements.svg",
-      "preview_sha256": "31fbc494…"
+      "size": 51234,
+      "sha256": "…",
+      "objects": 27,
+      "code_examples": ["AT", "BE", "BG", "CY"],
+      "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/eu-countries.svg",
+      "preview_sha256": "…"
     }
   ]
 }
 ```
 
-- `id` est stable et sert de clé ; `sha256` est l'empreinte du fichier `.odg` téléchargé
-  (à vérifier après téléchargement, et à comparer pour savoir si une mise à jour est nécessaire).
-- `objects` est le nombre de formes (zones) de la carte : un logiciel peut écarter les
-  cartes trop détaillées pour lui.
-- `code_examples` donne les premiers codes des zones (`draw:name`, ordre alphabétique) :
-  un logiciel peut les montrer pour illustrer la codification attendue.
-- `preview` est un aperçu SVG de la carte (300 × 250 px, dans [`output/previews/`](output/previews/)),
-  produit à partir de l'ODG ; `preview_sha256` est son empreinte.
-- Les ODG et les aperçus sont générés de façon déterministe : le hash ne change que si le contenu change.
-- Le catalogue est réécrit à chaque exécution du workflow.
-
-> **Note cantons :** Paris, Lyon (Métropole) et Marseille n'ont pas de cantons dans la source GeoJSON.
-> Ils sont complétés par leurs arrondissements municipaux (Paris, Marseille) et les communes
-> du département du Rhône (Métropole de Lyon), dans le même ordre d'empilement que le script PowerShell original.
-
----
-
-## 🚀 Utilisation dans LibreOffice Calc / Collabora Calc (avec GeOOo)
-
-[GeOOo](http://geoooblog.blogspot.com/) est une extension gratuite pour LibreOffice Calc qui permet
-de créer des **cartes thématiques / choroplèthes** en coloriant automatiquement les zones
-selon des données d'un classeur.
-
-### Installation de GeOOo
-
-1. Télécharger l'extension depuis le [blog GeOOo](http://geoooblog.blogspot.com/)
-2. Dans LibreOffice : **Outils → Gestionnaire des extensions → Ajouter**
-3. Sélectionner le fichier `.oxt` téléchargé
-
-### Utilisation avec les fichiers ODG de ce dépôt
-
-1. **Télécharger** le fichier `.odg` souhaité (ex. `departements-france.odg`)
-2. **Ouvrir votre classeur** dans LibreOffice Calc
-3. Dans votre feuille, créer une colonne avec les **codes INSEE** et une colonne avec les **valeurs** :
-
-   | Code | Valeur |
-   |---|---|
-   | 75 | 2 133 111 |
-   | 69 | 1 426 231 |
-   | 13 | 1 021 136 |
-   | … | … |
-
-4. Lancer GeOOo : **Outils → Macros → GeOOo** (ou le bouton GeOOo dans la barre)
-5. Sélectionner le fichier `.odg` comme fond de carte
-6. Associer la colonne codes à `draw:name` et la colonne valeurs à la coloration
-7. GeOOo génère la carte colorée dans un nouvel onglet Draw
-
-> Le champ `draw:name` de chaque polygone contient le **code INSEE officiel**,
-> directement utilisable comme clé de jointure avec vos données.
+- `id` is stable and is the key; `sha256` is the hash of the `.odg` file (check
+  it after download, and compare it to know whether an update is needed).
+- `title_<lang>` / `description_<lang>`: optional translations (two-letter
+  language code); `title` and `description` are in English.
+- `area`: covered territory; `code_type`: codes carried by the zones
+  (`draw:name`), to join the data; `source` and `license`: origin of the data.
+- `kind`: `generated` (from a GeoJSON source) or `static` (drawn by hand).
+- `objects`: number of zones of the map: software can leave out maps that are
+  too detailed for it.
+- `code_examples`: first zone codes (alphabetical order), to illustrate the
+  expected codes.
+- `preview`: SVG preview of the map (300 × 250 px, in
+  [`output/previews/`](output/previews/)); `preview_sha256` is its hash.
+- Generated ODG files and previews are deterministic: the hash only changes
+  when the content changes.
+- The catalog is rewritten on every run of the generation workflow.
 
 ---
 
-## 🖊️ Utilisation dans LibreOffice Draw
+## ➕ Adding a map
 
-1. **Fichier → Ouvrir** → sélectionner le fichier `.odg`
-2. Chaque zone est un objet `draw:path` indépendant, sélectionnable et stylisable
-3. Pour identifier une zone : clic droit → **Nom et description** → le nom affiché est le code INSEE
-4. Pour colorer manuellement : clic sur une zone → **Format → Zone et ombre**
+**A map generated from a GeoJSON source**: add an entry to `MAPS` in
+[`scripts/generate_odg.py`](scripts/generate_odg.py) (source URL, properties
+holding the code and the name, projection, extent, filters), then run the
+script. The available projections are Lambert-93 (France) and ETRS89-LAEA
+(Europe); another one can be added to `PROJECTIONS`.
+
+**A static map, drawn by hand** in LibreOffice Draw: put `static/<id>.odg` and
+its description `static/<id>.json` in the [`static/`](static/) folder; the
+rules (zones named with their code, required metadata) are in
+[`static/README.md`](static/README.md). A pull request is checked
+automatically; once merged, the map is added to the catalog and published in
+a release.
 
 ---
 
-## ⚙️ Mise à jour automatique (CI/CD)
+## 🚀 Use in LibreOffice Calc (CalcMap)
 
-Un workflow **GitHub Actions** tourne toutes les nuits à 3h UTC :
+[CalcMap](https://github.com/gaborjager/calcmap) colors these maps from two
+columns of a spreadsheet, **code | value**: it reads the catalog, downloads
+the chosen map and keeps it up to date. See its README.
+
+> The `draw:name` field of each shape holds the **official code** of the zone,
+> directly usable as a join key with your data.
+
+---
+
+## 🖊️ Use in LibreOffice Draw
+
+1. **File → Open** → select the `.odg` file
+2. Each zone is an independent `draw:path` object, selectable and stylable
+3. To identify a zone: right-click → **Name** → the name shown is the code of the zone
+4. To color it by hand: click a zone → **Format → Area**
+
+---
+
+## ⚙️ Automatic updates and releases (CI/CD)
+
+A **GitHub Actions** workflow (*Generate ODG maps*) runs every night at 03:00
+UTC, and on each push that changes a static map or the generator:
 
 ```
-Sources GeoJSON (IGN)
-        │
-        ▼
-  Hash SHA-256 identique ?
-        │
-    Non ──► Régénération des ODG ──► Commit automatique dans output/
-        │
-    Oui ──► Rien à faire
+GeoJSON sources              static/ maps
+        │                         │
+        ▼                         │
+ Same SHA-256 hash?               │
+        │                         │
+    No ──► Regenerate the ODG ────┤
+        │                         ▼
+    Yes ──────────────────► Rewrite output/maps.json ──► Automatic commit
+                                                               │
+                                                               ▼
+                                     Maps changed since the latest release?
+                                                               │
+                                       Yes ──► Release "ODG Atlas YYYY.MM.DD"
 ```
 
-### Déclenchement manuel
+The *Release maps* workflow compares the catalog with the one of the latest
+release (tag `maps-YYYY.MM.DD`). If a map was added, updated or removed, it
+publishes a release listing the changes, with all the maps and `maps.json`
+attached.
 
-Depuis l'onglet **Actions → Génération des cartes ODG → Run workflow** :
+### Manual run
+
+From the **Actions → Generate ODG maps → Run workflow** tab:
 
 | Option | Description |
 |---|---|
-| **Forcer la régénération** | Régénère même si la source n'a pas changé |
-| **Cartes à générer** | Sélectionner un sous-ensemble (ex. `regions,departements`) |
+| **Force** | Regenerates even if the source has not changed |
+| **Maps** | Choose a subset (e.g. `regions,departements`) |
 
-Les fichiers ODG générés sont aussi disponibles comme **artefacts du workflow**
-(onglet Actions → run → Artifacts) pendant 90 jours.
+The generated ODG files are also available as **workflow artifacts**
+(Actions tab → run → Artifacts) for 90 days.
 
 ---
 
-## 💻 Génération locale sous Windows (PowerShell)
+## 💻 Local generation on Windows (PowerShell)
 
-Les scripts PowerShell originaux sont dans `scripts/ps/`. Ils fonctionnent
-**sans aucune dépendance** (stdlib .NET uniquement). Ils utilisent la même projection
-Lambert-93 et la même mise en page que le script Python.
+The original PowerShell scripts are in `scripts/ps/`, for the French maps
+only. They work **without any dependency** (.NET standard library only), with
+the same Lambert-93 projection and the same layout as the Python script.
 
 ```powershell
-# Régions
+# Regions
 .\scripts\ps\geojson-region-to-odg.ps1
 
-# Départements
+# Departments
 .\scripts\ps\geojson-departement-to-odg.ps1
 
-# Cantons (+ arrondissements municipaux + Rhône)
+# Cantons (+ municipal districts + Rhône)
 .\scripts\ps\geojson-canton-to-odg.ps1
 
-# Communes (~35 000 entités, plusieurs minutes)
+# Municipalities (~35,000 zones, several minutes)
 .\scripts\ps\geojson-commune-to-odg.ps1
 
-# Avec chemin de sortie personnalisé
-.\scripts\ps\geojson-departement-to-odg.ps1 -OutputFile "C:\cartes\france.odg"
+# With a custom output path
+.\scripts\ps\geojson-departement-to-odg.ps1 -OutputFile "C:\maps\france.odg"
 ```
 
 ---
 
-## 🐍 Génération locale sous Linux / macOS (Python)
+## 🐍 Local generation on Linux / macOS / Windows (Python)
 
-Le script Python `scripts/generate_odg.py` est le portage des scripts PS
-utilisé par GitHub Actions (projection Lambert-93, génération de `output/maps.json`). Il nécessite **Python 3.8+**, sans dépendance externe :
+The Python script `scripts/generate_odg.py` is the one used by GitHub Actions
+(all maps, `output/maps.json` and previews). It needs **Python 3.8+**, with no
+external dependency:
 
 ```bash
-# Toutes les cartes
+# All the maps
 python scripts/generate_odg.py
 
-# Forcer la régénération (ignore le cache)
+# Regenerate even if the source has not changed
 python scripts/generate_odg.py --force
 
-# Seulement certaines cartes
-python scripts/generate_odg.py --only regions,departements
+# Only some maps
+python scripts/generate_odg.py --only regions,eu-countries
 
-# Options disponibles : regions, departements, cantons, communes
+# No download: check the static maps and rewrite the catalog
+python scripts/generate_odg.py --catalog-only
+
+# Only check the static maps
+python scripts/generate_odg.py --check
 ```
 
+`python scripts/release_notes.py` shows what the next release would contain.
+
 ---
 
-## 📐 Caractéristiques techniques
+## 📐 Technical characteristics
 
-| Paramètre | Valeur |
+| Setting | Value |
 |---|---|
-| Format de sortie | ODF Graphics 1.3 (`.odg`) |
-| Projection | Lambert-93 (EPSG:2154), échelle identique en X et Y |
-| Dimensions de la page | 30 × 25 cm, orientation paysage |
-| Couleur de remplissage | `#6AAED6` (bleu clair) |
-| Couleur de contour | `#1A4F7A` (bleu foncé) |
-| Épaisseur contour | `0.018 cm` (régions/dép/cantons), `0.004 cm` (communes) |
-| Identifiant de chaque forme | `draw:name` = code INSEE officiel |
+| Output format | ODF Graphics 1.3 (`.odg`) |
+| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe; same scale in X and Y |
+| Page size | 30 × 25 cm, landscape |
+| Fill color | `#6AAED6` (light blue) |
+| Outline color | `#1A4F7A` (dark blue) |
+| Outline width | `0.018 cm` (regions, departments, cantons, countries), `0.004 cm` (municipalities) |
+| Name of each shape | `draw:name` = official code of the zone |
+| Description of each shape | `svg:desc` = `code - name` (e.g. `75 - Paris`, `FR - France`) |
 
 ---
 
-## 📚 Sources et licences
+## 📚 Sources and licenses
 
-| Source | Licence |
-|---|---|
-| [gregoiredavid/france-geojson](https://github.com/gregoiredavid/france-geojson) | Licence ouverte (IGN / Etalab) |
-| [geo.api.gouv.fr](https://geo.api.gouv.fr/) (arrondissements municipaux, communes Rhône) | Licence ouverte Etalab |
+| Source | Maps | License |
+|---|---|---|
+| [gregoiredavid/france-geojson](https://github.com/gregoiredavid/france-geojson) (IGN Admin Express) | France | Licence Ouverte / Open Licence 2.0 (Etalab) |
+| [geo.api.gouv.fr](https://geo.api.gouv.fr/) (municipal districts, municipalities of the Rhône) | France - Cantons | Licence Ouverte / Open Licence 2.0 (Etalab) |
+| [Natural Earth](https://www.naturalearthdata.com/) 1:50m Admin 0 - Countries | European Union | Public domain |
 
-Les fichiers ODG produits héritent de la **Licence ouverte / Open Licence 2.0** d'Etalab,
-compatible avec la réutilisation commerciale et non commerciale avec mention de la source.
+Each map keeps the license of its source (field `license` of the catalog). The
+French maps inherit the Etalab **Licence Ouverte / Open Licence 2.0**,
+compatible with commercial and non-commercial reuse with attribution of the
+source.
 
 ---
 
-## 🔧 Configuration GitHub requise
+## 🔧 Required GitHub settings
 
-Dans le dépôt GitHub :
+In the GitHub repository:
 **Settings → Actions → General → Workflow permissions**
-→ Activer **Read and write permissions**
+→ enable **Read and write permissions**
 
-Cela permet au bot `github-actions[bot]` de commiter les fichiers ODG régénérés.
+This lets `github-actions[bot]` commit the regenerated ODG files and publish
+the releases.
