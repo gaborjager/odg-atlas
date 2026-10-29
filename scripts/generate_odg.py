@@ -116,10 +116,37 @@ def equal_earth(lon, lat):
     return x, y
 
 
+# ---------------------------------------------------------------------------
+# Robinson (ESRI:54030) - compromise pseudocylindrical, table of Robinson
+# (1974) interpolated every 5° of latitude; sphere of the WGS84 semi-major axis.
+# ---------------------------------------------------------------------------
+ROBINSON_X = (1.0000, 0.9986, 0.9954, 0.9900, 0.9822, 0.9730, 0.9600, 0.9427, 0.9216, 0.8962,
+              0.8679, 0.8350, 0.7986, 0.7597, 0.7186, 0.6732, 0.6213, 0.5722, 0.5322)
+ROBINSON_Y = (0.0000, 0.0620, 0.1240, 0.1860, 0.2480, 0.3100, 0.3720, 0.4340, 0.4958, 0.5571,
+              0.6176, 0.6769, 0.7346, 0.7903, 0.8435, 0.8936, 0.9394, 0.9761, 1.0000)
+
+
+def robinson(lon, lat):
+    """(lon, lat) WGS84 in degrees -> (X, Y) Robinson in meters."""
+    i = min(int(abs(lat) // 5), 17)
+    f = (abs(lat) - 5 * i) / 5
+    px = ROBINSON_X[i] + f * (ROBINSON_X[i + 1] - ROBINSON_X[i])
+    py = ROBINSON_Y[i] + f * (ROBINSON_Y[i + 1] - ROBINSON_Y[i])
+    return 0.8487 * GRS80_A * px * math.radians(lon), math.copysign(1.3523 * GRS80_A * py, lat)
+
+
+def miller(lon, lat):
+    """(lon, lat) WGS84 in degrees -> (X, Y) Miller cylindrical (ESRI:54003) in meters."""
+    phi = math.radians(max(-89.9, min(89.9, lat)))
+    return GRS80_A * math.radians(lon), 1.25 * GRS80_A * math.log(math.tan(math.pi / 4 + 0.4 * phi))
+
+
 PROJECTIONS = {
     "lambert93": (lambert93, "EPSG:2154 (Lambert-93)"),
     "laea-europe": (laea_europe, "EPSG:3035 (ETRS89-LAEA Europe)"),
     "equal-earth": (equal_earth, "EPSG:8857 (Equal Earth)"),
+    "robinson": (robinson, "ESRI:54030 (Robinson)"),
+    "miller": (miller, "ESRI:54003 (Miller cylindrical)"),
 }
 
 # ---------------------------------------------------------------------------
@@ -330,9 +357,9 @@ MAPS = {
         "output":         "output/world-continents.odg",
         "cache":          "cache/world-continents.hash",
         "stroke_w":       "0.018cm",
-        "projection":     "equal-earth",
+        "projection":     "robinson",
         "extent":         None,
-        "render_version": "2-equal-earth",
+        "render_version": "3-robinson",
         "code_property":  "CONTINENT",
         "name_property":  "NAME_EN",
         "code_map":       {k: code for k, (code, _) in CONTINENTS.items()},
@@ -373,9 +400,9 @@ MAPS = {
         "output":         "output/world-countries.odg",
         "cache":          "cache/world-countries.hash",
         "stroke_w":       "0.008cm",
-        "projection":     "equal-earth",
+        "projection":     "robinson",
         "extent":         None,
-        "render_version": "2-equal-earth",
+        "render_version": "3-robinson",
         "code_property":  "ISO_A2_EH",
         "name_property":  "NAME_EN",
         "code_fixes":     WORLD_CODE_FIXES,

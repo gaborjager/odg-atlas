@@ -44,7 +44,8 @@ Download a single map from the links above, or all of them from the latest
   departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
   Eurostat data. Cyprus is the area under the control of the Republic of
   Cyprus, as in Natural Earth.
-- World maps: Equal Earth projection (equal-area), Antarctica included.
+- World maps: Robinson projection (compromise between areas and shapes, the
+  usual look of world atlases), Antarctica included.
   - *Countries*: countries and territories with an ISO 3166-1 alpha-2 code.
     The few zones without one are merged into the country that holds them in
     ISO 3166: Somaliland into Somalia (`SO`), Northern Cyprus into Cyprus
@@ -130,7 +131,8 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 [`scripts/generate_odg.py`](scripts/generate_odg.py) (source URL, properties
 holding the code and the name, projection, extent, filters), then run the
 script. The available projections are Lambert-93 (France), ETRS89-LAEA
-(Europe) and Equal Earth (world); another one can be added to `PROJECTIONS`.
+(Europe), Robinson (world, used by the world maps), Equal Earth and Miller;
+another one can be added to `PROJECTIONS`.
 
 **A static map, drawn by hand** in LibreOffice Draw: put `static/<id>.odg` and
 its description `static/<id>.json` in the [`static/`](static/) folder; the
@@ -264,7 +266,7 @@ python scripts/generate_odg.py --check
 | Setting | Value |
 |---|---|
 | Output format | ODF Graphics 1.3 (`.odg`) |
-| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Equal Earth (EPSG:8857) for the world; same scale in X and Y |
+| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Robinson (ESRI:54030) for the world; same scale in X and Y |
 | Page size | 30 × 25 cm, landscape |
 | Fill color | `#6AAED6` (light blue) |
 | Outline color | `#1A4F7A` (dark blue) |

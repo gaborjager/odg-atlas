@@ -175,15 +175,15 @@
       "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique. Les îles de moins de 5 000 km² sont supprimées.",
       "area": "World",
       "code_type": "Continent code (AF, AN, AS, EU, NA, OC, SA)",
-      "projection": "EPSG:8857 (Equal Earth)",
+      "projection": "ESRI:54030 (Robinson)",
       "source": "Natural Earth 1:50m Admin 0 - Countries",
       "license": "Public domain (Natural Earth)",
       "kind": "generated",
       "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/world-continents.odg",
       "filename": "world-continents.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 91983,
-      "sha256": "60061b89d15f9e120d8027512dc9d3a751db0647f9829c722f53bc07e25f00b8",
+      "size": 92675,
+      "sha256": "0f5930931008097ad616cd26b71c0780ae13277bceae4a62de1b05eb255d2e76",
       "objects": 7,
       "code_examples": [
         "AF",
@@ -195,7 +195,7 @@
         "SA"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/world-continents.svg",
-      "preview_sha256": "b771026a0fca5296b0822057d3510322ae0e583e4682e6ef1095c7ac8fde8e2a"
+      "preview_sha256": "259437e93a1b851672f6604f1c59be918ff5b979464d2c01ec11b7c13291c1ef"
     },
     {
       "id": "world-countries",
@@ -205,15 +205,15 @@
       "description_fr": "Carte des pays et territoires du monde (Antarctique compris). Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name ; le Somaliland, Chypre du Nord et le glacier de Siachen font partie de SO, CY et IN.",
       "area": "World",
       "code_type": "ISO 3166-1 alpha-2",
-      "projection": "EPSG:8857 (Equal Earth)",
+      "projection": "ESRI:54030 (Robinson)",
       "source": "Natural Earth 1:50m Admin 0 - Countries",
       "license": "Public domain (Natural Earth)",
       "kind": "generated",
       "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/world-countries.odg",
       "filename": "world-countries.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 536200,
-      "sha256": "723ab14422f2d0d0b471169c268531f3bd16785f548b859923a3764ec29097ad",
+      "size": 538032,
+      "sha256": "05eec070d9671bfafd0dc7d82f44ec6dbfea51971cdce360f941e1ac705f5b91",
       "objects": 237,
       "code_examples": [
         "AD",
@@ -228,7 +228,7 @@
         "AR"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/world-countries.svg",
-      "preview_sha256": "a1637d23ce2f90e4f34c8f8c36c104884201a6179a74179360994aa59b58bb63"
+      "preview_sha256": "2d4c6ec4517ab6607e634e8cd9bbe179a0c2d58406ad63dcf4c43aa66ce144a7"
     }
   ]
 }
