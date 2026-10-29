@@ -171,8 +171,8 @@
       "id": "world-continents",
       "title": "World - Continents",
       "title_fr": "Monde - Continents",
-      "description": "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent.",
-      "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique.",
+      "description": "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent. Islands under 5,000 km² are removed.",
+      "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique. Les îles de moins de 5 000 km² sont supprimées.",
       "area": "World",
       "code_type": "Continent code (AF, AN, AS, EU, NA, OC, SA)",
       "projection": "EPSG:8857 (Equal Earth)",
@@ -182,8 +182,8 @@
       "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/world-continents.odg",
       "filename": "world-continents.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 347597,
-      "sha256": "e27054b5255ac8c11a6c1c48a621e30b28d9665076b93a5e2c697e483702f8e6",
+      "size": 91983,
+      "sha256": "60061b89d15f9e120d8027512dc9d3a751db0647f9829c722f53bc07e25f00b8",
       "objects": 7,
       "code_examples": [
         "AF",
@@ -195,7 +195,7 @@
         "SA"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/world-continents.svg",
-      "preview_sha256": "4ba126200a2386a1ac593c4a27c2ef5d20445aea7f6dd5b31642a2c9d0001bc2"
+      "preview_sha256": "b771026a0fca5296b0822057d3510322ae0e583e4682e6ef1095c7ac8fde8e2a"
     },
     {
       "id": "world-countries",
@@ -212,8 +212,8 @@
       "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/world-countries.odg",
       "filename": "world-countries.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 537248,
-      "sha256": "db40162cade44e5c82350f924349904693747f2b866adb816aeb2bb32c7da6df",
+      "size": 536200,
+      "sha256": "723ab14422f2d0d0b471169c268531f3bd16785f548b859923a3764ec29097ad",
       "objects": 237,
       "code_examples": [
         "AD",
@@ -228,7 +228,7 @@
         "AR"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/world-countries.svg",
-      "preview_sha256": "0f00b1f596989dc52bf497c5346f5e08d8a8f86a82ec76c408594febabbb080a"
+      "preview_sha256": "a1637d23ce2f90e4f34c8f8c36c104884201a6179a74179360994aa59b58bb63"
     }
   ]
 }

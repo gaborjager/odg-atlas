@@ -171,6 +171,9 @@ NATURAL_EARTH_LICENSE = "Public domain (Natural Earth)"
 # (controlled by India)
 WORLD_CODE_FIXES = {"ADM0_A3": {"SOL": "SO", "CYN": "CY", "KAS": "IN"}}
 
+# Countries crossing 180°: their parts west of it are drawn east of it
+WORLD_WRAP_EAST = ("ISO_A2_EH", ("RU", "FJ"))
+
 CONTINENTS = {
     "Africa":        ("AF", "Africa"),
     "Antarctica":    ("AN", "Antarctica"),
@@ -315,8 +318,8 @@ MAPS = {
     "world-continents": {
         "title":          "World - Continents",
         "title_fr":       "Monde - Continents",
-        "description":    "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent.",
-        "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique.",
+        "description":    "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent. Islands under 5,000 km² are removed.",
+        "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique. Les îles de moins de 5 000 km² sont supprimées.",
         "area":           "World",
         "code_type":      "Continent code (AF, AN, AS, EU, NA, OC, SA)",
         "source":         NATURAL_EARTH_SOURCE,
@@ -329,7 +332,7 @@ MAPS = {
         "stroke_w":       "0.018cm",
         "projection":     "equal-earth",
         "extent":         None,
-        "render_version": "1-equal-earth",
+        "render_version": "2-equal-earth",
         "code_property":  "CONTINENT",
         "name_property":  "NAME_EN",
         "code_map":       {k: code for k, (code, _) in CONTINENTS.items()},
@@ -338,10 +341,14 @@ MAPS = {
         "code_fixes":     {"ISO_A2_EH": {"GS": "SA", "HM": "OC", "IO": "AF", "MU": "AF",
                                          "MV": "AS", "SC": "AF", "SH": "AF", "TF": "AF"}},
         "merge":          True,
+        "wrap_east":      WORLD_WRAP_EAST,
         "split_lon":      URAL_LON,
+        # Islands and lakes under 5,000 km² removed (Corsica, Cyprus, Crete,
+        # Hawaii kept), outlines simplified to 0.05° (~5 km, 0.04 mm on the page)
+        "min_area_km2":   5000,
+        "simplify_deg":   0.05,
         "part_codes": [
-            ("ISO_A2_EH", "RU", (URAL_LON, 180.0, -90.0, 90.0), "AS"),    # Siberia
-            ("ISO_A2_EH", "RU", (-180.0, -160.0, -90.0, 90.0), "AS"),     # Chukotka, east of 180°
+            ("ISO_A2_EH", "RU", (URAL_LON, 200.0, -90.0, 90.0), "AS"),    # Siberia
             ("ISO_A2_EH", "FR", (-55.0, -50.0, 0.0, 7.0), "SA"),          # French Guiana
             ("ISO_A2_EH", "FR", (-63.0, -60.0, 14.0, 17.0), "NA"),        # Guadeloupe, Martinique
             ("ISO_A2_EH", "FR", (44.0, 56.0, -22.0, -12.0), "AF"),        # Mayotte, Réunion
@@ -368,11 +375,12 @@ MAPS = {
         "stroke_w":       "0.008cm",
         "projection":     "equal-earth",
         "extent":         None,
-        "render_version": "1-equal-earth",
+        "render_version": "2-equal-earth",
         "code_property":  "ISO_A2_EH",
         "name_property":  "NAME_EN",
         "code_fixes":     WORLD_CODE_FIXES,
         "merge":          True,
+        "wrap_east":      WORLD_WRAP_EAST,
         "extra_urls":     [],
     },
 }
@@ -506,7 +514,8 @@ def clip_polygon(poly, lon, west):
 def split_zone(code, name, geom, props, cfg):
     """Zones of a feature for a merged map: polygons with coordinates rounded
     to 1e-7 degree (shared borders match exactly), cut at the meridian
-    split_lon, then given another code by part_codes:
+    split_lon, moved east of 180° by wrap_east, then given another code by
+    part_codes:
     [(property, value, box, code)] - polygons of that feature whose center is
     in box (lon min, lon max, lat min, lat max)."""
     polys = [[[(round(float(pt[0]), 7), round(float(pt[1]), 7)) for pt in ring] for ring in poly]
@@ -521,6 +530,12 @@ def split_zone(code, name, geom, props, cfg):
             else:
                 cut.append(poly)
         polys = cut
+    wrap = cfg.get("wrap_east")
+    if wrap and props.get(wrap[0]) in wrap[1]:
+        # Parts west of 180°W of these features: moved east of 180°E,
+        # next to the rest of the country (Chukotka, Fiji)
+        polys = [[[(lon + 360, lat) for lon, lat in ring] for ring in poly]
+                 if max(pt[0] for pt in poly[0]) < 0 else poly for poly in polys]
     by_code = {}
     for poly in polys:
         part_code = code
@@ -546,6 +561,72 @@ def merge_zones(zones, cfg):
         rings = dissolve([ring for z in group for poly in get_polygons(z[2]) for ring in poly])
         merged.append((code, name, {"type": "MultiPolygon", "coordinates": [[r] for r in rings]}))
     return merged
+
+
+def ring_km2(ring):
+    """Approximate area of a ring in lon/lat degrees, in km²."""
+    lat = sum(pt[1] for pt in ring) / len(ring)
+    return ring_area(ring) * 111.32 ** 2 * math.cos(math.radians(lat))
+
+
+def simplify_line(pts, tolerance):
+    """Douglas-Peucker: points of pts kept, ends included."""
+    keep = [False] * len(pts)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        i, j = stack.pop()
+        (x1, y1), (x2, y2) = pts[i], pts[j]
+        dx, dy = x2 - x1, y2 - y1
+        length = math.hypot(dx, dy)
+        far, k_far = 0.0, None
+        for k in range(i + 1, j):
+            x, y = pts[k]
+            d = (abs(dy * (x - x1) - dx * (y - y1)) / length if length
+                 else math.hypot(x - x1, y - y1))
+            if d > far:
+                far, k_far = d, k
+        if k_far is not None and far > tolerance:
+            keep[k_far] = True
+            stack += [(i, k_far), (k_far, j)]
+    return [pt for pt, k in zip(pts, keep) if k]
+
+
+def simplify_zones(zones, min_km2, tolerance):
+    """Rings under min_km2 removed (the largest ring of a zone is kept),
+    outlines simplified (Douglas-Peucker). The points shared by several zones
+    are kept, so that the common borders stay identical."""
+    owners = {}
+    for code, _, geom in zones:
+        for poly in get_polygons(geom):
+            for ring in poly:
+                for pt in ring:
+                    owners.setdefault(pt, set()).add(code)
+    result = []
+    for code, name, geom in zones:
+        rings = [ring for poly in get_polygons(geom) for ring in poly]
+        largest = max(rings, key=ring_km2)
+        kept = []
+        for ring in rings:
+            if ring is not largest and ring_km2(ring) < min_km2:
+                continue
+            if tolerance:
+                fixed = [k for k, pt in enumerate(ring[:-1]) if len(owners[pt]) > 1]
+                if not fixed:
+                    # No shared point: cut at the first point and the farthest one
+                    far = max(range(len(ring) - 1), key=lambda k: math.dist(ring[0], ring[k]))
+                    fixed = sorted({0, far})
+                pts = ring[:-1]
+                n = len(pts)
+                out = []
+                for a, b in zip(fixed, fixed[1:] + [fixed[0] + n]):
+                    section = [pts[k % n] for k in range(a, b + 1)]
+                    out += simplify_line(section, tolerance)[:-1]
+                ring = out + out[:1]
+            if len(ring) >= 4:
+                kept.append(ring)
+        result.append((code, name, {"type": "MultiPolygon", "coordinates": [[r] for r in kept]}))
+    return result
 
 
 def project_rings(geometry, project):
@@ -792,6 +873,8 @@ def zone_features(raw, cfg):
             zones.append((code, name, geom))
     if cfg.get("merge"):
         zones = merge_zones(zones, cfg)
+        if cfg.get("min_area_km2") or cfg.get("simplify_deg"):
+            zones = simplify_zones(zones, cfg.get("min_area_km2", 0), cfg.get("simplify_deg", 0))
         missing = [z[1] for z in zones if not z[0] or z[0] == "-99"]
         if missing:
             raise ValueError(f"zones without code: {', '.join(missing)}")

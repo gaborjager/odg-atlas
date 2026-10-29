@@ -26,7 +26,7 @@ can be added too (*static maps*). Each change of the maps is published as a
 | France - Cantons | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2,300 cantons + municipal districts + municipalities of the Rhône | INSEE code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson), [geo.api.gouv.fr](https://geo.api.gouv.fr/) | ~950 KB |
 | France - Municipalities | [`output/communes-france.odg`](output/communes-france.odg) | ~35,000 municipalities ⚠️ heavy file | INSEE municipality code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson) | ~3.2 MB |
 | European Union - Countries | [`output/eu-countries.odg`](output/eu-countries.odg) | 27 member states | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~50 KB |
-| World - Continents | [`output/world-continents.odg`](output/world-continents.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~340 KB |
+| World - Continents | [`output/world-continents.odg`](output/world-continents.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~90 KB |
 | World - Countries | [`output/world-countries.odg`](output/world-countries.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
 
 Download a single map from the links above, or all of them from the latest
@@ -57,7 +57,11 @@ Download a single map from the links above, or all of them from the latest
     Asia), except that Russia is cut at the meridian 60°E (approximation of the
     Ural) and that overseas territories belong to their geographic continent
     (French Guiana, Antilles, Réunion, Mayotte, Caribbean Netherlands, Canary
-    Islands, Madeira).
+    Islands, Madeira). Simplified for this scale: islands under 5,000 km²
+    are removed (Corsica, Cyprus, Crete, Hawaii are kept) and the outlines
+    are smoothed (~5 km); the borders between continents are not changed.
+  - Chukotka and the islands of Fiji east of 180° are drawn next to the rest
+    of Russia and Fiji, at the right edge of the map.
 
 ---
 
