@@ -2,8 +2,9 @@
 release_notes.py
 Prepares the GitHub release of the ODG Atlas when the maps have changed.
 
-Compares output/maps.json with the catalog of the latest release (tag
-maps-YYYY.MM.DD), then writes release-notes.md and, for GitHub Actions,
+Compares output/maps.json with the catalog of the latest release, then
+creates the version 1.0.YYYYMMDD (tag v1.0.YYYYMMDD, date of the day; the
+series 1.0 is set in SERIES, 1.1 for the new maps). Writes release-notes.md and, for GitHub Actions,
 the outputs new (true/false), tag, title and files (assets to attach).
 
 Usage:
@@ -18,7 +19,11 @@ from pathlib import Path
 
 CATALOG_PATH = "output/maps.json"
 NOTES_PATH = "release-notes.md"
-TAG_PREFIX = "maps-"
+# Version SERIES.YYYYMMDD; raise SERIES by hand (e.g. "1.1") with new maps
+SERIES = "1.0"
+TAG_PREFIX = "v"
+# Tags of the first releases (maps-YYYY.MM.DD), still compared with
+LEGACY_TAG_PREFIX = "maps-"
 DEFAULT_REPOSITORY = "gaborjager/odg-atlas"
 # Changes of these fields alone (same file) are listed as "details changed"
 DETAIL_FIELDS = ("title", "description", "area", "code_type", "source", "license")
@@ -30,7 +35,7 @@ def git(*args):
 
 def latest_tag():
     out = git("for-each-ref", "--sort=-creatordate", "--format=%(refname:short)",
-              f"refs/tags/{TAG_PREFIX}*").stdout.split()
+              f"refs/tags/{TAG_PREFIX}[0-9]*", f"refs/tags/{LEGACY_TAG_PREFIX}*").stdout.split()
     return out[0] if out else None
 
 
@@ -44,12 +49,12 @@ def catalog_at(tag):
 
 
 def new_tag():
-    base = TAG_PREFIX + datetime.now(timezone.utc).strftime("%Y.%m.%d")
+    base = f"{TAG_PREFIX}{SERIES}.{datetime.now(timezone.utc):%Y%m%d}"
     existing = set(git("tag", "-l", f"{base}*").stdout.split())
     tag, n = base, 1
-    while tag in existing:
+    while tag in existing:   # second release of the day: v1.0.YYYYMMDD.2
         n += 1
-        tag = f"{base}-{n}"
+        tag = f"{base}.{n}"
     return tag
 
 

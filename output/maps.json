@@ -24,7 +24,13 @@
         "11",
         "24",
         "27",
-        "28"
+        "28",
+        "32",
+        "44",
+        "52",
+        "53",
+        "75",
+        "76"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/regions.svg",
       "preview_sha256": "9551dcd2df551dadc49add6abaf2de378e6298fb418b89ab6f1b1e920b7def1b"
@@ -51,7 +57,13 @@
         "01",
         "02",
         "03",
-        "04"
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/departements.svg",
       "preview_sha256": "31fbc49458cbf50fc3083d5bb6c61a9442c529007d0a8ef9144227d11a483279"
@@ -78,7 +90,13 @@
         "01001",
         "01002",
         "01003",
-        "01004"
+        "01004",
+        "01005",
+        "01006",
+        "01007",
+        "01008",
+        "01009",
+        "01010"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/cantons.svg",
       "preview_sha256": "12b1ef1698dca2428731e110a519fd1dff8275735dba35d448ea280b7035c8ab"
@@ -105,7 +123,13 @@
         "01001",
         "01002",
         "01004",
-        "01005"
+        "01005",
+        "01006",
+        "01007",
+        "01008",
+        "01009",
+        "01010",
+        "01011"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/communes.svg",
       "preview_sha256": "d717d66ccf9690869401fcea23893ac6d6c49f0813f549f0ace2d8e427afc413"
@@ -132,7 +156,13 @@
         "AT",
         "BE",
         "BG",
-        "CY"
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "EE",
+        "ES",
+        "FI"
       ],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/eu-countries.svg",
       "preview_sha256": "d1e7a8b0537686517a6b6acb27d5c19e8b51440f950c0f0c3a9753fa4fb1c402"

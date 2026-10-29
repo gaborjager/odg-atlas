@@ -3,8 +3,8 @@
 # Runs after each generation (the commits of the generation workflow do not
 # trigger other workflows by themselves), on a push that changes the catalog,
 # or manually. Compares output/maps.json with the catalog of the latest
-# release (tag maps-YYYY.MM.DD); if a map was added, updated or removed,
-# creates the release "ODG Atlas YYYY.MM.DD" with the list of changes and
+# release; if a map was added, updated or removed, creates the release
+# "ODG Atlas 1.0.YYYYMMDD" (tag v1.0.YYYYMMDD) with the list of changes and
 # all the maps attached.
 name: Release maps
 

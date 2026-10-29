@@ -19,13 +19,13 @@ can be added too (*static maps*). Each change of the maps is published as a
 
 ## 📦 Available maps
 
-| Map | File | Zones | `draw:name` | Size |
-|---|---|---|---|---|
-| France - Regions | [`output/regions-france.odg`](output/regions-france.odg) | 13 regions | INSEE region code (e.g. `84`) | ~40 KB |
-| France - Departments | [`output/departements-france.odg`](output/departements-france.odg) | 96 departments | INSEE department code (e.g. `75`) | ~90 KB |
-| France - Cantons | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2,300 cantons + municipal districts + municipalities of the Rhône | INSEE code (e.g. `75056`) | ~950 KB |
-| France - Municipalities | [`output/communes-france.odg`](output/communes-france.odg) | ~35,000 municipalities ⚠️ heavy file | INSEE municipality code (e.g. `75056`) | ~3.2 MB |
-| European Union - Countries | [`output/eu-countries.odg`](output/eu-countries.odg) | 27 member states | ISO 3166-1 alpha-2 code (e.g. `FR`) | ~50 KB |
+| Map | File | Zones | `draw:name` | Source | Size |
+|---|---|---|---|---|---|
+| France - Regions | [`output/regions-france.odg`](output/regions-france.odg) | 13 regions | INSEE region code (e.g. `84`) | [france-geojson](https://github.com/gregoiredavid/france-geojson) | ~40 KB |
+| France - Departments | [`output/departements-france.odg`](output/departements-france.odg) | 96 departments | INSEE department code (e.g. `75`) | [france-geojson](https://github.com/gregoiredavid/france-geojson) | ~90 KB |
+| France - Cantons | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2,300 cantons + municipal districts + municipalities of the Rhône | INSEE code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson), [geo.api.gouv.fr](https://geo.api.gouv.fr/) | ~950 KB |
+| France - Municipalities | [`output/communes-france.odg`](output/communes-france.odg) | ~35,000 municipalities ⚠️ heavy file | INSEE municipality code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson) | ~3.2 MB |
+| European Union - Countries | [`output/eu-countries.odg`](output/eu-countries.odg) | 27 member states | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~50 KB |
 
 Download a single map from the links above, or all of them from the latest
 [release](https://github.com/gaborjager/odg-atlas/releases/latest).
@@ -77,7 +77,7 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
       "size": 51234,
       "sha256": "…",
       "objects": 27,
-      "code_examples": ["AT", "BE", "BG", "CY"],
+      "code_examples": ["AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI"],
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/eu-countries.svg",
       "preview_sha256": "…"
     }
@@ -94,7 +94,7 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 - `kind`: `generated` (from a GeoJSON source) or `static` (drawn by hand).
 - `objects`: number of zones of the map: software can leave out maps that are
   too detailed for it.
-- `code_examples`: first zone codes (alphabetical order), to illustrate the
+- `code_examples`: first zone codes, 10 at most (alphabetical order), to illustrate the
   expected codes.
 - `preview`: SVG preview of the map (300 × 250 px, in
   [`output/previews/`](output/previews/)); `preview_sha256` is its hash.
@@ -159,13 +159,18 @@ GeoJSON sources              static/ maps
                                                                ▼
                                      Maps changed since the latest release?
                                                                │
-                                       Yes ──► Release "ODG Atlas YYYY.MM.DD"
+                                       Yes ──► Release "ODG Atlas 1.0.YYYYMMDD"
 ```
 
 The *Release maps* workflow compares the catalog with the one of the latest
-release (tag `maps-YYYY.MM.DD`). If a map was added, updated or removed, it
-publishes a release listing the changes, with all the maps and `maps.json`
-attached.
+release. If a map was added, updated or removed, it publishes a release
+listing the changes, with all the maps and `maps.json` attached.
+
+Releases are numbered **`1.0.YYYYMMDD`** (tag `v1.0.YYYYMMDD`), with the date
+of the day: `1.0` is the current set of maps, `1.1` will come with new maps
+(`SERIES` in [`scripts/release_notes.py`](scripts/release_notes.py)). A second
+release on the same day gets the suffix `.2`. The first release was tagged
+`maps-2026.10.23`.
 
 ### Manual run
 
@@ -260,14 +265,3 @@ Each map keeps the license of its source (field `license` of the catalog). The
 French maps inherit the Etalab **Licence Ouverte / Open Licence 2.0**,
 compatible with commercial and non-commercial reuse with attribution of the
 source.
-
----
-
-## 🔧 Required GitHub settings
-
-In the GitHub repository:
-**Settings → Actions → General → Workflow permissions**
-→ enable **Read and write permissions**
-
-This lets `github-actions[bot]` commit the regenerated ODG files and publish
-the releases.
