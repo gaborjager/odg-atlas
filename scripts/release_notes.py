@@ -3,9 +3,10 @@ release_notes.py
 Prepares the GitHub release of the ODG Atlas when the maps have changed.
 
 Compares output/maps.json with the catalog of the latest release, then
-creates the version 1.0.YYYYMMDD (tag v1.0.YYYYMMDD, date of the day; the
-series 1.0 is set in SERIES, 1.1 for the new maps). Writes release-notes.md and, for GitHub Actions,
-the outputs new (true/false), tag, title and files (assets to attach).
+creates the version SERIES.YYYYMMDD (e.g. tag v1.1.20261029, date of the
+day; SERIES is raised by hand when maps are added). Writes release-notes.md
+and, for GitHub Actions, the outputs new (true/false), tag, title and files
+(assets to attach).
 
 Usage:
     python scripts/release_notes.py
@@ -19,8 +20,8 @@ from pathlib import Path
 
 CATALOG_PATH = "output/maps.json"
 NOTES_PATH = "release-notes.md"
-# Version SERIES.YYYYMMDD; raise SERIES by hand (e.g. "1.1") with new maps
-SERIES = "1.0"
+# Version SERIES.YYYYMMDD; raise SERIES by hand (e.g. "1.2") with new maps
+SERIES = "1.1"
 TAG_PREFIX = "v"
 # Tags of the first releases (maps-YYYY.MM.DD), still compared with
 LEGACY_TAG_PREFIX = "maps-"

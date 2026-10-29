@@ -96,9 +96,30 @@ def laea_europe(lon, lat):
     return x, y
 
 
+# ---------------------------------------------------------------------------
+# Equal Earth projection (EPSG:8857) - equal-area pseudocylindrical, WGS84
+# ellipsoid through the authalic latitude (Šavrič, Patterson & Jenny, 2018).
+# ---------------------------------------------------------------------------
+EE_A1, EE_A2, EE_A3, EE_A4 = 1.340264, -0.081106, 0.000893, 0.003796
+EE_M = math.sqrt(3) / 2
+
+
+def equal_earth(lon, lat):
+    """(lon, lat) WGS84 in degrees -> (X, Y) Equal Earth in meters."""
+    beta = math.asin(max(-1.0, min(1.0, _laea_q(math.radians(lat)) / LAEA_QP)))
+    theta = math.asin(EE_M * math.sin(beta))
+    t2 = theta * theta
+    t6 = t2 * t2 * t2
+    x = (LAEA_RQ * math.radians(lon) * math.cos(theta)
+         / (EE_M * (EE_A1 + 3 * EE_A2 * t2 + t6 * (7 * EE_A3 + 9 * EE_A4 * t2))))
+    y = LAEA_RQ * theta * (EE_A1 + EE_A2 * t2 + t6 * (EE_A3 + EE_A4 * t2))
+    return x, y
+
+
 PROJECTIONS = {
     "lambert93": (lambert93, "EPSG:2154 (Lambert-93)"),
     "laea-europe": (laea_europe, "EPSG:3035 (ETRS89-LAEA Europe)"),
+    "equal-earth": (equal_earth, "EPSG:8857 (Equal Earth)"),
 }
 
 # ---------------------------------------------------------------------------
@@ -140,6 +161,28 @@ FRANCE_LICENSE = "Licence Ouverte / Open Licence 2.0 (Etalab)"
 
 EU_MEMBERS = ("AT BE BG CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MT "
               "NL PL PT RO SE SI SK").split()
+
+NATURAL_EARTH_URL = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson"
+NATURAL_EARTH_SOURCE = "Natural Earth 1:50m Admin 0 - Countries"
+NATURAL_EARTH_LICENSE = "Public domain (Natural Earth)"
+
+# Zones without ISO code in Natural Earth (ADM0_A3), merged into the country
+# that holds them in ISO 3166: Somaliland, Northern Cyprus, Siachen Glacier
+# (controlled by India)
+WORLD_CODE_FIXES = {"ADM0_A3": {"SOL": "SO", "CYN": "CY", "KAS": "IN"}}
+
+CONTINENTS = {
+    "Africa":        ("AF", "Africa"),
+    "Antarctica":    ("AN", "Antarctica"),
+    "Asia":          ("AS", "Asia"),
+    "Europe":        ("EU", "Europe"),
+    "North America": ("NA", "North America"),
+    "Oceania":       ("OC", "Oceania"),
+    "South America": ("SA", "South America"),
+}
+
+# Europe / Asia limit across Russia and its neighbors: meridian 60°E (Ural)
+URAL_LON = 60.0
 
 MAPS = {
     "regions": {
@@ -249,11 +292,11 @@ MAPS = {
         "description_fr": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat).",
         "area":           "European Union",
         "code_type":      "ISO 3166-1 alpha-2",
-        "source":         "Natural Earth 1:50m Admin 0 - Countries",
-        "license":        "Public domain (Natural Earth)",
+        "source":         NATURAL_EARTH_SOURCE,
+        "license":        NATURAL_EARTH_LICENSE,
         "label":          "Countries of the European Union",
         "page_name":      "European Union",
-        "url":            "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+        "url":            NATURAL_EARTH_URL,
         "output":         "output/eu-countries.odg",
         "cache":          "cache/eu-countries.hash",
         "stroke_w":       "0.018cm",
@@ -267,6 +310,69 @@ MAPS = {
         # lat min, lat max) - drops the outermost regions (Canary Islands,
         # Azores, Madeira, overseas departments, Caribbean islands)
         "keep_parts":     (-12.0, 45.0, 34.0, 72.0),
+        "extra_urls":     [],
+    },
+    "world-continents": {
+        "title":          "World - Continents",
+        "title_fr":       "Monde - Continents",
+        "description":    "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent.",
+        "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique.",
+        "area":           "World",
+        "code_type":      "Continent code (AF, AN, AS, EU, NA, OC, SA)",
+        "source":         NATURAL_EARTH_SOURCE,
+        "license":        NATURAL_EARTH_LICENSE,
+        "label":          "Continents of the world",
+        "page_name":      "World continents",
+        "url":            NATURAL_EARTH_URL,
+        "output":         "output/world-continents.odg",
+        "cache":          "cache/world-continents.hash",
+        "stroke_w":       "0.018cm",
+        "projection":     "equal-earth",
+        "extent":         None,
+        "render_version": "1-equal-earth",
+        "code_property":  "CONTINENT",
+        "name_property":  "NAME_EN",
+        "code_map":       {k: code for k, (code, _) in CONTINENTS.items()},
+        "zone_names":     dict(CONTINENTS.values()),
+        # "Seven seas (open ocean)" in Natural Earth: continent of the UN M49
+        "code_fixes":     {"ISO_A2_EH": {"GS": "SA", "HM": "OC", "IO": "AF", "MU": "AF",
+                                         "MV": "AS", "SC": "AF", "SH": "AF", "TF": "AF"}},
+        "merge":          True,
+        "split_lon":      URAL_LON,
+        "part_codes": [
+            ("ISO_A2_EH", "RU", (URAL_LON, 180.0, -90.0, 90.0), "AS"),    # Siberia
+            ("ISO_A2_EH", "RU", (-180.0, -160.0, -90.0, 90.0), "AS"),     # Chukotka, east of 180°
+            ("ISO_A2_EH", "FR", (-55.0, -50.0, 0.0, 7.0), "SA"),          # French Guiana
+            ("ISO_A2_EH", "FR", (-63.0, -60.0, 14.0, 17.0), "NA"),        # Guadeloupe, Martinique
+            ("ISO_A2_EH", "FR", (44.0, 56.0, -22.0, -12.0), "AF"),        # Mayotte, Réunion
+            ("ISO_A2_EH", "NL", (-70.0, -62.0, 11.0, 18.0), "NA"),        # Caribbean Netherlands
+            ("ISO_A2_EH", "ES", (-19.0, -13.0, 27.0, 30.0), "AF"),        # Canary Islands
+            ("ISO_A2_EH", "PT", (-18.0, -16.0, 32.0, 34.0), "AF"),        # Madeira
+        ],
+        "extra_urls":     [],
+    },
+    "world-countries": {
+        "title":          "World - Countries",
+        "title_fr":       "Monde - Pays",
+        "description":    "Map of the countries and territories of the world (Antarctica included). Each shape carries the ISO 3166-1 alpha-2 code in draw:name; Somaliland, Northern Cyprus and the Siachen Glacier are part of SO, CY and IN.",
+        "description_fr": "Carte des pays et territoires du monde (Antarctique compris). Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name ; le Somaliland, Chypre du Nord et le glacier de Siachen font partie de SO, CY et IN.",
+        "area":           "World",
+        "code_type":      "ISO 3166-1 alpha-2",
+        "source":         NATURAL_EARTH_SOURCE,
+        "license":        NATURAL_EARTH_LICENSE,
+        "label":          "Countries of the world",
+        "page_name":      "World countries",
+        "url":            NATURAL_EARTH_URL,
+        "output":         "output/world-countries.odg",
+        "cache":          "cache/world-countries.hash",
+        "stroke_w":       "0.008cm",
+        "projection":     "equal-earth",
+        "extent":         None,
+        "render_version": "1-equal-earth",
+        "code_property":  "ISO_A2_EH",
+        "name_property":  "NAME_EN",
+        "code_fixes":     WORLD_CODE_FIXES,
+        "merge":          True,
         "extra_urls":     [],
     },
 }
@@ -294,6 +400,152 @@ def keep_parts(geometry, box):
         if lon_min <= lon <= lon_max and lat_min <= lat <= lat_max:
             kept.append(poly)
     return {"type": "MultiPolygon", "coordinates": kept} if kept else None
+
+
+def poly_center(poly):
+    """Center of the bounding box of a polygon (list of rings), in degrees."""
+    lons = [pt[0] for ring in poly for pt in ring]
+    lats = [pt[1] for ring in poly for pt in ring]
+    return (min(lons) + max(lons)) / 2, (min(lats) + max(lats)) / 2
+
+
+def in_box(pt, box):
+    lon_min, lon_max, lat_min, lat_max = box
+    return lon_min <= pt[0] <= lon_max and lat_min <= pt[1] <= lat_max
+
+
+def ring_area(ring):
+    return abs(sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(ring, ring[1:]))) / 2
+
+
+def dissolve(rings):
+    """Union of adjacent rings: the edges shared by two rings (same points,
+    opposite directions) are removed, the others are linked again into
+    closed rings. Needs a topologically clean source, as Natural Earth."""
+    edges = {}
+    for ring in rings:
+        for a, b in zip(ring, ring[1:]):
+            if a != b:
+                edges[(a, b)] = edges.get((a, b), 0) + 1
+    for a, b in list(edges):
+        n = min(edges[(a, b)], edges.get((b, a), 0))
+        if n:
+            edges[(a, b)] -= n
+            edges[(b, a)] -= n
+    nexts = {}
+    for (a, b), n in edges.items():
+        nexts.setdefault(a, []).extend([b] * n)
+    result, open_chains = [], 0
+    for start in list(nexts):
+        while nexts[start]:
+            ring, cur = [start], start
+            while True:
+                if not nexts.get(cur):
+                    ring.append(start)
+                    open_chains += 1
+                    break
+                cur = nexts[cur].pop(0)
+                ring.append(cur)
+                if cur == start:
+                    break
+            if len(ring) >= 4:
+                result.append(ring)
+    if open_chains:
+        print(f"  Warning: {open_chains} open outline(s) closed by force.")
+    return result
+
+
+def meridian_crossing(p, q, lon):
+    """Point of the segment p-q on the meridian lon; the same whatever the
+    direction of the segment (shared borders are cut at the same point)."""
+    a, b = sorted((p, q))
+    if a[0] == lon:
+        return a
+    if b[0] == lon:
+        return b
+    t = (lon - a[0]) / (b[0] - a[0])
+    return lon, a[1] + t * (b[1] - a[1])
+
+
+def clip_ring(ring, lon, west):
+    """Part of a closed ring west (or east) of the meridian lon
+    (Sutherland-Hodgman); may have overlapping edges along the meridian."""
+    inside = (lambda p: p[0] <= lon) if west else (lambda p: p[0] >= lon)
+    pts = ring[:-1]
+    out = []
+    for i, q in enumerate(pts):
+        p = pts[i - 1]
+        if inside(q):
+            if not inside(p):
+                out.append(meridian_crossing(p, q, lon))
+            out.append(q)
+        elif inside(p):
+            out.append(meridian_crossing(p, q, lon))
+    out = [pt for i, pt in enumerate(out) if pt != out[i - 1]] if out else []
+    return out + out[:1]
+
+
+def clip_polygon(poly, lon, west):
+    """Rings of a polygon west (or east) of the meridian lon. The edges along
+    the meridian are cut at all its points, so that the overlapping ones
+    cancel out in dissolve()."""
+    rings = [r for r in (clip_ring(ring, lon, west) for ring in poly) if len(r) >= 4]
+    lats = sorted({pt[1] for ring in rings for pt in ring if pt[0] == lon})
+    cut = []
+    for ring in rings:
+        out = [ring[0]]
+        for p, q in zip(ring, ring[1:]):
+            if p[0] == lon and q[0] == lon:
+                mids = [(lon, lat) for lat in lats if min(p[1], q[1]) < lat < max(p[1], q[1])]
+                out += mids if q[1] > p[1] else mids[::-1]
+            out.append(q)
+        cut.append(out)
+    return dissolve(cut)
+
+
+def split_zone(code, name, geom, props, cfg):
+    """Zones of a feature for a merged map: polygons with coordinates rounded
+    to 1e-7 degree (shared borders match exactly), cut at the meridian
+    split_lon, then given another code by part_codes:
+    [(property, value, box, code)] - polygons of that feature whose center is
+    in box (lon min, lon max, lat min, lat max)."""
+    polys = [[[(round(float(pt[0]), 7), round(float(pt[1]), 7)) for pt in ring] for ring in poly]
+             for poly in get_polygons(geom)]
+    lon = cfg.get("split_lon")
+    if lon is not None:
+        cut = []
+        for poly in polys:
+            lons = [pt[0] for pt in poly[0]]
+            if min(lons) < lon < max(lons):
+                cut += [p for p in (clip_polygon(poly, lon, True), clip_polygon(poly, lon, False)) if p]
+            else:
+                cut.append(poly)
+        polys = cut
+    by_code = {}
+    for poly in polys:
+        part_code = code
+        for prop, value, box, new_code in cfg.get("part_codes", []):
+            if props.get(prop) == value and in_box(poly_center(poly), box):
+                part_code = new_code
+                break
+        by_code.setdefault(part_code, []).append(poly)
+    return [(c, name, {"type": "MultiPolygon", "coordinates": p}) for c, p in by_code.items()]
+
+
+def merge_zones(zones, cfg):
+    """One zone per code, sorted by code: the zones with the same code are
+    dissolved into one. Name: zone_names, else the name of the largest zone."""
+    groups = {}
+    for zone in zones:
+        groups.setdefault(zone[0], []).append(zone)
+    merged = []
+    for code in sorted(groups):
+        group = groups[code]
+        name = max(group, key=lambda z: sum(ring_area(p[0]) for p in get_polygons(z[2])))[1]
+        name = cfg.get("zone_names", {}).get(code, name)
+        rings = dissolve([ring for z in group for poly in get_polygons(z[2]) for ring in poly])
+        merged.append((code, name, {"type": "MultiPolygon", "coordinates": [[r] for r in rings]}))
+    return merged
 
 
 def project_rings(geometry, project):
@@ -504,13 +756,27 @@ def fetch(url: str, label="") -> bytes:
 # ---------------------------------------------------------------------------
 # Generation of an ODG
 # ---------------------------------------------------------------------------
+def feature_code(props, cfg):
+    """Code of a GeoJSON feature: code_fixes first ({property: {value: code}}),
+    then code_property, translated by code_map if any."""
+    for prop, fixes in cfg.get("code_fixes", {}).items():
+        if props.get(prop) in fixes:
+            return fixes[props[prop]]
+    code = str(props.get(cfg.get("code_property", "code"), "") or "")
+    if "code_map" in cfg:
+        if code not in cfg["code_map"]:
+            raise ValueError(f"no code for {cfg['code_property']} = {code!r} ({props.get(cfg.get('name_property'))})")
+        code = cfg["code_map"][code]
+    return code
+
+
 def zone_features(raw, cfg):
     """(code, name, geometry) of the zones of a GeoJSON source, filtered and
     sorted as configured; zones without geometry are skipped."""
     zones = []
     for feat in json.loads(raw)["features"]:
         props, geom = feat["properties"], feat["geometry"]
-        code = str(props.get(cfg.get("code_property", "code"), "") or "")
+        code = feature_code(props, cfg)
         if geom is None or not geom.get("coordinates"):
             continue
         if cfg.get("include") and code not in cfg["include"]:
@@ -519,7 +785,16 @@ def zone_features(raw, cfg):
             geom = keep_parts(geom, cfg["keep_parts"])
             if geom is None:
                 continue
-        zones.append((code, props.get(cfg.get("name_property", "nom"), "") or "", geom))
+        name = props.get(cfg.get("name_property", "nom"), "") or ""
+        if cfg.get("merge"):
+            zones += split_zone(code, name, geom, props, cfg)
+        else:
+            zones.append((code, name, geom))
+    if cfg.get("merge"):
+        zones = merge_zones(zones, cfg)
+        missing = [z[1] for z in zones if not z[0] or z[0] == "-99"]
+        if missing:
+            raise ValueError(f"zones without code: {', '.join(missing)}")
     if cfg.get("include"):
         zones.sort(key=lambda z: z[0])
         missing = sorted(set(cfg["include"]) - {z[0] for z in zones})

@@ -33,6 +33,9 @@ on:
           - "cantons"
           - "communes"
           - "eu-countries"
+          - "world-continents"
+          - "world-countries"
+          - "world-continents,world-countries"
           - "regions,departements"
           - "regions,departements,cantons"
 
