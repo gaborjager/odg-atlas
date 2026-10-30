@@ -40,6 +40,12 @@ on:
           - "world-countries-robinson"
           - "world-countries-equal-earth"
           - "world-countries-miller"
+          - "africa-countries"
+          - "asia-countries"
+          - "europe-countries"
+          - "north-america-countries"
+          - "oceania-countries"
+          - "south-america-countries"
           - "regions,departements"
           - "regions,departements,cantons"
 

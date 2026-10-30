@@ -27,5 +27,29 @@
     "title": "Svet - Države",
     "description": "Zemljevid držav in ozemelj sveta (vključno z Antarktiko). Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name; Somaliland, Severni Ciper in ledenik Siačen so del SO, CY in IN."
   },
+  "africa-countries": {
+    "title": "Afrika - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name."
+  },
+  "asia-countries": {
+    "title": "Azija - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name. Rusija je razdeljena na poldnevniku 60° V (Ural): prikazan je samo del na tej celini."
+  },
+  "europe-countries": {
+    "title": "Evropa - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name. Rusija je razdeljena na poldnevniku 60° V (Ural): prikazan je samo del na tej celini. Ciper je vključen."
+  },
+  "north-america-countries": {
+    "title": "Severna Amerika - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanija - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name. Vzhodna Polinezija ni prikazana."
+  },
+  "south-america-countries": {
+    "title": "Južna Amerika - Države",
+    "description": "Poenostavljen zemljevid držav in ozemelj te celine: zelo majhni otoki odstranjeni, obrisi zglajeni. Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name. Francoska Gvajana ima kodo GF."
+  },
   "_projection": "Projekcija {name}."
 }

@@ -27,5 +27,29 @@
     "title": "Dunia - Negara",
     "description": "Peta negara dan wilayah di dunia (termasuk Antarktika). Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name; Somaliland, Siprus Utara, dan Gletser Siachen termasuk dalam SO, CY, dan IN."
   },
+  "africa-countries": {
+    "title": "Afrika - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name."
+  },
+  "asia-countries": {
+    "title": "Asia - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name. Rusia dipotong pada meridian 60° BT (Ural): hanya bagian di benua ini yang ditampilkan."
+  },
+  "europe-countries": {
+    "title": "Eropa - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name. Rusia dipotong pada meridian 60° BT (Ural): hanya bagian di benua ini yang ditampilkan. Siprus disertakan."
+  },
+  "north-america-countries": {
+    "title": "Amerika Utara - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oseania - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name. Polinesia timur tidak ditampilkan."
+  },
+  "south-america-countries": {
+    "title": "Amerika Selatan - Negara",
+    "description": "Peta sederhana negara dan wilayah di benua ini: pulau yang sangat kecil dihapus, garis tepi dihaluskan. Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name. Guyana Prancis berkode GF."
+  },
   "_projection": "Proyeksi {name}."
 }

@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Pasaule - Valstis (Miller)",
     "description": "Pasaules valstu un teritoriju karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods; Somalilenda, Ziemeļkipra un Sjačenas ledājs ietilpst SO, CY un IN. Miller projekcija."
+  },
+  "africa-countries": {
+    "title": "Āfrika - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods."
+  },
+  "asia-countries": {
+    "title": "Āzija - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods. Krievija ir sadalīta pie 60° A meridiāna (Urāli): parādīta tikai daļa šajā kontinentā."
+  },
+  "europe-countries": {
+    "title": "Eiropa - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods. Krievija ir sadalīta pie 60° A meridiāna (Urāli): parādīta tikai daļa šajā kontinentā. Kipra ir iekļauta."
+  },
+  "north-america-countries": {
+    "title": "Ziemeļamerika - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods."
+  },
+  "oceania-countries": {
+    "title": "Okeānija - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods. Austrumpolinēzija nav parādīta."
+  },
+  "south-america-countries": {
+    "title": "Dienvidamerika - Valstis",
+    "description": "Šī kontinenta valstu un teritoriju vienkāršota karte: ļoti mazas salas noņemtas, kontūras izlīdzinātas. Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods. Francijas Gviānas kods ir GF."
   }
 }

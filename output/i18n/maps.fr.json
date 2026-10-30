@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Monde - Pays (Miller)",
     "description": "Carte des pays et territoires du monde (Antarctique compris). Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name ; le Somaliland, Chypre du Nord et le glacier de Siachen font partie de SO, CY et IN. Projection Miller."
+  },
+  "africa-countries": {
+    "title": "Afrique - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name."
+  },
+  "asia-countries": {
+    "title": "Asie - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name. La Russie est coupée au méridien 60° E (Oural) : seule la partie située sur ce continent est représentée."
+  },
+  "europe-countries": {
+    "title": "Europe - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name. La Russie est coupée au méridien 60° E (Oural) : seule la partie située sur ce continent est représentée. Chypre est incluse."
+  },
+  "north-america-countries": {
+    "title": "Amérique du Nord - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name."
+  },
+  "oceania-countries": {
+    "title": "Océanie - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name. La Polynésie orientale n'est pas représentée."
+  },
+  "south-america-countries": {
+    "title": "Amérique du Sud - Pays",
+    "description": "Carte simplifiée des pays et territoires de ce continent : très petites îles supprimées, contours lissés. Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name. La Guyane française est codée GF."
   }
 }

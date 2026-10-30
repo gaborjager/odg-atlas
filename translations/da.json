@@ -27,5 +27,29 @@
     "title": "Verden - Lande",
     "description": "Kort over verdens lande og territorier (inklusive Antarktis). Hver form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nordcypern og Siachen-gletsjeren indgår i SO, CY og IN."
   },
+  "africa-countries": {
+    "title": "Afrika - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "asia-countries": {
+    "title": "Asien - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Rusland er delt ved meridianen 60° Ø (Ural): kun delen på dette kontinent er vist."
+  },
+  "europe-countries": {
+    "title": "Europa - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Rusland er delt ved meridianen 60° Ø (Ural): kun delen på dette kontinent er vist. Cypern er medtaget."
+  },
+  "north-america-countries": {
+    "title": "Nordamerika - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanien - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Østpolynesien er ikke vist."
+  },
+  "south-america-countries": {
+    "title": "Sydamerika - Lande",
+    "description": "Forenklet kort over landene og territorierne på dette kontinent: meget små øer fjernet, konturer udjævnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Fransk Guyana har koden GF."
+  },
   "_projection": "{name}-projektion."
 }

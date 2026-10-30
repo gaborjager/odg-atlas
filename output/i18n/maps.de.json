@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Welt - Länder (Miller)",
     "description": "Karte der Länder und Gebiete der Welt (einschließlich Antarktis). Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name; Somaliland, Nordzypern und der Siachen-Gletscher gehören zu SO, CY und IN. Miller-Projektion."
+  },
+  "africa-countries": {
+    "title": "Afrika - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name."
+  },
+  "asia-countries": {
+    "title": "Asien - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name. Russland ist am Meridian 60° O (Ural) geteilt: Nur der Teil auf diesem Kontinent ist dargestellt."
+  },
+  "europe-countries": {
+    "title": "Europa - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name. Russland ist am Meridian 60° O (Ural) geteilt: Nur der Teil auf diesem Kontinent ist dargestellt. Zypern ist enthalten."
+  },
+  "north-america-countries": {
+    "title": "Nordamerika - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name."
+  },
+  "oceania-countries": {
+    "title": "Ozeanien - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name. Ostpolynesien ist nicht dargestellt."
+  },
+  "south-america-countries": {
+    "title": "Südamerika - Länder",
+    "description": "Vereinfachte Karte der Länder und Gebiete dieses Kontinents: sehr kleine Inseln entfernt, Umrisse geglättet. Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name. Französisch-Guayana hat den Code GF."
   }
 }

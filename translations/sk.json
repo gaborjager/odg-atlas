@@ -27,5 +27,29 @@
     "title": "Svet - Štáty",
     "description": "Mapa štátov a území sveta (vrátane Antarktídy). Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name; Somaliland, Severný Cyprus a ľadovec Siačen sú súčasťou SO, CY a IN."
   },
+  "africa-countries": {
+    "title": "Afrika - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name."
+  },
+  "asia-countries": {
+    "title": "Ázia - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name. Rusko je rozdelené poludníkom 60° v. d. (Ural): zobrazená je iba časť na tomto kontinente."
+  },
+  "europe-countries": {
+    "title": "Európa - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name. Rusko je rozdelené poludníkom 60° v. d. (Ural): zobrazená je iba časť na tomto kontinente. Cyprus je zahrnutý."
+  },
+  "north-america-countries": {
+    "title": "Severná Amerika - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceánia - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name. Východná Polynézia nie je zobrazená."
+  },
+  "south-america-countries": {
+    "title": "Južná Amerika - Štáty",
+    "description": "Zjednodušená mapa štátov a území tohto kontinentu: veľmi malé ostrovy odstránené, obrysy vyhladené. Každý tvar nesie kód ISO 3166-1 alpha-2 v draw:name. Francúzska Guyana má kód GF."
+  },
   "_projection": "Projekcia {name}."
 }

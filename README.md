@@ -11,10 +11,6 @@ Most maps are generated automatically from open GeoJSON sources by
 can be added too (*static maps*). Each change of the maps is published as a
 **release**.
 
-> This project was named *france-odg* until October 2026. The old addresses
-> are redirected to this repository; the ids and file names of the French
-> maps did not change.
-
 ---
 
 ## 📦 Available maps
@@ -32,6 +28,12 @@ can be added too (*static maps*). Each change of the maps is published as a
 | World - Countries (Robinson) | [`output/world-countries-robinson.odg`](output/world-countries-robinson.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
 | World - Countries (Equal Earth) | [`output/world-countries-equal-earth.odg`](output/world-countries-equal-earth.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
 | World - Countries (Miller) | [`output/world-countries-miller.odg`](output/world-countries-miller.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~530 KB |
+| Africa - Countries | [`output/africa-countries.odg`](output/africa-countries.odg) | 55 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~70 KB |
+| Asia - Countries | [`output/asia-countries.odg`](output/asia-countries.odg) | 52 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~100 KB |
+| Europe - Countries | [`output/europe-countries.odg`](output/europe-countries.odg) | 51 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~60 KB |
+| North America - Countries | [`output/north-america-countries.odg`](output/north-america-countries.odg) | 38 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~45 KB |
+| Oceania - Countries | [`output/oceania-countries.odg`](output/oceania-countries.odg) | 21 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~10 KB |
+| South America - Countries | [`output/south-america-countries.odg`](output/south-america-countries.odg) | 14 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~40 KB |
 
 Download a single map from the links above, or all of them from the latest
 [release](https://github.com/gaborjager/odg-atlas/releases/latest).
@@ -73,6 +75,22 @@ Download a single map from the links above, or all of them from the latest
     are smoothed (~5 km); the borders between continents are not changed.
   - Chukotka and the islands of Fiji east of 180° are drawn next to the rest
     of Russia and Fiji, at the right edge of the map.
+- Continent maps: simplified, for a page or a slide. There is one per continent
+  with countries (none for Antarctica), each with its own centered projection
+  (Lambert azimuthal equal-area). The very small islands are removed and the
+  coasts smoothed, but no country or territory disappears, even the smallest
+  ones. Countries are grouped as in the *Continents* map above, with these
+  differences:
+  - *Europe* is the continent, not the European Union: it has 51 countries
+    and territories, among them the United Kingdom, Norway, Switzerland,
+    Ukraine and the Balkans. Cyprus is included, although Natural Earth places
+    it in Asia, so that all the EU members are there. Turkey and the Caucasus
+    are in Asia. Overseas territories are not shown.
+  - *Russia* is cut at the meridian 60°E (Ural): `RU` is in both the Europe and
+    Asia maps, each with its own part.
+  - *Asia*: the Australian territories of the Indian Ocean are not shown.
+  - *South America*: French Guiana is included, with the code `GF`.
+  - *Oceania*: the islands east of 165°W (eastern Polynesia) are not shown.
 
 ---
 
@@ -168,8 +186,8 @@ holding the code and the name, projection, extent, filters), then run the
 script. Add its title and description to the files of
 [`translations/`](translations/) (a language without them shows the English
 text). The available projections are Lambert-93 (France), ETRS89-LAEA
-(Europe), Robinson, Equal Earth and Miller (world); another one can be added
-to `PROJECTIONS`. The projections of the world maps are in `WORLD_PROJECTIONS`.
+(Europe), Robinson, Equal Earth and Miller (world), Lambert azimuthal equal-area
+(continents, `CONTINENT_CENTERS`); another one can be added to `PROJECTIONS`. The projections of the world maps are in `WORLD_PROJECTIONS`.
 
 **A static map, drawn by hand** in LibreOffice Draw: put `static/<id>.odg` and
 its description `static/<id>.json` in the [`static/`](static/) folder; the
@@ -218,18 +236,19 @@ GeoJSON sources              static/ maps
                                                                ▼
                                      Maps changed since the latest release?
                                                                │
-                                       Yes ──► Release "ODG Atlas 1.2.YYYYMMDD"
+                                       Yes ──► Release "ODG Atlas 1.3.YYYYMMDD"
 ```
 
 The *Release maps* workflow compares the catalog with the one of the latest
 release. If a map was added, updated or removed, it publishes a release
 listing the changes, with all the maps and `maps.json` attached.
 
-Releases are numbered **`1.2.YYYYMMDD`** (tag `v1.2.YYYYMMDD`), with the date
+Releases are numbered **`1.3.YYYYMMDD`** (tag `v1.3.YYYYMMDD`), with the date
 of the day: the series (`SERIES` in
 [`scripts/release_notes.py`](scripts/release_notes.py)) is raised by hand when
 maps are added: `1.0` for the French and EU maps, `1.1` with the world maps,
-`1.2` with one file per projection for them. A second
+`1.2` with one file per projection for them, `1.3` with the continent maps.
+A second
 release on the same day gets the suffix `.2`. The first release was tagged
 `maps-2026.10.23`.
 
@@ -304,11 +323,11 @@ python scripts/generate_odg.py --check
 | Setting | Value |
 |---|---|
 | Output format | ODF Graphics 1.3 (`.odg`) |
-| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Robinson (ESRI:54030), Equal Earth (EPSG:8857) and Miller (ESRI:54003) for the world; same scale in X and Y |
+| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Robinson (ESRI:54030), Equal Earth (EPSG:8857) and Miller (ESRI:54003) for the world, Lambert azimuthal equal-area for the continents; same scale in X and Y |
 | Page size | 30 × 25 cm, landscape |
 | Fill color | `#6AAED6` (light blue) |
 | Outline color | `#1A4F7A` (dark blue) |
-| Outline width | `0.018 cm` (regions, departments, cantons, EU countries, continents), `0.008 cm` (world countries), `0.004 cm` (municipalities) |
+| Outline width | `0.018 cm` (regions, departments, cantons, EU countries, continents), `0.012 cm` (countries of a continent), `0.008 cm` (world countries), `0.004 cm` (municipalities) |
 | Name of each shape | `draw:name` = official code of the zone |
 | Description of each shape | `svg:desc` = `code - name` (e.g. `75 - Paris`, `FR - France`) |
 
@@ -320,7 +339,7 @@ python scripts/generate_odg.py --check
 |---|---|---|
 | [gregoiredavid/france-geojson](https://github.com/gregoiredavid/france-geojson) (IGN Admin Express) | France | Licence Ouverte / Open Licence 2.0 (Etalab) |
 | [geo.api.gouv.fr](https://geo.api.gouv.fr/) (municipal districts, municipalities of the Rhône) | France - Cantons | Licence Ouverte / Open Licence 2.0 (Etalab) |
-| [Natural Earth](https://www.naturalearthdata.com/) 1:50m Admin 0 - Countries | European Union, World | Public domain |
+| [Natural Earth](https://www.naturalearthdata.com/) 1:50m Admin 0 - Countries | European Union, World, continents | Public domain |
 
 Each map keeps the license of its source (field `license` of the catalog). The
 French maps inherit the Etalab **Licence Ouverte / Open Licence 2.0**,

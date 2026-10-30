@@ -27,5 +27,29 @@
     "title": "Mondo - Paesi",
     "description": "Mappa dei paesi e territori del mondo (Antartide inclusa). Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name; il Somaliland, Cipro del Nord e il ghiacciaio del Siachen fanno parte di SO, CY e IN."
   },
+  "africa-countries": {
+    "title": "Africa - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name."
+  },
+  "asia-countries": {
+    "title": "Asia - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name. La Russia è tagliata al meridiano 60° E (Urali): è rappresentata solo la parte su questo continente."
+  },
+  "europe-countries": {
+    "title": "Europa - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name. La Russia è tagliata al meridiano 60° E (Urali): è rappresentata solo la parte su questo continente. Cipro è inclusa."
+  },
+  "north-america-countries": {
+    "title": "America settentrionale - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceania - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name. La Polinesia orientale non è rappresentata."
+  },
+  "south-america-countries": {
+    "title": "America meridionale - Paesi",
+    "description": "Mappa semplificata dei paesi e territori di questo continente: isole molto piccole rimosse, contorni smussati. Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name. La Guyana francese ha il codice GF."
+  },
   "_projection": "Proiezione {name}."
 }

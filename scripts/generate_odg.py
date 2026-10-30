@@ -141,6 +141,24 @@ def miller(lon, lat):
     return GRS80_A * math.radians(lon), 1.25 * GRS80_A * math.log(math.tan(math.pi / 4 + 0.4 * phi))
 
 
+def laea_sphere(lon0, lat0):
+    """Lambert azimuthal equal-area projection centered on (lon0, lat0), on the
+    authalic sphere; lon (degrees) -> X, lat -> Y, in meters."""
+    lam0, phi0 = math.radians(lon0), math.radians(lat0)
+
+    def project(lon, lat):
+        lam, phi = math.radians(lon) - lam0, math.radians(lat)
+        k = LAEA_RQ * math.sqrt(2 / (1 + math.sin(phi0) * math.sin(phi)
+                                     + math.cos(phi0) * math.cos(phi) * math.cos(lam)))
+        return (k * math.cos(phi) * math.sin(lam),
+                k * (math.cos(phi0) * math.sin(phi) - math.sin(phi0) * math.cos(phi) * math.cos(lam)))
+    return project
+
+
+# Center of the projection of each continent map (lon, lat)
+CONTINENT_CENTERS = {"africa": (20, 2), "asia": (95, 35), "north-america": (-95, 45),
+                     "south-america": (-60, -20), "oceania": (152, -15)}
+
 PROJECTIONS = {
     "lambert93": (lambert93, "EPSG:2154 (Lambert-93)"),
     "laea-europe": (laea_europe, "EPSG:3035 (ETRS89-LAEA Europe)"),
@@ -148,6 +166,10 @@ PROJECTIONS = {
     "robinson": (robinson, "ESRI:54030 (Robinson)"),
     "miller": (miller, "ESRI:54003 (Miller cylindrical)"),
 }
+for name, (lon, lat) in CONTINENT_CENTERS.items():
+    PROJECTIONS[f"laea-{name}"] = (laea_sphere(lon, lat),
+                                   f"Lambert azimuthal equal-area ({abs(lon)}°{'E' if lon >= 0 else 'W'}, "
+                                   f"{abs(lat)}°{'N' if lat >= 0 else 'S'})")
 
 # ---------------------------------------------------------------------------
 # Layout
@@ -413,6 +435,107 @@ for base_id in ("world-continents", "world-countries"):
             render_version=f"1-{projection}",
         )
 
+# Simplified map of the countries of each continent (Natural Earth continents,
+# no map for Antarctica): continents selected, extra_codes added, exclude
+# (ADM0_A3) left out, polygons outside keep_box left out, min_area_km2 for the
+# islands, part_codes as in world-continents.
+RUSSIA_WEST = ("ISO_A2_EH", "RU", (URAL_LON, 200.0, -90.0, 90.0), None)
+RUSSIA_EAST = ("ISO_A2_EH", "RU", (-180.0, URAL_LON, -90.0, 90.0), None)
+RUSSIA_NOTE = "Russia is cut at the meridian 60°E (Ural): only the part on this continent is shown."
+
+CONTINENT_MAPS = {
+    "africa-countries": {
+        "title":        "Africa - Countries",
+        "area":         "Africa",
+        "continents":   ("Africa",),
+        "extra_codes":  ("MU", "SC"),
+        "keep_box":     (-26.0, 64.0, -36.0, 38.0),
+        "projection":   "laea-africa",
+        "min_area_km2": 2000,
+    },
+    "asia-countries": {
+        "title":        "Asia - Countries",
+        "area":         "Asia",
+        "continents":   ("Asia",),
+        "extra_codes":  ("RU", "MV"),
+        "exclude":      ("IOA",),        # Australian Indian Ocean Territories
+        "keep_box":     (25.0, 200.0, -12.0, 82.0),
+        "split_lon":    URAL_LON,
+        "part_codes":   [RUSSIA_EAST],
+        "projection":   "laea-asia",
+        "min_area_km2": 5000,
+        "note":         RUSSIA_NOTE,
+    },
+    "europe-countries": {
+        "title":        "Europe - Countries",
+        "area":         "Europe",
+        "continents":   ("Europe",),
+        "extra_codes":  ("CY",),
+        "keep_box":     (-25.0, 70.0, 34.0, 83.0),
+        "split_lon":    URAL_LON,
+        "part_codes":   [RUSSIA_WEST],
+        "projection":   "laea-europe",
+        "min_area_km2": 1000,
+        "note":         RUSSIA_NOTE + " Cyprus is included.",
+    },
+    "north-america-countries": {
+        "title":        "North America - Countries",
+        "area":         "North America",
+        "continents":   ("North America",),
+        "keep_box":     (-180.0, -10.0, 5.0, 85.0),
+        "projection":   "laea-north-america",
+        "min_area_km2": 5000,
+    },
+    "oceania-countries": {
+        "title":        "Oceania - Countries",
+        "area":         "Oceania",
+        "continents":   ("Oceania",),
+        "keep_box":     (110.0, 195.0, -50.0, 22.0),
+        "wrap_east":    ("CONTINENT", ("Oceania",)),
+        "projection":   "laea-oceania",
+        "min_area_km2": 1000,
+        "note":         "Eastern Polynesia is not shown.",
+    },
+    "south-america-countries": {
+        "title":        "South America - Countries",
+        "area":         "South America",
+        "continents":   ("South America",),
+        "extra_codes":  ("FR",),
+        "keep_box":     (-92.0, -26.0, -57.0, 13.0),
+        "part_codes":   [("ISO_A2_EH", "FR", (-92.0, -26.0, -57.0, 13.0), "GF")],
+        "zone_names":   {"GF": "French Guiana"},
+        "projection":   "laea-south-america",
+        "min_area_km2": 2000,
+        "note":         "French Guiana is coded GF.",
+    },
+}
+
+for map_id, spec in CONTINENT_MAPS.items():
+    MAPS[map_id] = dict(
+        {
+            "description": "Simplified map of the countries and territories of this continent: very "
+                           "small islands removed, outlines smoothed. Each shape carries the ISO 3166-1 "
+                           "alpha-2 code in draw:name." + (" " + spec["note"] if "note" in spec else ""),
+            "code_type":      "ISO 3166-1 alpha-2",
+            "source":         NATURAL_EARTH_SOURCE,
+            "license":        NATURAL_EARTH_LICENSE,
+            "label":          spec["title"],
+            "page_name":      spec["title"],
+            "url":            NATURAL_EARTH_URL,
+            "output":         f"output/{map_id}.odg",
+            "cache":          f"cache/{map_id}.hash",
+            "stroke_w":       "0.012cm",
+            "extent":         None,
+            "render_version": "1-laea",
+            "code_property":  "ISO_A2_EH",
+            "name_property":  "NAME_EN",
+            "code_fixes":     WORLD_CODE_FIXES,
+            "merge":          True,
+            "wrap_east":      WORLD_WRAP_EAST,
+            "simplify_deg":   0.05,
+            "extra_urls":     [],
+        }, **spec)
+
 # ---------------------------------------------------------------------------
 # Geometry helpers - same logic as the PS functions Get-BBox / Get-PathData
 # ---------------------------------------------------------------------------
@@ -545,7 +668,8 @@ def split_zone(code, name, geom, props, cfg):
     split_lon, moved east of 180° by wrap_east, then given another code by
     part_codes:
     [(property, value, box, code)] - polygons of that feature whose center is
-    in box (lon min, lon max, lat min, lat max)."""
+    in box (lon min, lon max, lat min, lat max); code None: left out. Polygons
+    whose center is outside keep_box are left out."""
     polys = [[[(round(float(pt[0]), 7), round(float(pt[1]), 7)) for pt in ring] for ring in poly]
              for poly in get_polygons(geom)]
     lon = cfg.get("split_lon")
@@ -564,6 +688,8 @@ def split_zone(code, name, geom, props, cfg):
         # next to the rest of the country (Chukotka, Fiji)
         polys = [[[(lon + 360, lat) for lon, lat in ring] for ring in poly]
                  if max(pt[0] for pt in poly[0]) < 0 else poly for poly in polys]
+    if cfg.get("keep_box"):
+        polys = [poly for poly in polys if in_box(poly_center(poly), cfg["keep_box"])]
     by_code = {}
     for poly in polys:
         part_code = code
@@ -571,7 +697,8 @@ def split_zone(code, name, geom, props, cfg):
             if props.get(prop) == value and in_box(poly_center(poly), box):
                 part_code = new_code
                 break
-        by_code.setdefault(part_code, []).append(poly)
+        if part_code is not None:
+            by_code.setdefault(part_code, []).append(poly)
     return [(c, name, {"type": "MultiPolygon", "coordinates": p}) for c, p in by_code.items()]
 
 
@@ -621,7 +748,7 @@ def simplify_line(pts, tolerance):
 
 
 def simplify_zones(zones, min_km2, tolerance):
-    """Rings under min_km2 removed (the largest ring of a zone is kept),
+    """Rings under min_km2 removed (the largest ring of a zone is always kept),
     outlines simplified (Douglas-Peucker). The points shared by several zones
     are kept, so that the common borders stay identical."""
     owners = {}
@@ -650,7 +777,8 @@ def simplify_zones(zones, min_km2, tolerance):
                 for a, b in zip(fixed, fixed[1:] + [fixed[0] + n]):
                     section = [pts[k % n] for k in range(a, b + 1)]
                     out += simplify_line(section, tolerance)[:-1]
-                ring = out + out[:1]
+                # A zone never disappears: a very small one keeps its outline
+                ring = out + out[:1] if len(out) >= 3 or ring is not largest else ring
             if len(ring) >= 4:
                 kept.append(ring)
         result.append((code, name, {"type": "MultiPolygon", "coordinates": [[r] for r in kept]}))
@@ -889,6 +1017,10 @@ def zone_features(raw, cfg):
         if geom is None or not geom.get("coordinates"):
             continue
         if cfg.get("include") and code not in cfg["include"]:
+            continue
+        if "continents" in cfg and (props.get("ADM0_A3") in cfg.get("exclude", ())
+                                    or not (props.get("CONTINENT") in cfg["continents"]
+                                            or code in cfg.get("extra_codes", ()))):
             continue
         if cfg.get("keep_parts"):
             geom = keep_parts(geom, cfg["keep_parts"])

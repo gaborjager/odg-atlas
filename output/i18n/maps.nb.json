@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Verden - Land (Miller)",
     "description": "Kart over verdens land og territorier (inkludert Antarktis). Hver form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nord-Kypros og Siachen-breen inngår i SO, CY og IN. Miller-projeksjon."
+  },
+  "africa-countries": {
+    "title": "Afrika - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "asia-countries": {
+    "title": "Asia - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Russland er delt ved meridianen 60° Ø (Ural): bare delen på dette kontinentet er vist."
+  },
+  "europe-countries": {
+    "title": "Europa - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Russland er delt ved meridianen 60° Ø (Ural): bare delen på dette kontinentet er vist. Kypros er inkludert."
+  },
+  "north-america-countries": {
+    "title": "Nord-Amerika - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oseania - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Øst-Polynesia er ikke vist."
+  },
+  "south-america-countries": {
+    "title": "Sør-Amerika - Land",
+    "description": "Forenklet kart over landene og territoriene på dette kontinentet: svært små øyer fjernet, konturer utjevnet. Hver form har ISO 3166-1 alpha-2-koden i draw:name. Fransk Guyana har koden GF."
   }
 }

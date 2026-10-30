@@ -27,5 +27,29 @@
     "title": "Världen - Länder",
     "description": "Karta över världens länder och territorier (inklusive Antarktis). Varje form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nordcypern och Siachenglaciären ingår i SO, CY och IN."
   },
+  "africa-countries": {
+    "title": "Afrika - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "asia-countries": {
+    "title": "Asien - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name. Ryssland är delat vid meridianen 60° Ö (Ural): endast delen på denna kontinent visas."
+  },
+  "europe-countries": {
+    "title": "Europa - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name. Ryssland är delat vid meridianen 60° Ö (Ural): endast delen på denna kontinent visas. Cypern ingår."
+  },
+  "north-america-countries": {
+    "title": "Nordamerika - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanien - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name. Östra Polynesien visas inte."
+  },
+  "south-america-countries": {
+    "title": "Sydamerika - Länder",
+    "description": "Förenklad karta över länderna och territorierna på denna kontinent: mycket små öar borttagna, konturer utjämnade. Varje form har ISO 3166-1 alpha-2-koden i draw:name. Franska Guyana har koden GF."
+  },
   "_projection": "{name}-projektion."
 }

@@ -27,5 +27,29 @@
     "title": "Dünya - Ülkeler",
     "description": "Dünya ülkeleri ve bölgelerinin haritası (Antarktika dahil). Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır; Somaliland, Kuzey Kıbrıs ve Siachen Buzulu SO, CY ve IN içindedir."
   },
+  "africa-countries": {
+    "title": "Afrika - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır."
+  },
+  "asia-countries": {
+    "title": "Asya - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır. Rusya 60° D meridyeninden (Ural) kesilmiştir: yalnızca bu kıtadaki kısmı gösterilir."
+  },
+  "europe-countries": {
+    "title": "Avrupa - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır. Rusya 60° D meridyeninden (Ural) kesilmiştir: yalnızca bu kıtadaki kısmı gösterilir. Kıbrıs dahildir."
+  },
+  "north-america-countries": {
+    "title": "Kuzey Amerika - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır."
+  },
+  "oceania-countries": {
+    "title": "Okyanusya - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır. Doğu Polinezya gösterilmez."
+  },
+  "south-america-countries": {
+    "title": "Güney Amerika - Ülkeler",
+    "description": "Bu kıtanın ülke ve bölgelerinin basitleştirilmiş haritası: çok küçük adalar kaldırılmış, sınır çizgileri yumuşatılmıştır. Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır. Fransız Guyanası'nın kodu GF'dir."
+  },
   "_projection": "{name} projeksiyonu."
 }

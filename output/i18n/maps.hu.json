@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Világ - Országok (Miller)",
     "description": "A világ országainak és területeinek térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot; Szomáliföld, Észak-Ciprus és a Sziacsen-gleccser az SO, CY és IN része. Miller-vetület."
+  },
+  "africa-countries": {
+    "title": "Afrika - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot."
+  },
+  "asia-countries": {
+    "title": "Ázsia - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot. Oroszországot a keleti 60. hosszúsági kör (Urál) osztja ketté: csak az ezen a kontinensen lévő rész látható."
+  },
+  "europe-countries": {
+    "title": "Európa - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot. Oroszországot a keleti 60. hosszúsági kör (Urál) osztja ketté: csak az ezen a kontinensen lévő rész látható. Ciprus szerepel a térképen."
+  },
+  "north-america-countries": {
+    "title": "Észak-Amerika - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot."
+  },
+  "oceania-countries": {
+    "title": "Óceánia - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot. Kelet-Polinézia nem látható."
+  },
+  "south-america-countries": {
+    "title": "Dél-Amerika - Országok",
+    "description": "A kontinens országainak és területeinek egyszerűsített térképe: a nagyon kis szigetek eltávolítva, a körvonalak kisimítva. Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot. Francia Guyana kódja GF."
   }
 }

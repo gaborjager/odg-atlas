@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Lume - Țări (Miller)",
     "description": "Harta țărilor și teritoriilor lumii (inclusiv Antarctica). Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name; Somaliland, Ciprul de Nord și ghețarul Siachen fac parte din SO, CY și IN. Proiecția Miller."
+  },
+  "africa-countries": {
+    "title": "Africa - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name."
+  },
+  "asia-countries": {
+    "title": "Asia - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name. Rusia este tăiată la meridianul 60° E (Ural): este reprezentată doar partea de pe acest continent."
+  },
+  "europe-countries": {
+    "title": "Europa - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name. Rusia este tăiată la meridianul 60° E (Ural): este reprezentată doar partea de pe acest continent. Ciprul este inclus."
+  },
+  "north-america-countries": {
+    "title": "America de Nord - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceania - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name. Polinezia de Est nu este reprezentată."
+  },
+  "south-america-countries": {
+    "title": "America de Sud - Țări",
+    "description": "Hartă simplificată a țărilor și teritoriilor acestui continent: insule foarte mici eliminate, contururi netezite. Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name. Guyana Franceză are codul GF."
   }
 }

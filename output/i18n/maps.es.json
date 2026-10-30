@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Mundo - Países (Miller)",
     "description": "Mapa de los países y territorios del mundo (Antártida incluida). Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name; Somalilandia, Chipre del Norte y el glaciar de Siachen forman parte de SO, CY e IN. Proyección Miller."
+  },
+  "africa-countries": {
+    "title": "África - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name."
+  },
+  "asia-countries": {
+    "title": "Asia - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name. Rusia se corta en el meridiano 60° E (Urales): solo se representa la parte situada en este continente."
+  },
+  "europe-countries": {
+    "title": "Europa - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name. Rusia se corta en el meridiano 60° E (Urales): solo se representa la parte situada en este continente. Chipre está incluido."
+  },
+  "north-america-countries": {
+    "title": "América del Norte - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanía - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name. La Polinesia oriental no está representada."
+  },
+  "south-america-countries": {
+    "title": "América del Sur - Países",
+    "description": "Mapa simplificado de los países y territorios de este continente: islas muy pequeñas suprimidas, contornos suavizados. Cada forma lleva el código ISO 3166-1 alfa-2 en draw:name. La Guayana Francesa lleva el código GF."
   }
 }

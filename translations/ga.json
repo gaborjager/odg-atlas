@@ -27,5 +27,29 @@
     "title": "An Domhan - Tíortha",
     "description": "Léarscáil de thíortha agus críocha an domhain (an Antartaice san áireamh). Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth; tá Somáililéan, Tuaisceart na Cipire agus Oighearshruth Siachen mar chuid de SO, CY agus IN."
   },
+  "africa-countries": {
+    "title": "An Afraic - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth."
+  },
+  "asia-countries": {
+    "title": "An Áise - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth. Tá an Rúis gearrtha ag an meridian 60° T (an Úrail): ní thaispeántar ach an chuid ar an mór-roinn seo."
+  },
+  "europe-countries": {
+    "title": "An Eoraip - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth. Tá an Rúis gearrtha ag an meridian 60° T (an Úrail): ní thaispeántar ach an chuid ar an mór-roinn seo. Tá an Chipir san áireamh."
+  },
+  "north-america-countries": {
+    "title": "Meiriceá Thuaidh - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth."
+  },
+  "oceania-countries": {
+    "title": "An Aigéine - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth. Ní thaispeántar an Pholainéis Thoir."
+  },
+  "south-america-countries": {
+    "title": "Meiriceá Theas - Tíortha",
+    "description": "Léarscáil shimplithe de thíortha agus críocha na mór-roinne seo: baineadh oileáin an-bheaga, rinneadh imlínte a mhíniú. Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth. Is é GF cód Ghuáin na Fraince."
+  },
   "_projection": "Teilgean {name}."
 }

@@ -27,5 +27,29 @@
     "title": "Mundo - Países",
     "description": "Mapa dos países e territórios do mundo (Antártida incluída). Cada forma contém o código ISO 3166-1 alfa-2 em draw:name; a Somalilândia, o Chipre do Norte e o glaciar de Siachen fazem parte de SO, CY e IN."
   },
+  "africa-countries": {
+    "title": "África - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name."
+  },
+  "asia-countries": {
+    "title": "Ásia - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name. A Rússia é cortada no meridiano 60° E (Urais): apenas a parte situada neste continente é representada."
+  },
+  "europe-countries": {
+    "title": "Europa - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name. A Rússia é cortada no meridiano 60° E (Urais): apenas a parte situada neste continente é representada. Chipre está incluído."
+  },
+  "north-america-countries": {
+    "title": "América do Norte - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceânia - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name. A Polinésia oriental não está representada."
+  },
+  "south-america-countries": {
+    "title": "América do Sul - Países",
+    "description": "Mapa simplificado dos países e territórios deste continente: ilhas muito pequenas removidas, contornos suavizados. Cada forma contém o código ISO 3166-1 alfa-2 em draw:name. A Guiana Francesa tem o código GF."
+  },
   "_projection": "Projeção {name}."
 }

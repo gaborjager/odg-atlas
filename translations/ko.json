@@ -27,5 +27,29 @@
     "title": "세계 - 국가",
     "description": "세계 국가 및 지역 지도(남극 포함). 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 소말릴란드, 북키프로스, 시아첸 빙하는 각각 SO, CY, IN에 포함됩니다."
   },
+  "africa-countries": {
+    "title": "아프리카 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다."
+  },
+  "asia-countries": {
+    "title": "아시아 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 러시아는 동경 60도(우랄)에서 나누었으며 이 대륙에 속한 부분만 표시됩니다."
+  },
+  "europe-countries": {
+    "title": "유럽 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 러시아는 동경 60도(우랄)에서 나누었으며 이 대륙에 속한 부분만 표시됩니다. 키프로스가 포함됩니다."
+  },
+  "north-america-countries": {
+    "title": "북아메리카 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다."
+  },
+  "oceania-countries": {
+    "title": "오세아니아 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 동폴리네시아는 표시되지 않습니다."
+  },
+  "south-america-countries": {
+    "title": "남아메리카 - 국가",
+    "description": "이 대륙의 국가 및 지역 간략 지도. 아주 작은 섬은 제거하고 윤곽선을 다듬었습니다. 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 프랑스령 기아나의 코드는 GF입니다."
+  },
   "_projection": "{name} 도법."
 }

@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Pasaulis - Šalys (Miller)",
     "description": "Pasaulio šalių ir teritorijų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą; Somalilandas, Šiaurės Kipras ir Siačeno ledynas priklauso SO, CY ir IN. Miller projekcija."
+  },
+  "africa-countries": {
+    "title": "Afrika - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą."
+  },
+  "asia-countries": {
+    "title": "Azija - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą. Rusija padalyta ties 60° R dienovidiniu (Uralas): rodoma tik dalis šiame žemyne."
+  },
+  "europe-countries": {
+    "title": "Europa - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą. Rusija padalyta ties 60° R dienovidiniu (Uralas): rodoma tik dalis šiame žemyne. Kipras įtrauktas."
+  },
+  "north-america-countries": {
+    "title": "Šiaurės Amerika - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą."
+  },
+  "oceania-countries": {
+    "title": "Okeanija - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą. Rytų Polinezija nerodoma."
+  },
+  "south-america-countries": {
+    "title": "Pietų Amerika - Šalys",
+    "description": "Supaprastintas šio žemyno šalių ir teritorijų žemėlapis: labai mažos salos pašalintos, kontūrai išlyginti. Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą. Prancūzijos Gvianos kodas yra GF."
   }
 }

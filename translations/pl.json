@@ -27,5 +27,29 @@
     "title": "Świat - Państwa",
     "description": "Mapa państw i terytoriów świata (łącznie z Antarktydą). Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name; Somaliland, Cypr Północny i lodowiec Siachen należą do SO, CY i IN."
   },
+  "africa-countries": {
+    "title": "Afryka - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name."
+  },
+  "asia-countries": {
+    "title": "Azja - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name. Rosja jest podzielona południkiem 60° E (Ural): pokazano tylko część leżącą na tym kontynencie."
+  },
+  "europe-countries": {
+    "title": "Europa - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name. Rosja jest podzielona południkiem 60° E (Ural): pokazano tylko część leżącą na tym kontynencie. Cypr jest uwzględniony."
+  },
+  "north-america-countries": {
+    "title": "Ameryka Północna - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceania - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name. Polinezja Wschodnia nie jest pokazana."
+  },
+  "south-america-countries": {
+    "title": "Ameryka Południowa - Państwa",
+    "description": "Uproszczona mapa państw i terytoriów tego kontynentu: bardzo małe wyspy usunięte, kontury wygładzone. Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name. Gujana Francuska ma kod GF."
+  },
   "_projection": "Odwzorowanie {name}."
 }

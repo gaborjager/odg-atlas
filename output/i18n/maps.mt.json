@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Dinja - Pajjiżi (Miller)",
     "description": "Mappa tal-pajjiżi u t-territorji tad-dinja (inkluża l-Antartika). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name; is-Somaliland, Ċipru ta' Fuq u l-Glaċier ta' Siachen huma parti minn SO, CY u IN. Projezzjoni Miller."
+  },
+  "africa-countries": {
+    "title": "L-Afrika - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name."
+  },
+  "asia-countries": {
+    "title": "L-Asja - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name. Ir-Russja hija maqsuma fil-meridjan 60° Lvant (l-Urali): tidher biss il-parti f'dan il-kontinent."
+  },
+  "europe-countries": {
+    "title": "L-Ewropa - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name. Ir-Russja hija maqsuma fil-meridjan 60° Lvant (l-Urali): tidher biss il-parti f'dan il-kontinent. Ċipru huwa inkluż."
+  },
+  "north-america-countries": {
+    "title": "L-Amerika ta' Fuq - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name."
+  },
+  "oceania-countries": {
+    "title": "L-Oċeanja - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name. Il-Polineżja tal-Lvant mhijiex murija."
+  },
+  "south-america-countries": {
+    "title": "L-Amerika t'Isfel - Pajjiżi",
+    "description": "Mappa simplifikata tal-pajjiżi u t-territorji ta' dan il-kontinent: gżejjer żgħar ħafna mneħħija, konturi mlissa. Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name. Il-Guyana Franċiża għandha l-kodiċi GF."
   }
 }

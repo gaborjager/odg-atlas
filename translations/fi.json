@@ -27,5 +27,29 @@
     "title": "Maailma - Maat",
     "description": "Kartta maailman maista ja alueista (Etelämanner mukaan lukien). Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name; Somalimaa, Pohjois-Kypros ja Siachenin jäätikkö kuuluvat koodeihin SO, CY ja IN."
   },
+  "africa-countries": {
+    "title": "Afrikka - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name."
+  },
+  "asia-countries": {
+    "title": "Aasia - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name. Venäjä on jaettu pituuspiirin 60° I (Ural) kohdalta: vain tällä maanosalla oleva osa näytetään."
+  },
+  "europe-countries": {
+    "title": "Eurooppa - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name. Venäjä on jaettu pituuspiirin 60° I (Ural) kohdalta: vain tällä maanosalla oleva osa näytetään. Kypros on mukana."
+  },
+  "north-america-countries": {
+    "title": "Pohjois-Amerikka - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oseania - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name. Itä-Polynesiaa ei näytetä."
+  },
+  "south-america-countries": {
+    "title": "Etelä-Amerikka - Maat",
+    "description": "Yksinkertaistettu kartta tämän maanosan maista ja alueista: hyvin pienet saaret poistettu, ääriviivat tasoitettu. Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name. Ranskan Guayanan koodi on GF."
+  },
   "_projection": "{name}-projektio."
 }

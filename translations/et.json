@@ -27,5 +27,29 @@
     "title": "Maailm - Riigid",
     "description": "Maailma riikide ja territooriumide kaart (koos Antarktikaga). Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name; Somaalimaa, Põhja-Küpros ja Siacheni liustik kuuluvad koodide SO, CY ja IN alla."
   },
+  "africa-countries": {
+    "title": "Aafrika - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name."
+  },
+  "asia-countries": {
+    "title": "Aasia - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name. Venemaa on jagatud meridiaanil 60° idapikkust (Uuralid): näidatud on ainult sellel maailmajaol asuv osa."
+  },
+  "europe-countries": {
+    "title": "Euroopa - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name. Venemaa on jagatud meridiaanil 60° idapikkust (Uuralid): näidatud on ainult sellel maailmajaol asuv osa. Küpros on kaasatud."
+  },
+  "north-america-countries": {
+    "title": "Põhja-Ameerika - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name."
+  },
+  "oceania-countries": {
+    "title": "Okeaania - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name. Ida-Polüneesiat ei näidata."
+  },
+  "south-america-countries": {
+    "title": "Lõuna-Ameerika - Riigid",
+    "description": "Selle maailmajao riikide ja territooriumide lihtsustatud kaart: väga väikesed saared eemaldatud, piirjooned silutud. Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name. Prantsuse Guajaana kood on GF."
+  },
   "_projection": "{name} projektsioon."
 }

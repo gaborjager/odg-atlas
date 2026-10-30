@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Wereld - Landen (Miller)",
     "description": "Kaart van de landen en gebieden van de wereld (inclusief Antarctica). Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name; Somaliland, Noord-Cyprus en de Siachen-gletsjer maken deel uit van SO, CY en IN. Miller-projectie."
+  },
+  "africa-countries": {
+    "title": "Afrika - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name."
+  },
+  "asia-countries": {
+    "title": "Azië - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name. Rusland is gesneden op de meridiaan 60° O (Oeral): alleen het deel op dit continent is weergegeven."
+  },
+  "europe-countries": {
+    "title": "Europa - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name. Rusland is gesneden op de meridiaan 60° O (Oeral): alleen het deel op dit continent is weergegeven. Cyprus is inbegrepen."
+  },
+  "north-america-countries": {
+    "title": "Noord-Amerika - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanië - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name. Oost-Polynesië is niet weergegeven."
+  },
+  "south-america-countries": {
+    "title": "Zuid-Amerika - Landen",
+    "description": "Vereenvoudigde kaart van de landen en gebieden van dit continent: zeer kleine eilanden verwijderd, contouren afgevlakt. Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name. Frans-Guyana heeft de code GF."
   }
 }

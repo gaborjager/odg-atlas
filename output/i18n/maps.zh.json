@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "世界 - 国家 (Miller)",
     "description": "世界各国家和地区地图（包括南极洲）。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码；索马里兰、北塞浦路斯和锡亚琴冰川分别归入 SO、CY 和 IN。 Miller 投影。"
+  },
+  "africa-countries": {
+    "title": "非洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。"
+  },
+  "asia-countries": {
+    "title": "亚洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。 俄罗斯在东经 60° 经线（乌拉尔）处分割：仅显示位于本大洲的部分。"
+  },
+  "europe-countries": {
+    "title": "欧洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。 俄罗斯在东经 60° 经线（乌拉尔）处分割：仅显示位于本大洲的部分。 包括塞浦路斯。"
+  },
+  "north-america-countries": {
+    "title": "北美洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。"
+  },
+  "oceania-countries": {
+    "title": "大洋洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。 未显示东波利尼西亚。"
+  },
+  "south-america-countries": {
+    "title": "南美洲 - 国家",
+    "description": "本大洲国家和地区的简化地图：已移除极小的岛屿，轮廓经过平滑处理。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码。 法属圭亚那的代码为 GF。"
   }
 }

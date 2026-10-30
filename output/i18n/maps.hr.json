@@ -42,5 +42,29 @@
   "world-countries-miller": {
     "title": "Svijet - Države (Miller)",
     "description": "Karta država i teritorija svijeta (uključujući Antarktiku). Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name; Somaliland, Sjeverni Cipar i ledenjak Siachen dio su SO, CY i IN. Projekcija Miller."
+  },
+  "africa-countries": {
+    "title": "Afrika - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name."
+  },
+  "asia-countries": {
+    "title": "Azija - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name. Rusija je podijeljena na meridijanu 60° I (Ural): prikazan je samo dio na ovom kontinentu."
+  },
+  "europe-countries": {
+    "title": "Europa - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name. Rusija je podijeljena na meridijanu 60° I (Ural): prikazan je samo dio na ovom kontinentu. Cipar je uključen."
+  },
+  "north-america-countries": {
+    "title": "Sjeverna Amerika - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name."
+  },
+  "oceania-countries": {
+    "title": "Oceanija - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name. Istočna Polinezija nije prikazana."
+  },
+  "south-america-countries": {
+    "title": "Južna Amerika - Države",
+    "description": "Pojednostavljena karta država i teritorija ovog kontinenta: vrlo mali otoci uklonjeni, obrisi zaglađeni. Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name. Francuska Gvajana ima kod GF."
   }
 }
