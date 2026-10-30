@@ -197,6 +197,7 @@ TRANSLATIONS_DIR = "translations"   # sources: one file per language
 I18N_DIR = "output/i18n"            # published: maps.<lang>.json
 PREVIEW_PX_CM = 10           # preview: 10 px per cm of page (300 x 250 px)
 CODE_EXAMPLES = 10           # zone codes (draw:name) published in the catalog
+CODES_MAX_ZONES = 300        # full list of codes in the catalog up to this size
 CATALOG_VERSION = 1
 DEFAULT_BASE_URL = "https://raw.githubusercontent.com/gaborjager/odg-atlas/main"
 ODG_FORMAT = "application/vnd.oasis.opendocument.graphics"
@@ -1421,6 +1422,8 @@ def catalog_entry(map_id, path, meta, kind, base_url, translations):
         "objects":       len(zones),
         "code_examples": codes[:CODE_EXAMPLES],
     })
+    if len(codes) <= CODES_MAX_ZONES:
+        entry["codes"] = "|".join(codes)
     svg = build_preview(page, zones)
     if svg:
         preview = Path(PREVIEW_DIR) / f"{map_id}.svg"

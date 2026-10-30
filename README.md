@@ -147,6 +147,8 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
   too detailed for it.
 - `code_examples`: first zone codes, 10 at most (alphabetical order), to illustrate the
   expected codes.
+- `codes`: all the zone codes, separated by `|` (maps of 300 zones at most):
+  software can find the map that matches a column of data.
 - `preview`: SVG preview of the map (300 × 250 px, in
   [`output/previews/`](output/previews/)); `preview_sha256` is its hash.
 - Generated ODG files and previews are deterministic: the hash only changes
