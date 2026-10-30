@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Union européenne - Pays",
-    "description": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat)."
+    "description": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat). Le reste de l'Europe est dessiné en blanc, sans les pays."
   },
   "world-continents": {
     "title": "Monde - Continents",

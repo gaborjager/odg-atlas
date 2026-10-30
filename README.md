@@ -45,9 +45,11 @@ Download a single map from the links above, or all of them from the latest
   no cantons in the source GeoJSON: the cantons map is completed by their
   municipal districts (Paris, Marseille) and the municipalities of the Rhône
   department (Lyon Metropolis).
-- European Union: mainland and nearby islands, ETRS89-LAEA Europe projection;
-  the outermost regions (Canary Islands, Azores, Madeira, overseas
-  departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
+- European Union: same frame and projection as the *Europe* map (ETRS89-LAEA
+  Europe), so the two can be overlaid. The 27 member states are the zones; the
+  rest of the continent is a single white shape without countries and without
+  name, which is not a zone. Mainland and nearby islands; the outermost regions
+  (Canary Islands, Azores, Madeira, overseas departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
   Eurostat data. Cyprus is the area under the control of the Republic of
   Cyprus, as in Natural Earth.
 - World maps: each one exists in three projections, in separate files

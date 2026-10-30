@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Euroopan unioni - Maat",
-    "description": "Kartta Euroopan unionin 27 jäsenvaltiosta (manneralue ja lähisaaret; syrjäisimpiä alueita ei näytetä). Jokaisessa muodossa on maan ISO 3166-1 alpha-2 -koodi kentässä draw:name (GR Kreikalle, Eurostatissa EL)."
+    "description": "Kartta Euroopan unionin 27 jäsenvaltiosta (manneralue ja lähisaaret; syrjäisimpiä alueita ei näytetä). Jokaisessa muodossa on maan ISO 3166-1 alpha-2 -koodi kentässä draw:name (GR Kreikalle, Eurostatissa EL). Muu Eurooppa on piirretty valkoisella, ilman maita."
   },
   "world-continents": {
     "title": "Maailma - Maanosat",

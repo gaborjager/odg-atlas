@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Unión Europea - Países",
-    "description": "Mapa de los 27 Estados miembros de la Unión Europea (territorio continental e islas cercanas; regiones ultraperiféricas no representadas). Cada forma lleva el código ISO 3166-1 alfa-2 del país en draw:name (GR para Grecia, codificada EL por Eurostat)."
+    "description": "Mapa de los 27 Estados miembros de la Unión Europea (territorio continental e islas cercanas; regiones ultraperiféricas no representadas). Cada forma lleva el código ISO 3166-1 alfa-2 del país en draw:name (GR para Grecia, codificada EL por Eurostat). El resto de Europa aparece en blanco, sin países."
   },
   "world-continents-robinson": {
     "title": "Mundo - Continentes (Robinson)",

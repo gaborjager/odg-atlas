@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Europäische Union - Länder",
-    "description": "Karte der 27 Mitgliedstaaten der Europäischen Union (Festland und nahe Inseln; Gebiete in äußerster Randlage nicht dargestellt). Jede Form trägt den ISO-3166-1-Alpha-2-Code des Landes in draw:name (GR für Griechenland, bei Eurostat EL)."
+    "description": "Karte der 27 Mitgliedstaaten der Europäischen Union (Festland und nahe Inseln; Gebiete in äußerster Randlage nicht dargestellt). Jede Form trägt den ISO-3166-1-Alpha-2-Code des Landes in draw:name (GR für Griechenland, bei Eurostat EL). Das übrige Europa ist weiß dargestellt, ohne Länder."
   },
   "world-continents": {
     "title": "Welt - Kontinente",

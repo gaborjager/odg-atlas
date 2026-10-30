@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "欧盟 - 国家",
-    "description": "欧盟 27 个成员国地图（大陆及邻近岛屿；未显示最外围地区）。每个图形的 draw:name 中含有国家的 ISO 3166-1 alpha-2 代码（希腊为 GR，欧盟统计局使用 EL）。"
+    "description": "欧盟 27 个成员国地图（大陆及邻近岛屿；未显示最外围地区）。每个图形的 draw:name 中含有国家的 ISO 3166-1 alpha-2 代码（希腊为 GR，欧盟统计局使用 EL）。 欧洲其余部分以白色绘制，不显示国家。"
   },
   "world-continents": {
     "title": "世界 - 大洲",

@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Den europeiske union - Land",
-    "description": "Kart over de 27 medlemsstatene i Den europeiske union (fastland og nærliggende øyer; ytterområder er ikke vist). Hver form har landets ISO 3166-1 alpha-2-kode i draw:name (GR for Hellas, EL hos Eurostat)."
+    "description": "Kart over de 27 medlemsstatene i Den europeiske union (fastland og nærliggende øyer; ytterområder er ikke vist). Hver form har landets ISO 3166-1 alpha-2-kode i draw:name (GR for Hellas, EL hos Eurostat). Resten av Europa er vist i hvitt, uten land."
   },
   "world-continents": {
     "title": "Verden - Kontinenter",

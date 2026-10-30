@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Europese Unie - Landen",
-    "description": "Kaart van de 27 lidstaten van de Europese Unie (vasteland en nabijgelegen eilanden; ultraperifere gebieden niet weergegeven). Elke vorm bevat de ISO 3166-1 alpha-2-code van het land in draw:name (GR voor Griekenland, door Eurostat EL genoemd)."
+    "description": "Kaart van de 27 lidstaten van de Europese Unie (vasteland en nabijgelegen eilanden; ultraperifere gebieden niet weergegeven). Elke vorm bevat de ISO 3166-1 alpha-2-code van het land in draw:name (GR voor Griekenland, door Eurostat EL genoemd). De rest van Europa is wit getekend, zonder landen."
   },
   "world-continents": {
     "title": "Wereld - Continenten",

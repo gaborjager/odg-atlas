@@ -185,6 +185,7 @@ FRANCE_EXTENT = (80000.0, 1260000.0, 6030000.0, 7130000.0)
 AUTO_MARGIN = 0.03
 
 FILL_COLOR = "#6AAED6"
+BACKGROUND_COLOR = "#FFFFFF"
 STROKE_COLOR = "#1A4F7A"
 
 # ---------------------------------------------------------------------------
@@ -334,7 +335,7 @@ MAPS = {
     },
     "eu-countries": {
         "title":          "European Union - Countries",
-        "description":    "Map of the 27 member states of the European Union (mainland and nearby islands; outermost regions not shown). Each shape carries the ISO 3166-1 alpha-2 code of the country in draw:name (GR for Greece, coded EL by Eurostat).",
+        "description":    "Map of the 27 member states of the European Union (mainland and nearby islands; outermost regions not shown). Each shape carries the ISO 3166-1 alpha-2 code of the country in draw:name (GR for Greece, coded EL by Eurostat). The rest of Europe is drawn in white, without countries.",
         "area":           "European Union",
         "code_type":      "ISO 3166-1 alpha-2",
         "source":         NATURAL_EARTH_SOURCE,
@@ -344,17 +345,10 @@ MAPS = {
         "url":            NATURAL_EARTH_URL,
         "output":         "output/eu-countries.odg",
         "cache":          "cache/eu-countries.hash",
-        "stroke_w":       "0.018cm",
-        "projection":     "laea-europe",
-        "extent":         None,          # automatic: extent of the kept zones
-        "render_version": "1-laea",
-        "code_property":  "ISO_A2_EH",   # ISO_A2 is "-99" for France in Natural Earth
-        "name_property":  "NAME_EN",
-        "include":        EU_MEMBERS,
-        # Polygons kept: those whose center lies in this box (lon min, lon max,
-        # lat min, lat max) - drops the outermost regions (Canary Islands,
-        # Azores, Madeira, overseas departments, Caribbean islands)
-        "keep_parts":     (-12.0, 45.0, 34.0, 72.0),
+        # Same frame as europe-countries (completed below): the members are the
+        # zones, the rest of the continent is a single white shape, without name
+        "foreground":     EU_MEMBERS,
+        "render_version": "2-laea-europe",
         "extra_urls":     [],
     },
     "world-continents": {
@@ -536,6 +530,9 @@ for map_id, spec in CONTINENT_MAPS.items():
             "simplify_deg":   0.05,
             "extra_urls":     [],
         }, **spec)
+
+MAPS["eu-countries"] = dict(MAPS["europe-countries"], **MAPS["eu-countries"])
+
 
 # ---------------------------------------------------------------------------
 # Geometry helpers - same logic as the PS functions Get-BBox / Get-PathData
@@ -786,6 +783,18 @@ def simplify_zones(zones, min_km2, tolerance):
     return result
 
 
+def split_background(zones, codes):
+    """Zones of the given codes, and the other ones dissolved into a single
+    background zone without code."""
+    missing = sorted(set(codes) - {z[0] for z in zones})
+    if missing:
+        raise ValueError(f"zones missing from the source: {', '.join(missing)}")
+    rings = dissolve([ring for z in zones if z[0] not in codes
+                      for poly in get_polygons(z[2]) for ring in poly])
+    return ([z for z in zones if z[0] in codes],
+            ("", "", {"type": "MultiPolygon", "coordinates": [[r] for r in rings]}))
+
+
 def project_rings(geometry, project):
     """List of the projected rings: [[(x, y), ...], ...]."""
     return [[project(float(pt[0]), float(pt[1])) for pt in ring]
@@ -883,7 +892,8 @@ STYLES_XML = """\
 
 
 def build_shape(code, name, rings, frame, style_name, stroke_w):
-    """XML lines (style, shape) of a zone, from its projected rings."""
+    """XML lines (style, shape) of a zone, from its projected rings. Without
+    code: a white shape without name, not a zone (background of the map)."""
     code = escape_xml(code)
     name = escape_xml(name)
     x_min, x_max, y_min, y_max = get_bbox(rings)
@@ -905,18 +915,18 @@ def build_shape(code, name, rings, frame, style_name, stroke_w):
     style_xml = (
         f'    <style:style style:name="{style_name}" style:family="graphic" '
         f'style:parent-style-name="base"><style:graphic-properties '
-        f'draw:fill="solid" draw:fill-color="{FILL_COLOR}" draw:stroke="solid" '
+        f'draw:fill="solid" draw:fill-color="{FILL_COLOR if code else BACKGROUND_COLOR}" draw:stroke="solid" '
         f'svg:stroke-color="{STROKE_COLOR}" svg:stroke-width="{stroke_w}" '
         f'draw:shadow="hidden" fo:padding="0cm"/></style:style>'
     )
     shape_xml = (
-        f'      <draw:path draw:style-name="{style_name}" draw:name="{code}"'
+        f'      <draw:path draw:style-name="{style_name}"' + (f' draw:name="{code}"' if code else "") +
         f' draw:layer="layout"'
         f' svg:x="{x_cm}cm" svg:y="{y_cm}cm"'
         f' svg:width="{w_cm}cm" svg:height="{h_cm}cm"'
         f' svg:viewBox="0 0 {vb_w} {vb_h}"'
         f' svg:d="{path_data}">'
-        f'<svg:desc>{code} - {name}</svg:desc></draw:path>'
+        + (f'<svg:desc>{code} - {name}</svg:desc>' if code else "") + '</draw:path>'
     )
     return style_xml, shape_xml
 
@@ -1078,6 +1088,9 @@ def generate(name: str, cfg: dict, force: bool) -> bool:
         layers.append(("a", zone_features(extra_raws["arrondissements"], cfg)))
         print(f"  {len(layers[-1][1])} municipal districts.")
     main_zones = zone_features(raw_main, cfg)
+    if cfg.get("foreground"):
+        main_zones, background = split_background(main_zones, cfg["foreground"])
+        layers.append(("b", [background]))
     layers.append(("s", main_zones))
     print(f"  {len(main_zones)} main zones loaded.")
 
@@ -1189,10 +1202,11 @@ def points_ring(points: str):
     return [list(zip(values[0::2], values[1::2]))]
 
 
-def read_odg(odg_bytes: bytes):
+def read_odg(odg_bytes: bytes, background=False):
     """Page size (cm) and zones of an ODG: [(code, rings, (x0, y0, kx, ky))],
     rings in shape units, placed on the page (cm) by x0 + x * kx, y0 + y * ky.
-    A zone is a shape with a draw:name; rings are empty if its outline is unknown."""
+    A zone is a shape with a draw:name; rings are empty if its outline is unknown.
+    background: also the paths without name, with the code "" (generated maps)."""
     with zipfile.ZipFile(io.BytesIO(odg_bytes)) as zf:
         content = ET.fromstring(zf.read("content.xml"))
         styles = ET.fromstring(zf.read("styles.xml")) if "styles.xml" in zf.namelist() else None
@@ -1203,7 +1217,8 @@ def read_odg(odg_bytes: bytes):
             page = (to_cm(props.get(f"{{{NS_FO}}}page-width")), to_cm(props.get(f"{{{NS_FO}}}page-height")))
     zones = []
     for shape in content.iter():
-        if shape.tag not in ZONE_TAGS or not shape.get(f"{{{NS_DRAW}}}name"):
+        unnamed = background and shape.tag == f"{{{NS_DRAW}}}path"
+        if shape.tag not in ZONE_TAGS or not (shape.get(f"{{{NS_DRAW}}}name") or unnamed):
             continue
         rings, place = [], (0.0, 0.0, 1.0, 1.0)
         try:
@@ -1224,7 +1239,7 @@ def read_odg(odg_bytes: bytes):
             rings, place = local, (x0, y0, w / vb_w, h / vb_h)
         except (ValueError, TypeError, ZeroDivisionError):
             rings = []
-        zones.append((shape.get(f"{{{NS_DRAW}}}name"), rings, place))
+        zones.append((shape.get(f"{{{NS_DRAW}}}name", ""), rings, place))
     return page, zones
 
 
@@ -1248,7 +1263,7 @@ def build_preview(page, zones):
     # 10 px per cm for a 30 x 25 cm page; other pages fit in 300 x 250 px
     px = min(PREVIEW_PX_CM, 300 / width, 250 / height) if (width > PAGE_W or height > PAGE_H) else PREVIEW_PX_CM
     paths = []
-    for _, rings, (x0, y0, kx, ky) in zones:
+    for code, rings, (x0, y0, kx, ky) in zones:
         ox, oy, sx, sy = (x0 - x_min) * px, (y0 - y_min) * px, kx * px, ky * px
         pieces = []
         for ring in rings:
@@ -1261,7 +1276,7 @@ def build_preview(page, zones):
                 pieces.append(pts)
         if pieces:
             d = " ".join("M" + " L".join(f"{x} {y}" for x, y in p) + "Z" for p in pieces)
-            paths.append(f'<path d="{d}"/>')
+            paths.append(f'<path d="{d}"' + ("" if code else f' fill="{BACKGROUND_COLOR}"') + '/>')
     w, h = round(width * px), round(height * px)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">\n'
             f'<g fill="{FILL_COLOR}" stroke="{STROKE_COLOR}" stroke-width="0.4" stroke-linejoin="round">\n'
@@ -1424,7 +1439,7 @@ def catalog_entry(map_id, path, meta, kind, base_url, translations):
     })
     if len(codes) <= CODES_MAX_ZONES:
         entry["codes"] = "|".join(codes)
-    svg = build_preview(page, zones)
+    svg = build_preview(page, read_odg(data, kind == "generated")[1])
     if svg:
         preview = Path(PREVIEW_DIR) / f"{map_id}.svg"
         preview.parent.mkdir(parents=True, exist_ok=True)

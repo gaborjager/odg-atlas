@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Unia Europejska - Państwa",
-    "description": "Mapa 27 państw członkowskich Unii Europejskiej (terytorium kontynentalne i pobliskie wyspy; regiony najbardziej oddalone nie są pokazane). Każdy kształt zawiera kod ISO 3166-1 alpha-2 państwa w draw:name (GR dla Grecji, w Eurostacie EL)."
+    "description": "Mapa 27 państw członkowskich Unii Europejskiej (terytorium kontynentalne i pobliskie wyspy; regiony najbardziej oddalone nie są pokazane). Każdy kształt zawiera kod ISO 3166-1 alpha-2 państwa w draw:name (GR dla Grecji, w Eurostacie EL). Pozostała część Europy jest narysowana na biało, bez państw."
   },
   "world-continents-robinson": {
     "title": "Świat - Kontynenty (Robinson)",

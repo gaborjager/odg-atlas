@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Eiropas Savienība - Valstis",
-    "description": "Eiropas Savienības 27 dalībvalstu karte (kontinentālā daļa un tuvās salas; tālākie reģioni nav parādīti). Katrai formai draw:name laukā ir valsts ISO 3166-1 alpha-2 kods (GR Grieķijai, Eurostat apzīmē ar EL)."
+    "description": "Eiropas Savienības 27 dalībvalstu karte (kontinentālā daļa un tuvās salas; tālākie reģioni nav parādīti). Katrai formai draw:name laukā ir valsts ISO 3166-1 alpha-2 kods (GR Grieķijai, Eurostat apzīmē ar EL). Pārējā Eiropa ir attēlota baltā krāsā, bez valstīm."
   },
   "world-continents": {
     "title": "Pasaule - Kontinenti",
