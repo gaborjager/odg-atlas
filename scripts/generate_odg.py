@@ -354,12 +354,8 @@ MAPS = {
         "label":          "Continents of the world",
         "page_name":      "World continents",
         "url":            NATURAL_EARTH_URL,
-        "output":         "output/world-continents.odg",
-        "cache":          "cache/world-continents.hash",
         "stroke_w":       "0.018cm",
-        "projection":     "robinson",
         "extent":         None,
-        "render_version": "3-robinson",
         "code_property":  "CONTINENT",
         "name_property":  "NAME_EN",
         "code_map":       {k: code for k, (code, _) in CONTINENTS.items()},
@@ -397,12 +393,8 @@ MAPS = {
         "label":          "Countries of the world",
         "page_name":      "World countries",
         "url":            NATURAL_EARTH_URL,
-        "output":         "output/world-countries.odg",
-        "cache":          "cache/world-countries.hash",
         "stroke_w":       "0.008cm",
-        "projection":     "robinson",
         "extent":         None,
-        "render_version": "3-robinson",
         "code_property":  "ISO_A2_EH",
         "name_property":  "NAME_EN",
         "code_fixes":     WORLD_CODE_FIXES,
@@ -411,6 +403,27 @@ MAPS = {
         "extra_urls":     [],
     },
 }
+
+# The world maps exist in each of these projections: one file per projection,
+# <id>-<projection>
+WORLD_PROJECTIONS = {"robinson": "Robinson", "equal-earth": "Equal Earth", "miller": "Miller"}
+
+for base_id in ("world-continents", "world-countries"):
+    base = MAPS.pop(base_id)
+    for projection, projection_name in WORLD_PROJECTIONS.items():
+        map_id = f"{base_id}-{projection}"
+        MAPS[map_id] = dict(
+            base,
+            title=f"{base['title']} ({projection_name})",
+            title_fr=f"{base['title_fr']} ({projection_name})",
+            description=f"{base['description']} {projection_name} projection.",
+            description_fr=f"{base['description_fr']} Projection {projection_name}.",
+            label=f"{base['label']} ({projection_name})",
+            output=f"output/{map_id}.odg",
+            cache=f"cache/{map_id}.hash",
+            projection=projection,
+            render_version=f"1-{projection}",
+        )
 
 # ---------------------------------------------------------------------------
 # Geometry helpers - same logic as the PS functions Get-BBox / Get-PathData

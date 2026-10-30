@@ -4,7 +4,7 @@
 # trigger other workflows by themselves), on a push that changes the catalog,
 # or manually. Compares output/maps.json with the catalog of the latest
 # release; if a map was added, updated or removed, creates the release
-# "ODG Atlas 1.1.YYYYMMDD" (tag v1.1.YYYYMMDD) with the list of changes and
+# "ODG Atlas 1.2.YYYYMMDD" (tag v1.2.YYYYMMDD) with the list of changes and
 # all the maps attached.
 name: Release maps
 

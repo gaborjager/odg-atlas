@@ -26,8 +26,12 @@ can be added too (*static maps*). Each change of the maps is published as a
 | France - Cantons | [`output/cantons-france.odg`](output/cantons-france.odg) | ~2,300 cantons + municipal districts + municipalities of the Rhône | INSEE code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson), [geo.api.gouv.fr](https://geo.api.gouv.fr/) | ~950 KB |
 | France - Municipalities | [`output/communes-france.odg`](output/communes-france.odg) | ~35,000 municipalities ⚠️ heavy file | INSEE municipality code (e.g. `75056`) | [france-geojson](https://github.com/gregoiredavid/france-geojson) | ~3.2 MB |
 | European Union - Countries | [`output/eu-countries.odg`](output/eu-countries.odg) | 27 member states | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~50 KB |
-| World - Continents | [`output/world-continents.odg`](output/world-continents.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~90 KB |
-| World - Countries | [`output/world-countries.odg`](output/world-countries.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
+| World - Continents (Robinson) | [`output/world-continents-robinson.odg`](output/world-continents-robinson.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~90 KB |
+| World - Continents (Equal Earth) | [`output/world-continents-equal-earth.odg`](output/world-continents-equal-earth.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~90 KB |
+| World - Continents (Miller) | [`output/world-continents-miller.odg`](output/world-continents-miller.odg) | 7 continents | Continent code (e.g. `EU`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~90 KB |
+| World - Countries (Robinson) | [`output/world-countries-robinson.odg`](output/world-countries-robinson.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
+| World - Countries (Equal Earth) | [`output/world-countries-equal-earth.odg`](output/world-countries-equal-earth.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~525 KB |
+| World - Countries (Miller) | [`output/world-countries-miller.odg`](output/world-countries-miller.odg) | 237 countries and territories | ISO 3166-1 alpha-2 code (e.g. `FR`) | [Natural Earth](https://www.naturalearthdata.com/) 1:50m | ~530 KB |
 
 Download a single map from the links above, or all of them from the latest
 [release](https://github.com/gaborjager/odg-atlas/releases/latest).
@@ -44,8 +48,14 @@ Download a single map from the links above, or all of them from the latest
   departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
   Eurostat data. Cyprus is the area under the control of the Republic of
   Cyprus, as in Natural Earth.
-- World maps: Robinson projection (compromise between areas and shapes, the
-  usual look of world atlases), Antarctica included.
+- World maps: each one exists in three projections, in separate files
+  (`world-<continents|countries>-<projection>.odg`), Antarctica included:
+  - *Robinson*: compromise between areas and shapes, the usual look of world
+    atlases; the recommended choice for thematic maps.
+  - *Equal Earth*: exact areas; shapes are flattened near the poles and
+    sheared near the edges.
+  - *Miller*: rectangular map with straight meridians; high latitudes are
+    strongly enlarged (Greenland, Canada, Antarctica).
   - *Countries*: countries and territories with an ISO 3166-1 alpha-2 code.
     The few zones without one are merged into the country that holds them in
     ISO 3166: Somaliland into Somalia (`SO`), Northern Cyprus into Cyprus
@@ -131,8 +141,8 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 [`scripts/generate_odg.py`](scripts/generate_odg.py) (source URL, properties
 holding the code and the name, projection, extent, filters), then run the
 script. The available projections are Lambert-93 (France), ETRS89-LAEA
-(Europe), Robinson (world, used by the world maps), Equal Earth and Miller;
-another one can be added to `PROJECTIONS`.
+(Europe), Robinson, Equal Earth and Miller (world); another one can be added
+to `PROJECTIONS`. The projections of the world maps are in `WORLD_PROJECTIONS`.
 
 **A static map, drawn by hand** in LibreOffice Draw: put `static/<id>.odg` and
 its description `static/<id>.json` in the [`static/`](static/) folder; the
@@ -181,17 +191,18 @@ GeoJSON sources              static/ maps
                                                                ▼
                                      Maps changed since the latest release?
                                                                │
-                                       Yes ──► Release "ODG Atlas 1.1.YYYYMMDD"
+                                       Yes ──► Release "ODG Atlas 1.2.YYYYMMDD"
 ```
 
 The *Release maps* workflow compares the catalog with the one of the latest
 release. If a map was added, updated or removed, it publishes a release
 listing the changes, with all the maps and `maps.json` attached.
 
-Releases are numbered **`1.1.YYYYMMDD`** (tag `v1.1.YYYYMMDD`), with the date
+Releases are numbered **`1.2.YYYYMMDD`** (tag `v1.2.YYYYMMDD`), with the date
 of the day: the series (`SERIES` in
 [`scripts/release_notes.py`](scripts/release_notes.py)) is raised by hand when
-maps are added: `1.0` for the French and EU maps, `1.1` with the world maps. A second
+maps are added: `1.0` for the French and EU maps, `1.1` with the world maps,
+`1.2` with one file per projection for them. A second
 release on the same day gets the suffix `.2`. The first release was tagged
 `maps-2026.10.23`.
 
@@ -266,7 +277,7 @@ python scripts/generate_odg.py --check
 | Setting | Value |
 |---|---|
 | Output format | ODF Graphics 1.3 (`.odg`) |
-| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Robinson (ESRI:54030) for the world; same scale in X and Y |
+| Projections | Lambert-93 (EPSG:2154) for France, ETRS89-LAEA (EPSG:3035) for Europe, Robinson (ESRI:54030), Equal Earth (EPSG:8857) and Miller (ESRI:54003) for the world; same scale in X and Y |
 | Page size | 30 × 25 cm, landscape |
 | Fill color | `#6AAED6` (light blue) |
 | Outline color | `#1A4F7A` (dark blue) |
