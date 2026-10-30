@@ -171,6 +171,8 @@ STROKE_COLOR = "#1A4F7A"
 CATALOG_PATH = "output/maps.json"
 PREVIEW_DIR = "output/previews"
 STATIC_DIR = "static"
+TRANSLATIONS_DIR = "translations"   # sources: one file per language
+I18N_DIR = "output/i18n"            # published: maps.<lang>.json
 PREVIEW_PX_CM = 10           # preview: 10 px per cm of page (300 x 250 px)
 CODE_EXAMPLES = 10           # zone codes (draw:name) published in the catalog
 CATALOG_VERSION = 1
@@ -217,9 +219,7 @@ URAL_LON = 60.0
 MAPS = {
     "regions": {
         "title":          "France - Regions",
-        "title_fr":       "France - Carte régionale",
         "description":    "Map of the 13 regions of metropolitan France. Each shape carries the INSEE code of the region in draw:name.",
-        "description_fr": "Carte des 13 régions de France métropolitaine. Chaque forme porte le code INSEE de la région dans draw:name.",
         "area":           "France",
         "code_type":      "INSEE region code",
         "source":         FRANCE_SOURCE,
@@ -239,9 +239,7 @@ MAPS = {
     },
     "departements": {
         "title":          "France - Departments",
-        "title_fr":       "France - Carte départementale",
         "description":    "Map of the 96 departments of metropolitan France. Each shape carries the INSEE code of the department in draw:name.",
-        "description_fr": "Carte des 96 départements de France métropolitaine. Chaque forme porte le code INSEE du département dans draw:name.",
         "area":           "France",
         "code_type":      "INSEE department code",
         "source":         FRANCE_SOURCE,
@@ -261,9 +259,7 @@ MAPS = {
     },
     "cantons": {
         "title":          "France - Cantons",
-        "title_fr":       "France - Carte cantonale",
         "description":    "Map of the cantons of metropolitan France, completed by the municipal districts (Paris, Lyon, Marseille) and the municipalities of the Rhône. Each shape carries its INSEE code in draw:name.",
-        "description_fr": "Carte des cantons de France métropolitaine, complétée par les arrondissements municipaux (Paris, Lyon, Marseille) et les communes du Rhône. Chaque forme porte le code INSEE dans draw:name.",
         "area":           "France",
         "code_type":      "INSEE canton code (municipality code for the added zones)",
         "source":         FRANCE_SOURCE + "; geo.api.gouv.fr",
@@ -295,9 +291,7 @@ MAPS = {
     },
     "communes": {
         "title":          "France - Municipalities",
-        "title_fr":       "France - Carte communale",
         "description":    "Map of the municipalities of metropolitan France (~35,000 shapes, heavy file). Each shape carries the INSEE code of the municipality in draw:name.",
-        "description_fr": "Carte des communes de France métropolitaine (~35 000 formes, fichier lourd). Chaque forme porte le code INSEE de la commune dans draw:name.",
         "area":           "France",
         "code_type":      "INSEE municipality code",
         "source":         FRANCE_SOURCE,
@@ -317,9 +311,7 @@ MAPS = {
     },
     "eu-countries": {
         "title":          "European Union - Countries",
-        "title_fr":       "Union européenne - Pays",
         "description":    "Map of the 27 member states of the European Union (mainland and nearby islands; outermost regions not shown). Each shape carries the ISO 3166-1 alpha-2 code of the country in draw:name (GR for Greece, coded EL by Eurostat).",
-        "description_fr": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat).",
         "area":           "European Union",
         "code_type":      "ISO 3166-1 alpha-2",
         "source":         NATURAL_EARTH_SOURCE,
@@ -344,9 +336,7 @@ MAPS = {
     },
     "world-continents": {
         "title":          "World - Continents",
-        "title_fr":       "Monde - Continents",
         "description":    "Map of the 7 continents (Antarctica included). Each shape carries the two-letter code of the continent in draw:name (AF, AN, AS, EU, NA, OC, SA). Countries are grouped as in Natural Earth, Russia is cut at the meridian 60°E (Ural) and overseas territories belong to their geographic continent. Islands under 5,000 km² are removed.",
-        "description_fr": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique. Les îles de moins de 5 000 km² sont supprimées.",
         "area":           "World",
         "code_type":      "Continent code (AF, AN, AS, EU, NA, OC, SA)",
         "source":         NATURAL_EARTH_SOURCE,
@@ -383,9 +373,7 @@ MAPS = {
     },
     "world-countries": {
         "title":          "World - Countries",
-        "title_fr":       "Monde - Pays",
         "description":    "Map of the countries and territories of the world (Antarctica included). Each shape carries the ISO 3166-1 alpha-2 code in draw:name; Somaliland, Northern Cyprus and the Siachen Glacier are part of SO, CY and IN.",
-        "description_fr": "Carte des pays et territoires du monde (Antarctique compris). Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name ; le Somaliland, Chypre du Nord et le glacier de Siachen font partie de SO, CY et IN.",
         "area":           "World",
         "code_type":      "ISO 3166-1 alpha-2",
         "source":         NATURAL_EARTH_SOURCE,
@@ -415,13 +403,13 @@ for base_id in ("world-continents", "world-countries"):
         MAPS[map_id] = dict(
             base,
             title=f"{base['title']} ({projection_name})",
-            title_fr=f"{base['title_fr']} ({projection_name})",
             description=f"{base['description']} {projection_name} projection.",
-            description_fr=f"{base['description_fr']} Projection {projection_name}.",
             label=f"{base['label']} ({projection_name})",
             output=f"output/{map_id}.odg",
             cache=f"cache/{map_id}.hash",
             projection=projection,
+            projection_name=projection_name,
+            text_id=base_id,                  # texts of translations/<lang>.json
             render_version=f"1-{projection}",
         )
 
@@ -1200,12 +1188,90 @@ def check_static_maps():
 # ---------------------------------------------------------------------------
 # Catalog maps.json
 # ---------------------------------------------------------------------------
-def catalog_entry(map_id, path, meta, kind, base_url):
+def load_translations():
+    """Translated texts of the maps: {language: content of its file}."""
+    return {path.stem: json.loads(path.read_text(encoding="utf-8"))
+            for path in sorted(Path(TRANSLATIONS_DIR).glob("*.json"))}
+
+
+def check_translations():
+    """Errors found in translations/ (empty list if all are valid)."""
+    errors = []
+    text_ids = {cfg.get("text_id", name) for name, cfg in MAPS.items()}
+    for path in sorted(Path(TRANSLATIONS_DIR).glob("*.json")):
+        where = f"{TRANSLATIONS_DIR}/{path.name}"
+        if not re.fullmatch(r"[a-z]{2}", path.stem):
+            errors.append(f"{where}: the file name must be a two-letter language code")
+        try:
+            texts = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.append(f"{where}: invalid JSON ({exc})")
+            continue
+        for text_id in sorted(text_ids):
+            if text_id not in texts:
+                print(f"{where}: {text_id} not translated, English is used")
+                continue
+            for key in ("title", "description"):
+                if not str(texts[text_id].get(key, "")).strip():
+                    errors.append(f"{where}: {text_id}: missing {key}")
+        if "{name}" not in texts.get("_projection", ""):
+            errors.append(f"{where}: _projection must contain {{name}}")
+    return errors
+
+
+def map_texts(map_id, meta, lang, translations):
+    """Title and description of a map in a language; only those that exist:
+    translations/<lang>.json, then title_<lang> / description_<lang> of the
+    metadata (static maps)."""
+    language = translations.get(lang, {})
+    texts = dict(language.get(meta.get("text_id", map_id), {}))
+    name = meta.get("projection_name")
+    if texts and name:
+        texts["title"] = f"{texts['title']} ({name})"
+        texts["description"] += " " + language["_projection"].format(name=name)
+    for key in ("title", "description"):
+        if meta.get(f"{key}_{lang}"):
+            texts[key] = meta[f"{key}_{lang}"]
+    return texts
+
+
+def write_translations(metas, translations):
+    """(Re)writes output/i18n/maps.<lang>.json: {id: {title, description}}.
+    Returns the languages and whether a file changed."""
+    languages = set(translations)
+    for meta in metas.values():
+        languages |= {m.group(1) for m in map(re.compile(r"title_([a-z]{2})$").match, meta) if m}
+    folder = Path(I18N_DIR)
+    folder.mkdir(parents=True, exist_ok=True)
+    changed = False
+    for lang in sorted(languages):
+        texts = {map_id: map_texts(map_id, meta, lang, translations) for map_id, meta in metas.items()}
+        text = json.dumps({k: v for k, v in texts.items() if v}, ensure_ascii=False, indent=2) + "\n"
+        path = folder / f"maps.{lang}.json"
+        if not path.exists() or path.read_text(encoding="utf-8") != text:
+            path.write_text(text, encoding="utf-8")
+            changed = True
+    for path in folder.glob("maps.*.json"):
+        if path.name.split(".")[1] not in languages:
+            path.unlink()
+            changed = True
+    return sorted(languages), changed
+
+
+def catalog_entry(map_id, path, meta, kind, base_url, translations):
     data = path.read_bytes()
     page, zones = read_odg(data)
     codes = sorted({z[0] for z in zones})
     entry = {"id": map_id}
-    for key in ("title", "title_fr", "description", "description_fr", "area", "code_type"):
+    # title_fr and description_fr: for CalcMap up to 0.20.2, which does not
+    # read output/i18n
+    french = map_texts(map_id, meta, "fr", translations)
+    for key in ("title", "description"):
+        if meta.get(key):
+            entry[key] = meta[key]
+        if french.get(key):
+            entry[f"{key}_fr"] = french[key]
+    for key in ("area", "code_type"):
         if meta.get(key):
             entry[key] = meta[key]
     if meta.get("projection"):
@@ -1237,17 +1303,20 @@ def catalog_entry(map_id, path, meta, kind, base_url):
 
 
 def write_catalog(base_url: str) -> bool:
-    """(Re)writes output/maps.json from the ODG files on disk.
-    Returns True if the file changed."""
+    """(Re)writes output/maps.json and output/i18n from the ODG files on disk.
+    Returns True if a file changed."""
     base_url = base_url.rstrip("/")
-    maps = []
+    translations = load_translations()
+    maps, metas = [], {}
     for name, cfg in MAPS.items():
         out = Path(cfg["output"])
         if out.exists():
-            maps.append(catalog_entry(name, out, cfg, "generated", base_url))
+            metas[name] = cfg
+            maps.append(catalog_entry(name, out, cfg, "generated", base_url, translations))
     for map_id, odg, meta_path in static_maps():
-        maps.append(catalog_entry(map_id, odg, json.loads(meta_path.read_text(encoding="utf-8")),
-                                  "static", base_url))
+        metas[map_id] = json.loads(meta_path.read_text(encoding="utf-8"))
+        maps.append(catalog_entry(map_id, odg, metas[map_id], "static", base_url, translations))
+    languages, i18n_changed = write_translations(metas, translations)
     # Previews of maps that no longer exist
     ids = {m["id"] for m in maps}
     for preview in Path(PREVIEW_DIR).glob("*.svg"):
@@ -1258,6 +1327,8 @@ def write_catalog(base_url: str) -> bool:
     catalog = {
         "version": CATALOG_VERSION,
         "title":   "ODG Atlas",
+        "translations": f"{base_url}/{I18N_DIR}/maps.{{lang}}.json",
+        "languages": languages,
         "maps":    maps,
     }
     text = json.dumps(catalog, ensure_ascii=False, indent=2) + "\n"
@@ -1265,7 +1336,7 @@ def write_catalog(base_url: str) -> bool:
     path = Path(CATALOG_PATH)
     if path.exists() and path.read_text(encoding="utf-8") == text:
         print(f"\nCatalog {CATALOG_PATH} unchanged.")
-        return False
+        return i18n_changed
     path.write_text(text, encoding="utf-8")
     print(f"\nCatalog {CATALOG_PATH} updated ({len(maps)} maps).")
     return True
@@ -1294,7 +1365,7 @@ def main():
 
     os.chdir(Path(__file__).parent.parent)
 
-    errors = check_static_maps()
+    errors = check_static_maps() + check_translations()
     for error in errors:
         print(f"ERROR {error}", file=sys.stderr)
     if errors:

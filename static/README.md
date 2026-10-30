@@ -27,8 +27,10 @@ be the id or the file name of a generated map.
 {
   "title": "France - Sales areas",
   "title_fr": "France - Secteurs commerciaux",
+  "title_de": "Frankreich - Verkaufsgebiete",
   "description": "Sales areas of the company. Each shape carries the area code in draw:name.",
   "description_fr": "Secteurs commerciaux de l'entreprise. Chaque forme porte le code du secteur dans draw:name.",
+  "description_de": "Verkaufsgebiete des Unternehmens. Jede Form trägt den Code des Gebiets in draw:name.",
   "area": "France",
   "code_type": "Area code (NORTH, SOUTH…)",
   "source": "Drawn by Jane Doe from the Admin Express departments",
@@ -38,7 +40,8 @@ be the id or the file name of a generated map.
 
 Required: `title`, `description`, `area`, `code_type`, `source`, `license`.
 Optional: translations `title_<lang>` and `description_<lang>` (two-letter
-language code), and `projection` (e.g. `EPSG:2154 (Lambert-93)`).
+language code; they go to `output/i18n/maps.<lang>.json`, English is used for
+the other languages), and `projection` (e.g. `EPSG:2154 (Lambert-93)`).
 
 Only add maps whose source allows redistribution, and give it in `source` and
 `license`.

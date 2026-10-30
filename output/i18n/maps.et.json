@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Prantsusmaa - Piirkonnad",
+    "description": "Mandri-Prantsusmaa 13 piirkonna kaart. Iga kujund sisaldab piirkonna INSEE koodi väljal draw:name."
+  },
+  "departements": {
+    "title": "Prantsusmaa - Departemangud",
+    "description": "Mandri-Prantsusmaa 96 departemangu kaart. Iga kujund sisaldab departemangu INSEE koodi väljal draw:name."
+  },
+  "cantons": {
+    "title": "Prantsusmaa - Kantonid",
+    "description": "Mandri-Prantsusmaa kantonite kaart, mida täiendavad linnaosad (Pariis, Lyon, Marseille) ja Rhône'i omavalitsused. Iga kujund sisaldab oma INSEE koodi väljal draw:name."
+  },
+  "communes": {
+    "title": "Prantsusmaa - Omavalitsused",
+    "description": "Mandri-Prantsusmaa omavalitsuste kaart (umbes 35 000 kujundit, suur fail). Iga kujund sisaldab omavalitsuse INSEE koodi väljal draw:name."
+  },
+  "eu-countries": {
+    "title": "Euroopa Liit - Riigid",
+    "description": "Euroopa Liidu 27 liikmesriigi kaart (mandriosa ja lähisaared; äärepoolseimaid piirkondi ei näidata). Iga kujund sisaldab riigi ISO 3166-1 alpha-2 koodi väljal draw:name (Kreeka puhul GR, Eurostatis EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Maailm - Maailmajaod (Robinson)",
+    "description": "7 maailmajao kaart (koos Antarktikaga). Iga kujund sisaldab maailmajao kahetähelist koodi väljal draw:name (AF, AN, AS, EU, NA, OC, SA). Riigid on rühmitatud nagu Natural Earthis, Venemaa on jagatud meridiaanil 60° idapikkust (Uuralid) ja ülemeredepartemangud kuuluvad oma geograafilise maailmajao juurde. Alla 5000 km² saared on eemaldatud. Robinson projektsioon."
+  },
+  "world-continents-equal-earth": {
+    "title": "Maailm - Maailmajaod (Equal Earth)",
+    "description": "7 maailmajao kaart (koos Antarktikaga). Iga kujund sisaldab maailmajao kahetähelist koodi väljal draw:name (AF, AN, AS, EU, NA, OC, SA). Riigid on rühmitatud nagu Natural Earthis, Venemaa on jagatud meridiaanil 60° idapikkust (Uuralid) ja ülemeredepartemangud kuuluvad oma geograafilise maailmajao juurde. Alla 5000 km² saared on eemaldatud. Equal Earth projektsioon."
+  },
+  "world-continents-miller": {
+    "title": "Maailm - Maailmajaod (Miller)",
+    "description": "7 maailmajao kaart (koos Antarktikaga). Iga kujund sisaldab maailmajao kahetähelist koodi väljal draw:name (AF, AN, AS, EU, NA, OC, SA). Riigid on rühmitatud nagu Natural Earthis, Venemaa on jagatud meridiaanil 60° idapikkust (Uuralid) ja ülemeredepartemangud kuuluvad oma geograafilise maailmajao juurde. Alla 5000 km² saared on eemaldatud. Miller projektsioon."
+  },
+  "world-countries-robinson": {
+    "title": "Maailm - Riigid (Robinson)",
+    "description": "Maailma riikide ja territooriumide kaart (koos Antarktikaga). Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name; Somaalimaa, Põhja-Küpros ja Siacheni liustik kuuluvad koodide SO, CY ja IN alla. Robinson projektsioon."
+  },
+  "world-countries-equal-earth": {
+    "title": "Maailm - Riigid (Equal Earth)",
+    "description": "Maailma riikide ja territooriumide kaart (koos Antarktikaga). Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name; Somaalimaa, Põhja-Küpros ja Siacheni liustik kuuluvad koodide SO, CY ja IN alla. Equal Earth projektsioon."
+  },
+  "world-countries-miller": {
+    "title": "Maailm - Riigid (Miller)",
+    "description": "Maailma riikide ja territooriumide kaart (koos Antarktikaga). Iga kujund sisaldab ISO 3166-1 alpha-2 koodi väljal draw:name; Somaalimaa, Põhja-Küpros ja Siacheni liustik kuuluvad koodide SO, CY ja IN alla. Miller projektsioon."
+  }
+}

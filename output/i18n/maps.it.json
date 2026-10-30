@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Francia - Regioni",
+    "description": "Mappa delle 13 regioni della Francia metropolitana. Ogni forma riporta il codice INSEE della regione in draw:name."
+  },
+  "departements": {
+    "title": "Francia - Dipartimenti",
+    "description": "Mappa dei 96 dipartimenti della Francia metropolitana. Ogni forma riporta il codice INSEE del dipartimento in draw:name."
+  },
+  "cantons": {
+    "title": "Francia - Cantoni",
+    "description": "Mappa dei cantoni della Francia metropolitana, completata dai distretti municipali (Parigi, Lione, Marsiglia) e dai comuni del Rodano. Ogni forma riporta il proprio codice INSEE in draw:name."
+  },
+  "communes": {
+    "title": "Francia - Comuni",
+    "description": "Mappa dei comuni della Francia metropolitana (~35.000 forme, file pesante). Ogni forma riporta il codice INSEE del comune in draw:name."
+  },
+  "eu-countries": {
+    "title": "Unione europea - Paesi",
+    "description": "Mappa dei 27 Stati membri dell'Unione europea (territorio continentale e isole vicine; regioni ultraperiferiche non rappresentate). Ogni forma riporta il codice ISO 3166-1 alpha-2 del paese in draw:name (GR per la Grecia, codificata EL da Eurostat)."
+  },
+  "world-continents-robinson": {
+    "title": "Mondo - Continenti (Robinson)",
+    "description": "Mappa dei 7 continenti (Antartide inclusa). Ogni forma riporta il codice di due lettere del continente in draw:name (AF, AN, AS, EU, NA, OC, SA). I paesi sono raggruppati come in Natural Earth, la Russia è tagliata al meridiano 60° E (Urali) e i territori d'oltremare appartengono al loro continente geografico. Le isole sotto i 5.000 km² sono state rimosse. Proiezione Robinson."
+  },
+  "world-continents-equal-earth": {
+    "title": "Mondo - Continenti (Equal Earth)",
+    "description": "Mappa dei 7 continenti (Antartide inclusa). Ogni forma riporta il codice di due lettere del continente in draw:name (AF, AN, AS, EU, NA, OC, SA). I paesi sono raggruppati come in Natural Earth, la Russia è tagliata al meridiano 60° E (Urali) e i territori d'oltremare appartengono al loro continente geografico. Le isole sotto i 5.000 km² sono state rimosse. Proiezione Equal Earth."
+  },
+  "world-continents-miller": {
+    "title": "Mondo - Continenti (Miller)",
+    "description": "Mappa dei 7 continenti (Antartide inclusa). Ogni forma riporta il codice di due lettere del continente in draw:name (AF, AN, AS, EU, NA, OC, SA). I paesi sono raggruppati come in Natural Earth, la Russia è tagliata al meridiano 60° E (Urali) e i territori d'oltremare appartengono al loro continente geografico. Le isole sotto i 5.000 km² sono state rimosse. Proiezione Miller."
+  },
+  "world-countries-robinson": {
+    "title": "Mondo - Paesi (Robinson)",
+    "description": "Mappa dei paesi e territori del mondo (Antartide inclusa). Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name; il Somaliland, Cipro del Nord e il ghiacciaio del Siachen fanno parte di SO, CY e IN. Proiezione Robinson."
+  },
+  "world-countries-equal-earth": {
+    "title": "Mondo - Paesi (Equal Earth)",
+    "description": "Mappa dei paesi e territori del mondo (Antartide inclusa). Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name; il Somaliland, Cipro del Nord e il ghiacciaio del Siachen fanno parte di SO, CY e IN. Proiezione Equal Earth."
+  },
+  "world-countries-miller": {
+    "title": "Mondo - Paesi (Miller)",
+    "description": "Mappa dei paesi e territori del mondo (Antartide inclusa). Ogni forma riporta il codice ISO 3166-1 alpha-2 in draw:name; il Somaliland, Cipro del Nord e il ghiacciaio del Siachen fanno parte di SO, CY e IN. Proiezione Miller."
+  }
+}

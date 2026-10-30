@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Prancis - Region",
+    "description": "Peta 13 region Prancis metropolitan. Setiap bentuk memuat kode INSEE region di draw:name."
+  },
+  "departements": {
+    "title": "Prancis - Departemen",
+    "description": "Peta 96 departemen Prancis metropolitan. Setiap bentuk memuat kode INSEE departemen di draw:name."
+  },
+  "cantons": {
+    "title": "Prancis - Kanton",
+    "description": "Peta kanton Prancis metropolitan, dilengkapi distrik kota (Paris, Lyon, Marseille) dan komune Rhône. Setiap bentuk memuat kode INSEE-nya di draw:name."
+  },
+  "communes": {
+    "title": "Prancis - Komune",
+    "description": "Peta komune Prancis metropolitan (~35.000 bentuk, berkas besar). Setiap bentuk memuat kode INSEE komune di draw:name."
+  },
+  "eu-countries": {
+    "title": "Uni Eropa - Negara",
+    "description": "Peta 27 negara anggota Uni Eropa (daratan utama dan pulau terdekat; wilayah terluar tidak ditampilkan). Setiap bentuk memuat kode ISO 3166-1 alpha-2 negara di draw:name (GR untuk Yunani, EL di Eurostat)."
+  },
+  "world-continents-robinson": {
+    "title": "Dunia - Benua (Robinson)",
+    "description": "Peta 7 benua (termasuk Antarktika). Setiap bentuk memuat kode dua huruf benua di draw:name (AF, AN, AS, EU, NA, OC, SA). Negara dikelompokkan seperti pada Natural Earth, Rusia dipotong pada meridian 60° BT (Ural), dan wilayah seberang laut termasuk dalam benua geografisnya. Pulau di bawah 5.000 km² dihapus. Proyeksi Robinson."
+  },
+  "world-continents-equal-earth": {
+    "title": "Dunia - Benua (Equal Earth)",
+    "description": "Peta 7 benua (termasuk Antarktika). Setiap bentuk memuat kode dua huruf benua di draw:name (AF, AN, AS, EU, NA, OC, SA). Negara dikelompokkan seperti pada Natural Earth, Rusia dipotong pada meridian 60° BT (Ural), dan wilayah seberang laut termasuk dalam benua geografisnya. Pulau di bawah 5.000 km² dihapus. Proyeksi Equal Earth."
+  },
+  "world-continents-miller": {
+    "title": "Dunia - Benua (Miller)",
+    "description": "Peta 7 benua (termasuk Antarktika). Setiap bentuk memuat kode dua huruf benua di draw:name (AF, AN, AS, EU, NA, OC, SA). Negara dikelompokkan seperti pada Natural Earth, Rusia dipotong pada meridian 60° BT (Ural), dan wilayah seberang laut termasuk dalam benua geografisnya. Pulau di bawah 5.000 km² dihapus. Proyeksi Miller."
+  },
+  "world-countries-robinson": {
+    "title": "Dunia - Negara (Robinson)",
+    "description": "Peta negara dan wilayah di dunia (termasuk Antarktika). Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name; Somaliland, Siprus Utara, dan Gletser Siachen termasuk dalam SO, CY, dan IN. Proyeksi Robinson."
+  },
+  "world-countries-equal-earth": {
+    "title": "Dunia - Negara (Equal Earth)",
+    "description": "Peta negara dan wilayah di dunia (termasuk Antarktika). Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name; Somaliland, Siprus Utara, dan Gletser Siachen termasuk dalam SO, CY, dan IN. Proyeksi Equal Earth."
+  },
+  "world-countries-miller": {
+    "title": "Dunia - Negara (Miller)",
+    "description": "Peta negara dan wilayah di dunia (termasuk Antarktika). Setiap bentuk memuat kode ISO 3166-1 alpha-2 di draw:name; Somaliland, Siprus Utara, dan Gletser Siachen termasuk dalam SO, CY, dan IN. Proyeksi Miller."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Franța - Regiuni",
+    "description": "Harta celor 13 regiuni ale Franței metropolitane. Fiecare formă conține codul INSEE al regiunii în draw:name."
+  },
+  "departements": {
+    "title": "Franța - Departamente",
+    "description": "Harta celor 96 de departamente ale Franței metropolitane. Fiecare formă conține codul INSEE al departamentului în draw:name."
+  },
+  "cantons": {
+    "title": "Franța - Cantoane",
+    "description": "Harta cantoanelor Franței metropolitane, completată cu districtele municipale (Paris, Lyon, Marsilia) și comunele din Rhône. Fiecare formă conține codul său INSEE în draw:name."
+  },
+  "communes": {
+    "title": "Franța - Comune",
+    "description": "Harta comunelor Franței metropolitane (~35.000 de forme, fișier mare). Fiecare formă conține codul INSEE al comunei în draw:name."
+  },
+  "eu-countries": {
+    "title": "Uniunea Europeană - Țări",
+    "description": "Harta celor 27 de state membre ale Uniunii Europene (teritoriul continental și insulele apropiate; regiunile ultraperiferice nu sunt reprezentate). Fiecare formă conține codul ISO 3166-1 alpha-2 al țării în draw:name (GR pentru Grecia, codificată EL de Eurostat)."
+  },
+  "world-continents": {
+    "title": "Lume - Continente",
+    "description": "Harta celor 7 continente (inclusiv Antarctica). Fiecare formă conține codul din două litere al continentului în draw:name (AF, AN, AS, EU, NA, OC, SA). Țările sunt grupate ca în Natural Earth, Rusia este tăiată la meridianul 60° E (Ural), iar teritoriile de peste mări aparțin continentului lor geografic. Insulele sub 5.000 km² sunt eliminate."
+  },
+  "world-countries": {
+    "title": "Lume - Țări",
+    "description": "Harta țărilor și teritoriilor lumii (inclusiv Antarctica). Fiecare formă conține codul ISO 3166-1 alpha-2 în draw:name; Somaliland, Ciprul de Nord și ghețarul Siachen fac parte din SO, CY și IN."
+  },
+  "_projection": "Proiecția {name}."
+}

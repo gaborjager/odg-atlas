@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Frankrijk - Regio's",
+    "description": "Kaart van de 13 regio's van Europees Frankrijk. Elke vorm bevat de INSEE-code van de regio in draw:name."
+  },
+  "departements": {
+    "title": "Frankrijk - Departementen",
+    "description": "Kaart van de 96 departementen van Europees Frankrijk. Elke vorm bevat de INSEE-code van het departement in draw:name."
+  },
+  "cantons": {
+    "title": "Frankrijk - Kantons",
+    "description": "Kaart van de kantons van Europees Frankrijk, aangevuld met de stadsdistricten (Parijs, Lyon, Marseille) en de gemeenten van de Rhône. Elke vorm bevat zijn INSEE-code in draw:name."
+  },
+  "communes": {
+    "title": "Frankrijk - Gemeenten",
+    "description": "Kaart van de gemeenten van Europees Frankrijk (~35.000 vormen, groot bestand). Elke vorm bevat de INSEE-code van de gemeente in draw:name."
+  },
+  "eu-countries": {
+    "title": "Europese Unie - Landen",
+    "description": "Kaart van de 27 lidstaten van de Europese Unie (vasteland en nabijgelegen eilanden; ultraperifere gebieden niet weergegeven). Elke vorm bevat de ISO 3166-1 alpha-2-code van het land in draw:name (GR voor Griekenland, door Eurostat EL genoemd)."
+  },
+  "world-continents-robinson": {
+    "title": "Wereld - Continenten (Robinson)",
+    "description": "Kaart van de 7 continenten (inclusief Antarctica). Elke vorm bevat de tweeletterige code van het continent in draw:name (AF, AN, AS, EU, NA, OC, SA). De landen zijn gegroepeerd zoals in Natural Earth, Rusland is gesneden op de meridiaan 60° O (Oeral) en overzeese gebieden horen bij hun geografische continent. Eilanden kleiner dan 5.000 km² zijn verwijderd. Robinson-projectie."
+  },
+  "world-continents-equal-earth": {
+    "title": "Wereld - Continenten (Equal Earth)",
+    "description": "Kaart van de 7 continenten (inclusief Antarctica). Elke vorm bevat de tweeletterige code van het continent in draw:name (AF, AN, AS, EU, NA, OC, SA). De landen zijn gegroepeerd zoals in Natural Earth, Rusland is gesneden op de meridiaan 60° O (Oeral) en overzeese gebieden horen bij hun geografische continent. Eilanden kleiner dan 5.000 km² zijn verwijderd. Equal Earth-projectie."
+  },
+  "world-continents-miller": {
+    "title": "Wereld - Continenten (Miller)",
+    "description": "Kaart van de 7 continenten (inclusief Antarctica). Elke vorm bevat de tweeletterige code van het continent in draw:name (AF, AN, AS, EU, NA, OC, SA). De landen zijn gegroepeerd zoals in Natural Earth, Rusland is gesneden op de meridiaan 60° O (Oeral) en overzeese gebieden horen bij hun geografische continent. Eilanden kleiner dan 5.000 km² zijn verwijderd. Miller-projectie."
+  },
+  "world-countries-robinson": {
+    "title": "Wereld - Landen (Robinson)",
+    "description": "Kaart van de landen en gebieden van de wereld (inclusief Antarctica). Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name; Somaliland, Noord-Cyprus en de Siachen-gletsjer maken deel uit van SO, CY en IN. Robinson-projectie."
+  },
+  "world-countries-equal-earth": {
+    "title": "Wereld - Landen (Equal Earth)",
+    "description": "Kaart van de landen en gebieden van de wereld (inclusief Antarctica). Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name; Somaliland, Noord-Cyprus en de Siachen-gletsjer maken deel uit van SO, CY en IN. Equal Earth-projectie."
+  },
+  "world-countries-miller": {
+    "title": "Wereld - Landen (Miller)",
+    "description": "Kaart van de landen en gebieden van de wereld (inclusief Antarctica). Elke vorm bevat de ISO 3166-1 alpha-2-code in draw:name; Somaliland, Noord-Cyprus en de Siachen-gletsjer maken deel uit van SO, CY en IN. Miller-projectie."
+  }
+}

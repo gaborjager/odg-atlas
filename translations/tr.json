@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Fransa - Bölgeler",
+    "description": "Anakara Fransa'nın 13 bölgesinin haritası. Her şekil, draw:name alanında bölgenin INSEE kodunu taşır."
+  },
+  "departements": {
+    "title": "Fransa - Departmanlar",
+    "description": "Anakara Fransa'nın 96 departmanının haritası. Her şekil, draw:name alanında departmanın INSEE kodunu taşır."
+  },
+  "cantons": {
+    "title": "Fransa - Kantonlar",
+    "description": "Anakara Fransa'nın kantonlarının haritası; belediye bölgeleri (Paris, Lyon, Marsilya) ve Rhône belediyeleriyle tamamlanmıştır. Her şekil, draw:name alanında kendi INSEE kodunu taşır."
+  },
+  "communes": {
+    "title": "Fransa - Belediyeler",
+    "description": "Anakara Fransa'nın belediyelerinin haritası (~35.000 şekil, büyük dosya). Her şekil, draw:name alanında belediyenin INSEE kodunu taşır."
+  },
+  "eu-countries": {
+    "title": "Avrupa Birliği - Ülkeler",
+    "description": "Avrupa Birliği'nin 27 üye devletinin haritası (anakara ve yakın adalar; en uzak bölgeler gösterilmez). Her şekil, draw:name alanında ülkenin ISO 3166-1 alpha-2 kodunu taşır (Yunanistan için GR, Eurostat'ta EL)."
+  },
+  "world-continents": {
+    "title": "Dünya - Kıtalar",
+    "description": "7 kıtanın haritası (Antarktika dahil). Her şekil, draw:name alanında kıtanın iki harfli kodunu taşır (AF, AN, AS, EU, NA, OC, SA). Ülkeler Natural Earth'teki gibi gruplanmıştır, Rusya 60° D meridyeninden (Ural) kesilmiştir ve denizaşırı topraklar coğrafi kıtalarına aittir. 5.000 km²'den küçük adalar kaldırılmıştır."
+  },
+  "world-countries": {
+    "title": "Dünya - Ülkeler",
+    "description": "Dünya ülkeleri ve bölgelerinin haritası (Antarktika dahil). Her şekil, draw:name alanında ISO 3166-1 alpha-2 kodunu taşır; Somaliland, Kuzey Kıbrıs ve Siachen Buzulu SO, CY ve IN içindedir."
+  },
+  "_projection": "{name} projeksiyonu."
+}

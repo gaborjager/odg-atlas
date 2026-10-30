@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Franciaország - Régiók",
+    "description": "Az európai Franciaország 13 régiójának térképe. Minden alakzat a draw:name mezőben tartalmazza a régió INSEE-kódját."
+  },
+  "departements": {
+    "title": "Franciaország - Megyék",
+    "description": "Az európai Franciaország 96 megyéjének térképe. Minden alakzat a draw:name mezőben tartalmazza a megye INSEE-kódját."
+  },
+  "cantons": {
+    "title": "Franciaország - Kantonok",
+    "description": "Az európai Franciaország kantonjainak térképe, kiegészítve a városi kerületekkel (Párizs, Lyon, Marseille) és a Rhône megye településeivel. Minden alakzat a draw:name mezőben tartalmazza az INSEE-kódját."
+  },
+  "communes": {
+    "title": "Franciaország - Települések",
+    "description": "Az európai Franciaország településeinek térképe (kb. 35 000 alakzat, nagy fájl). Minden alakzat a draw:name mezőben tartalmazza a település INSEE-kódját."
+  },
+  "eu-countries": {
+    "title": "Európai Unió - Országok",
+    "description": "Az Európai Unió 27 tagállamának térképe (szárazföld és közeli szigetek; a legkülső régiók nem láthatók). Minden alakzat a draw:name mezőben tartalmazza az ország ISO 3166-1 alpha-2 kódját (Görögország: GR, az Eurostatnál EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Világ - Kontinensek (Robinson)",
+    "description": "A 7 kontinens térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza a kontinens kétbetűs kódját (AF, AN, AS, EU, NA, OC, SA). Az országok a Natural Earth szerint vannak csoportosítva, Oroszországot a keleti 60. hosszúsági kör (Urál) osztja ketté, a tengerentúli területek pedig földrajzi kontinensükhöz tartoznak. Az 5000 km²-nél kisebb szigetek el lettek távolítva. Robinson-vetület."
+  },
+  "world-continents-equal-earth": {
+    "title": "Világ - Kontinensek (Equal Earth)",
+    "description": "A 7 kontinens térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza a kontinens kétbetűs kódját (AF, AN, AS, EU, NA, OC, SA). Az országok a Natural Earth szerint vannak csoportosítva, Oroszországot a keleti 60. hosszúsági kör (Urál) osztja ketté, a tengerentúli területek pedig földrajzi kontinensükhöz tartoznak. Az 5000 km²-nél kisebb szigetek el lettek távolítva. Equal Earth-vetület."
+  },
+  "world-continents-miller": {
+    "title": "Világ - Kontinensek (Miller)",
+    "description": "A 7 kontinens térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza a kontinens kétbetűs kódját (AF, AN, AS, EU, NA, OC, SA). Az országok a Natural Earth szerint vannak csoportosítva, Oroszországot a keleti 60. hosszúsági kör (Urál) osztja ketté, a tengerentúli területek pedig földrajzi kontinensükhöz tartoznak. Az 5000 km²-nél kisebb szigetek el lettek távolítva. Miller-vetület."
+  },
+  "world-countries-robinson": {
+    "title": "Világ - Országok (Robinson)",
+    "description": "A világ országainak és területeinek térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot; Szomáliföld, Észak-Ciprus és a Sziacsen-gleccser az SO, CY és IN része. Robinson-vetület."
+  },
+  "world-countries-equal-earth": {
+    "title": "Világ - Országok (Equal Earth)",
+    "description": "A világ országainak és területeinek térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot; Szomáliföld, Észak-Ciprus és a Sziacsen-gleccser az SO, CY és IN része. Equal Earth-vetület."
+  },
+  "world-countries-miller": {
+    "title": "Világ - Országok (Miller)",
+    "description": "A világ országainak és területeinek térképe (az Antarktisszal együtt). Minden alakzat a draw:name mezőben tartalmazza az ISO 3166-1 alpha-2 kódot; Szomáliföld, Észak-Ciprus és a Sziacsen-gleccser az SO, CY és IN része. Miller-vetület."
+  }
+}

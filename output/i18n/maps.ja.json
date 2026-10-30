@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "フランス - 地域圏",
+    "description": "フランス本土の13地域圏の地図。各図形の draw:name に地域圏の INSEE コードが入っています。"
+  },
+  "departements": {
+    "title": "フランス - 県",
+    "description": "フランス本土の96県の地図。各図形の draw:name に県の INSEE コードが入っています。"
+  },
+  "cantons": {
+    "title": "フランス - カントン",
+    "description": "フランス本土のカントンの地図。市の区（パリ、リヨン、マルセイユ）とローヌ県のコミューンで補完しています。各図形の draw:name に INSEE コードが入っています。"
+  },
+  "communes": {
+    "title": "フランス - コミューン",
+    "description": "フランス本土のコミューンの地図（約35,000図形、大きなファイル）。各図形の draw:name にコミューンの INSEE コードが入っています。"
+  },
+  "eu-countries": {
+    "title": "欧州連合 - 国",
+    "description": "欧州連合の加盟27か国の地図（本土と近隣の島。最遠隔地域は非表示）。各図形の draw:name に国の ISO 3166-1 alpha-2 コードが入っています（ギリシャは GR、Eurostat では EL）。"
+  },
+  "world-continents-robinson": {
+    "title": "世界 - 大陸 (Robinson)",
+    "description": "7大陸の地図（南極大陸を含む）。各図形の draw:name に大陸の2文字コードが入っています（AF、AN、AS、EU、NA、OC、SA）。国は Natural Earth に従って分類し、ロシアは東経60度（ウラル）で分割し、海外領土は地理上の大陸に属します。5,000 km² 未満の島は削除しています。 Robinson 図法。"
+  },
+  "world-continents-equal-earth": {
+    "title": "世界 - 大陸 (Equal Earth)",
+    "description": "7大陸の地図（南極大陸を含む）。各図形の draw:name に大陸の2文字コードが入っています（AF、AN、AS、EU、NA、OC、SA）。国は Natural Earth に従って分類し、ロシアは東経60度（ウラル）で分割し、海外領土は地理上の大陸に属します。5,000 km² 未満の島は削除しています。 Equal Earth 図法。"
+  },
+  "world-continents-miller": {
+    "title": "世界 - 大陸 (Miller)",
+    "description": "7大陸の地図（南極大陸を含む）。各図形の draw:name に大陸の2文字コードが入っています（AF、AN、AS、EU、NA、OC、SA）。国は Natural Earth に従って分類し、ロシアは東経60度（ウラル）で分割し、海外領土は地理上の大陸に属します。5,000 km² 未満の島は削除しています。 Miller 図法。"
+  },
+  "world-countries-robinson": {
+    "title": "世界 - 国 (Robinson)",
+    "description": "世界の国と地域の地図（南極大陸を含む）。各図形の draw:name に ISO 3166-1 alpha-2 コードが入っています。ソマリランド、北キプロス、シアチェン氷河はそれぞれ SO、CY、IN に含まれます。 Robinson 図法。"
+  },
+  "world-countries-equal-earth": {
+    "title": "世界 - 国 (Equal Earth)",
+    "description": "世界の国と地域の地図（南極大陸を含む）。各図形の draw:name に ISO 3166-1 alpha-2 コードが入っています。ソマリランド、北キプロス、シアチェン氷河はそれぞれ SO、CY、IN に含まれます。 Equal Earth 図法。"
+  },
+  "world-countries-miller": {
+    "title": "世界 - 国 (Miller)",
+    "description": "世界の国と地域の地図（南極大陸を含む）。各図形の draw:name に ISO 3166-1 alpha-2 コードが入っています。ソマリランド、北キプロス、シアチェン氷河はそれぞれ SO、CY、IN に含まれます。 Miller 図法。"
+  }
+}

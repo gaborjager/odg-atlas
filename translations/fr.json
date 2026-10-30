@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "France - Carte régionale",
+    "description": "Carte des 13 régions de France métropolitaine. Chaque forme porte le code INSEE de la région dans draw:name."
+  },
+  "departements": {
+    "title": "France - Carte départementale",
+    "description": "Carte des 96 départements de France métropolitaine. Chaque forme porte le code INSEE du département dans draw:name."
+  },
+  "cantons": {
+    "title": "France - Carte cantonale",
+    "description": "Carte des cantons de France métropolitaine, complétée par les arrondissements municipaux (Paris, Lyon, Marseille) et les communes du Rhône. Chaque forme porte le code INSEE dans draw:name."
+  },
+  "communes": {
+    "title": "France - Carte communale",
+    "description": "Carte des communes de France métropolitaine (~35 000 formes, fichier lourd). Chaque forme porte le code INSEE de la commune dans draw:name."
+  },
+  "eu-countries": {
+    "title": "Union européenne - Pays",
+    "description": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat)."
+  },
+  "world-continents": {
+    "title": "Monde - Continents",
+    "description": "Carte des 7 continents (Antarctique compris). Chaque forme porte le code à deux lettres du continent dans draw:name (AF, AN, AS, EU, NA, OC, SA). Les pays sont regroupés comme dans Natural Earth, la Russie est coupée au méridien 60° E (Oural) et les territoires d'outre-mer appartiennent à leur continent géographique. Les îles de moins de 5 000 km² sont supprimées."
+  },
+  "world-countries": {
+    "title": "Monde - Pays",
+    "description": "Carte des pays et territoires du monde (Antarctique compris). Chaque forme porte le code ISO 3166-1 alpha-2 dans draw:name ; le Somaliland, Chypre du Nord et le glacier de Siachen font partie de SO, CY et IN."
+  },
+  "_projection": "Projection {name}."
+}

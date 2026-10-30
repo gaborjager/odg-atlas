@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Francija - Regije",
+    "description": "Zemljevid 13 regij celinske Francije. Vsaka oblika ima kodo INSEE regije v draw:name."
+  },
+  "departements": {
+    "title": "Francija - Departmaji",
+    "description": "Zemljevid 96 departmajev celinske Francije. Vsaka oblika ima kodo INSEE departmaja v draw:name."
+  },
+  "cantons": {
+    "title": "Francija - Kantoni",
+    "description": "Zemljevid kantonov celinske Francije, dopolnjen z mestnimi okrožji (Pariz, Lyon, Marseille) in občinami departmaja Rhône. Vsaka oblika ima svojo kodo INSEE v draw:name."
+  },
+  "communes": {
+    "title": "Francija - Občine",
+    "description": "Zemljevid občin celinske Francije (približno 35.000 oblik, velika datoteka). Vsaka oblika ima kodo INSEE občine v draw:name."
+  },
+  "eu-countries": {
+    "title": "Evropska unija - Države",
+    "description": "Zemljevid 27 držav članic Evropske unije (celina in bližnji otoki; najbolj oddaljene regije niso prikazane). Vsaka oblika ima kodo ISO 3166-1 alpha-2 države v draw:name (GR za Grčijo, pri Eurostatu EL)."
+  },
+  "world-continents": {
+    "title": "Svet - Celine",
+    "description": "Zemljevid 7 celin (vključno z Antarktiko). Vsaka oblika ima dvočrkovno kodo celine v draw:name (AF, AN, AS, EU, NA, OC, SA). Države so združene kot v Natural Earth, Rusija je razdeljena na poldnevniku 60° V (Ural), čezmorska ozemlja pa spadajo k svoji geografski celini. Otoki, manjši od 5.000 km², so odstranjeni."
+  },
+  "world-countries": {
+    "title": "Svet - Države",
+    "description": "Zemljevid držav in ozemelj sveta (vključno z Antarktiko). Vsaka oblika ima kodo ISO 3166-1 alpha-2 v draw:name; Somaliland, Severni Ciper in ledenik Siačen so del SO, CY in IN."
+  },
+  "_projection": "Projekcija {name}."
+}

@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Frankreich - Regionen",
+    "description": "Karte der 13 Regionen des französischen Mutterlandes. Jede Form trägt den INSEE-Code der Region in draw:name."
+  },
+  "departements": {
+    "title": "Frankreich - Departements",
+    "description": "Karte der 96 Departements des französischen Mutterlandes. Jede Form trägt den INSEE-Code des Departements in draw:name."
+  },
+  "cantons": {
+    "title": "Frankreich - Kantone",
+    "description": "Karte der Kantone des französischen Mutterlandes, ergänzt durch die Stadtbezirke (Paris, Lyon, Marseille) und die Gemeinden der Rhône. Jede Form trägt ihren INSEE-Code in draw:name."
+  },
+  "communes": {
+    "title": "Frankreich - Gemeinden",
+    "description": "Karte der Gemeinden des französischen Mutterlandes (ca. 35.000 Formen, große Datei). Jede Form trägt den INSEE-Code der Gemeinde in draw:name."
+  },
+  "eu-countries": {
+    "title": "Europäische Union - Länder",
+    "description": "Karte der 27 Mitgliedstaaten der Europäischen Union (Festland und nahe Inseln; Gebiete in äußerster Randlage nicht dargestellt). Jede Form trägt den ISO-3166-1-Alpha-2-Code des Landes in draw:name (GR für Griechenland, bei Eurostat EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Welt - Kontinente (Robinson)",
+    "description": "Karte der 7 Kontinente (einschließlich Antarktis). Jede Form trägt den zweistelligen Code des Kontinents in draw:name (AF, AN, AS, EU, NA, OC, SA). Die Länder sind wie in Natural Earth gruppiert, Russland ist am Meridian 60° O (Ural) geteilt, und Überseegebiete gehören zu ihrem geografischen Kontinent. Inseln unter 5.000 km² sind entfernt. Robinson-Projektion."
+  },
+  "world-continents-equal-earth": {
+    "title": "Welt - Kontinente (Equal Earth)",
+    "description": "Karte der 7 Kontinente (einschließlich Antarktis). Jede Form trägt den zweistelligen Code des Kontinents in draw:name (AF, AN, AS, EU, NA, OC, SA). Die Länder sind wie in Natural Earth gruppiert, Russland ist am Meridian 60° O (Ural) geteilt, und Überseegebiete gehören zu ihrem geografischen Kontinent. Inseln unter 5.000 km² sind entfernt. Equal Earth-Projektion."
+  },
+  "world-continents-miller": {
+    "title": "Welt - Kontinente (Miller)",
+    "description": "Karte der 7 Kontinente (einschließlich Antarktis). Jede Form trägt den zweistelligen Code des Kontinents in draw:name (AF, AN, AS, EU, NA, OC, SA). Die Länder sind wie in Natural Earth gruppiert, Russland ist am Meridian 60° O (Ural) geteilt, und Überseegebiete gehören zu ihrem geografischen Kontinent. Inseln unter 5.000 km² sind entfernt. Miller-Projektion."
+  },
+  "world-countries-robinson": {
+    "title": "Welt - Länder (Robinson)",
+    "description": "Karte der Länder und Gebiete der Welt (einschließlich Antarktis). Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name; Somaliland, Nordzypern und der Siachen-Gletscher gehören zu SO, CY und IN. Robinson-Projektion."
+  },
+  "world-countries-equal-earth": {
+    "title": "Welt - Länder (Equal Earth)",
+    "description": "Karte der Länder und Gebiete der Welt (einschließlich Antarktis). Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name; Somaliland, Nordzypern und der Siachen-Gletscher gehören zu SO, CY und IN. Equal Earth-Projektion."
+  },
+  "world-countries-miller": {
+    "title": "Welt - Länder (Miller)",
+    "description": "Karte der Länder und Gebiete der Welt (einschließlich Antarktis). Jede Form trägt den ISO-3166-1-Alpha-2-Code in draw:name; Somaliland, Nordzypern und der Siachen-Gletscher gehören zu SO, CY und IN. Miller-Projektion."
+  }
+}

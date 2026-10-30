@@ -89,13 +89,13 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 {
   "version": 1,
   "title": "ODG Atlas",
+  "translations": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/i18n/maps.{lang}.json",
+  "languages": ["ar", "bg", "cs", "…"],
   "maps": [
     {
       "id": "eu-countries",
       "title": "European Union - Countries",
-      "title_fr": "Union européenne - Pays",
       "description": "Map of the 27 member states of the European Union …",
-      "description_fr": "Carte des 27 États membres de l'Union européenne …",
       "area": "European Union",
       "code_type": "ISO 3166-1 alpha-2",
       "projection": "EPSG:3035 (ETRS89-LAEA Europe)",
@@ -118,8 +118,10 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 
 - `id` is stable and is the key; `sha256` is the hash of the `.odg` file (check
   it after download, and compare it to know whether an update is needed).
-- `title_<lang>` / `description_<lang>`: optional translations (two-letter
-  language code); `title` and `description` are in English.
+- `title` and `description` are in English, the default language. The
+  translations are in one file per language, `output/i18n/maps.<lang>.json`
+  (see below). `title_fr` and `description_fr` remain in the catalog for
+  CalcMap up to 0.20.2.
 - `area`: covered territory; `code_type`: codes carried by the zones
   (`draw:name`), to join the data; `source` and `license`: origin of the data.
 - `kind`: `generated` (from a GeoJSON source) or `static` (drawn by hand).
@@ -133,6 +135,29 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
   when the content changes.
 - The catalog is rewritten on every run of the generation workflow.
 
+### Translations
+
+[`output/maps.json`](output/maps.json) holds the technical data and the English
+texts. Each language has its own small file, listed by `languages`; replace
+`{lang}` in `translations` to get its address:
+
+```json
+{
+  "regions": {
+    "title": "France - Carte régionale",
+    "description": "Carte des 13 régions de France métropolitaine. …"
+  }
+}
+```
+
+If a language or a map has no translation, use the English text of the catalog.
+
+The sources are in [`translations/`](translations/), one file per language
+(`<lang>.json`). They hold the texts of each map, by id; the six world maps
+share `world-continents` and `world-countries`, followed by the name of the
+projection (`_projection`). The translations were written by machine and have
+not been reviewed by native speakers: corrections are welcome.
+
 ---
 
 ## ➕ Adding a map
@@ -140,7 +165,9 @@ https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/maps.json
 **A map generated from a GeoJSON source**: add an entry to `MAPS` in
 [`scripts/generate_odg.py`](scripts/generate_odg.py) (source URL, properties
 holding the code and the name, projection, extent, filters), then run the
-script. The available projections are Lambert-93 (France), ETRS89-LAEA
+script. Add its title and description to the files of
+[`translations/`](translations/) (a language without them shows the English
+text). The available projections are Lambert-93 (France), ETRS89-LAEA
 (Europe), Robinson, Equal Earth and Miller (world); another one can be added
 to `PROJECTIONS`. The projections of the world maps are in `WORLD_PROJECTIONS`.
 

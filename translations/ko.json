@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "프랑스 - 레지옹",
+    "description": "프랑스 본토 13개 레지옹 지도. 각 도형의 draw:name에 레지옹의 INSEE 코드가 들어 있습니다."
+  },
+  "departements": {
+    "title": "프랑스 - 데파르트망",
+    "description": "프랑스 본토 96개 데파르트망 지도. 각 도형의 draw:name에 데파르트망의 INSEE 코드가 들어 있습니다."
+  },
+  "cantons": {
+    "title": "프랑스 - 캉통",
+    "description": "프랑스 본토 캉통 지도로, 시 구역(파리, 리옹, 마르세유)과 론의 코뮌으로 보완했습니다. 각 도형의 draw:name에 해당 INSEE 코드가 들어 있습니다."
+  },
+  "communes": {
+    "title": "프랑스 - 코뮌",
+    "description": "프랑스 본토 코뮌 지도(약 35,000개 도형, 대용량 파일). 각 도형의 draw:name에 코뮌의 INSEE 코드가 들어 있습니다."
+  },
+  "eu-countries": {
+    "title": "유럽연합 - 국가",
+    "description": "유럽연합 27개 회원국 지도(본토와 인근 섬, 최외곽 지역은 표시되지 않음). 각 도형의 draw:name에 국가의 ISO 3166-1 alpha-2 코드가 들어 있습니다(그리스는 GR, Eurostat에서는 EL)."
+  },
+  "world-continents": {
+    "title": "세계 - 대륙",
+    "description": "7개 대륙 지도(남극 포함). 각 도형의 draw:name에 대륙의 두 글자 코드가 들어 있습니다(AF, AN, AS, EU, NA, OC, SA). 국가는 Natural Earth 기준으로 묶었고, 러시아는 동경 60도(우랄)에서 나누었으며, 해외 영토는 지리상 대륙에 속합니다. 5,000 km² 미만의 섬은 제거했습니다."
+  },
+  "world-countries": {
+    "title": "세계 - 국가",
+    "description": "세계 국가 및 지역 지도(남극 포함). 각 도형의 draw:name에 ISO 3166-1 alpha-2 코드가 들어 있습니다. 소말릴란드, 북키프로스, 시아첸 빙하는 각각 SO, CY, IN에 포함됩니다."
+  },
+  "_projection": "{name} 도법."
+}

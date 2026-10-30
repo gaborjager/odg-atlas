@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Francja - Regiony",
+    "description": "Mapa 13 regionów Francji metropolitalnej. Każdy kształt zawiera kod INSEE regionu w draw:name."
+  },
+  "departements": {
+    "title": "Francja - Departamenty",
+    "description": "Mapa 96 departamentów Francji metropolitalnej. Każdy kształt zawiera kod INSEE departamentu w draw:name."
+  },
+  "cantons": {
+    "title": "Francja - Kantony",
+    "description": "Mapa kantonów Francji metropolitalnej, uzupełniona o dzielnice miejskie (Paryż, Lyon, Marsylia) i gminy departamentu Rodan. Każdy kształt zawiera swój kod INSEE w draw:name."
+  },
+  "communes": {
+    "title": "Francja - Gminy",
+    "description": "Mapa gmin Francji metropolitalnej (ok. 35 000 kształtów, duży plik). Każdy kształt zawiera kod INSEE gminy w draw:name."
+  },
+  "eu-countries": {
+    "title": "Unia Europejska - Państwa",
+    "description": "Mapa 27 państw członkowskich Unii Europejskiej (terytorium kontynentalne i pobliskie wyspy; regiony najbardziej oddalone nie są pokazane). Każdy kształt zawiera kod ISO 3166-1 alpha-2 państwa w draw:name (GR dla Grecji, w Eurostacie EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Świat - Kontynenty (Robinson)",
+    "description": "Mapa 7 kontynentów (łącznie z Antarktydą). Każdy kształt zawiera dwuliterowy kod kontynentu w draw:name (AF, AN, AS, EU, NA, OC, SA). Państwa są pogrupowane jak w Natural Earth, Rosja jest podzielona południkiem 60° E (Ural), a terytoria zamorskie należą do swojego kontynentu geograficznego. Usunięto wyspy o powierzchni poniżej 5000 km². Odwzorowanie Robinson."
+  },
+  "world-continents-equal-earth": {
+    "title": "Świat - Kontynenty (Equal Earth)",
+    "description": "Mapa 7 kontynentów (łącznie z Antarktydą). Każdy kształt zawiera dwuliterowy kod kontynentu w draw:name (AF, AN, AS, EU, NA, OC, SA). Państwa są pogrupowane jak w Natural Earth, Rosja jest podzielona południkiem 60° E (Ural), a terytoria zamorskie należą do swojego kontynentu geograficznego. Usunięto wyspy o powierzchni poniżej 5000 km². Odwzorowanie Equal Earth."
+  },
+  "world-continents-miller": {
+    "title": "Świat - Kontynenty (Miller)",
+    "description": "Mapa 7 kontynentów (łącznie z Antarktydą). Każdy kształt zawiera dwuliterowy kod kontynentu w draw:name (AF, AN, AS, EU, NA, OC, SA). Państwa są pogrupowane jak w Natural Earth, Rosja jest podzielona południkiem 60° E (Ural), a terytoria zamorskie należą do swojego kontynentu geograficznego. Usunięto wyspy o powierzchni poniżej 5000 km². Odwzorowanie Miller."
+  },
+  "world-countries-robinson": {
+    "title": "Świat - Państwa (Robinson)",
+    "description": "Mapa państw i terytoriów świata (łącznie z Antarktydą). Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name; Somaliland, Cypr Północny i lodowiec Siachen należą do SO, CY i IN. Odwzorowanie Robinson."
+  },
+  "world-countries-equal-earth": {
+    "title": "Świat - Państwa (Equal Earth)",
+    "description": "Mapa państw i terytoriów świata (łącznie z Antarktydą). Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name; Somaliland, Cypr Północny i lodowiec Siachen należą do SO, CY i IN. Odwzorowanie Equal Earth."
+  },
+  "world-countries-miller": {
+    "title": "Świat - Państwa (Miller)",
+    "description": "Mapa państw i terytoriów świata (łącznie z Antarktydą). Każdy kształt zawiera kod ISO 3166-1 alpha-2 w draw:name; Somaliland, Cypr Północny i lodowiec Siachen należą do SO, CY i IN. Odwzorowanie Miller."
+  }
+}

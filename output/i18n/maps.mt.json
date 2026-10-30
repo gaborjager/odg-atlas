@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Franza - Reġjuni",
+    "description": "Mappa tat-13-il reġjun ta' Franza metropolitana. Kull forma ġġorr il-kodiċi INSEE tar-reġjun f'draw:name."
+  },
+  "departements": {
+    "title": "Franza - Dipartimenti",
+    "description": "Mappa tas-96 dipartiment ta' Franza metropolitana. Kull forma ġġorr il-kodiċi INSEE tad-dipartiment f'draw:name."
+  },
+  "cantons": {
+    "title": "Franza - Kantuni",
+    "description": "Mappa tal-kantuni ta' Franza metropolitana, ikkompletata mid-distretti muniċipali (Pariġi, Lyon, Marsilja) u l-muniċipalitajiet tar-Rhône. Kull forma ġġorr il-kodiċi INSEE tagħha f'draw:name."
+  },
+  "communes": {
+    "title": "Franza - Muniċipalitajiet",
+    "description": "Mappa tal-muniċipalitajiet ta' Franza metropolitana (~35,000 forma, fajl kbir). Kull forma ġġorr il-kodiċi INSEE tal-muniċipalità f'draw:name."
+  },
+  "eu-countries": {
+    "title": "Unjoni Ewropea - Pajjiżi",
+    "description": "Mappa tas-27 Stat Membru tal-Unjoni Ewropea (it-territorju kontinentali u l-gżejjer fil-qrib; ir-reġjuni ultraperiferiċi mhumiex murija). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 tal-pajjiż f'draw:name (GR għall-Greċja, EL fl-Eurostat)."
+  },
+  "world-continents-robinson": {
+    "title": "Dinja - Kontinenti (Robinson)",
+    "description": "Mappa tas-7 kontinenti (inkluża l-Antartika). Kull forma ġġorr il-kodiċi b'żewġ ittri tal-kontinent f'draw:name (AF, AN, AS, EU, NA, OC, SA). Il-pajjiżi huma raggruppati bħal f'Natural Earth, ir-Russja hija maqsuma fil-meridjan 60° Lvant (l-Urali) u t-territorji extra-Ewropej jappartjenu għall-kontinent ġeografiku tagħhom. Il-gżejjer taħt il-5,000 km² tneħħew. Projezzjoni Robinson."
+  },
+  "world-continents-equal-earth": {
+    "title": "Dinja - Kontinenti (Equal Earth)",
+    "description": "Mappa tas-7 kontinenti (inkluża l-Antartika). Kull forma ġġorr il-kodiċi b'żewġ ittri tal-kontinent f'draw:name (AF, AN, AS, EU, NA, OC, SA). Il-pajjiżi huma raggruppati bħal f'Natural Earth, ir-Russja hija maqsuma fil-meridjan 60° Lvant (l-Urali) u t-territorji extra-Ewropej jappartjenu għall-kontinent ġeografiku tagħhom. Il-gżejjer taħt il-5,000 km² tneħħew. Projezzjoni Equal Earth."
+  },
+  "world-continents-miller": {
+    "title": "Dinja - Kontinenti (Miller)",
+    "description": "Mappa tas-7 kontinenti (inkluża l-Antartika). Kull forma ġġorr il-kodiċi b'żewġ ittri tal-kontinent f'draw:name (AF, AN, AS, EU, NA, OC, SA). Il-pajjiżi huma raggruppati bħal f'Natural Earth, ir-Russja hija maqsuma fil-meridjan 60° Lvant (l-Urali) u t-territorji extra-Ewropej jappartjenu għall-kontinent ġeografiku tagħhom. Il-gżejjer taħt il-5,000 km² tneħħew. Projezzjoni Miller."
+  },
+  "world-countries-robinson": {
+    "title": "Dinja - Pajjiżi (Robinson)",
+    "description": "Mappa tal-pajjiżi u t-territorji tad-dinja (inkluża l-Antartika). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name; is-Somaliland, Ċipru ta' Fuq u l-Glaċier ta' Siachen huma parti minn SO, CY u IN. Projezzjoni Robinson."
+  },
+  "world-countries-equal-earth": {
+    "title": "Dinja - Pajjiżi (Equal Earth)",
+    "description": "Mappa tal-pajjiżi u t-territorji tad-dinja (inkluża l-Antartika). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name; is-Somaliland, Ċipru ta' Fuq u l-Glaċier ta' Siachen huma parti minn SO, CY u IN. Projezzjoni Equal Earth."
+  },
+  "world-countries-miller": {
+    "title": "Dinja - Pajjiżi (Miller)",
+    "description": "Mappa tal-pajjiżi u t-territorji tad-dinja (inkluża l-Antartika). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 f'draw:name; is-Somaliland, Ċipru ta' Fuq u l-Glaċier ta' Siachen huma parti minn SO, CY u IN. Projezzjoni Miller."
+  }
+}

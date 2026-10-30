@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "An Fhrainc - Réigiúin",
+    "description": "Léarscáil de 13 réigiún na Fraince cathrach. Tá cód INSEE an réigiúin i draw:name ag gach cruth."
+  },
+  "departements": {
+    "title": "An Fhrainc - Ranna",
+    "description": "Léarscáil de 96 roinn na Fraince cathrach. Tá cód INSEE na roinne i draw:name ag gach cruth."
+  },
+  "cantons": {
+    "title": "An Fhrainc - Cantúin",
+    "description": "Léarscáil de chantúin na Fraince cathrach, arna comhlánú ag na ceantair chathrach (Páras, Lyon, Marseille) agus bardais an Rhône. Tá a chód INSEE i draw:name ag gach cruth."
+  },
+  "communes": {
+    "title": "An Fhrainc - Bardais",
+    "description": "Léarscáil de bhardais na Fraince cathrach (~35,000 cruth, comhad mór). Tá cód INSEE an bhardais i draw:name ag gach cruth."
+  },
+  "eu-countries": {
+    "title": "An tAontas Eorpach - Tíortha",
+    "description": "Léarscáil de 27 mballstát an Aontais Eorpaigh (an mhórthír agus oileáin chóngaracha; ní thaispeántar na réigiúin is forimeallaí). Tá cód ISO 3166-1 alpha-2 na tíre i draw:name ag gach cruth (GR don Ghréig, EL ag Eurostat)."
+  },
+  "world-continents": {
+    "title": "An Domhan - Mór-roinnte",
+    "description": "Léarscáil de na 7 mór-roinn (an Antartaice san áireamh). Tá cód dhá litir na mór-roinne i draw:name ag gach cruth (AF, AN, AS, EU, NA, OC, SA). Tá na tíortha grúpáilte mar atá in Natural Earth, tá an Rúis gearrtha ag an meridian 60° T (an Úrail) agus baineann críocha thar lear lena mór-roinn gheografach. Baineadh oileáin faoi 5,000 km²."
+  },
+  "world-countries": {
+    "title": "An Domhan - Tíortha",
+    "description": "Léarscáil de thíortha agus críocha an domhain (an Antartaice san áireamh). Tá an cód ISO 3166-1 alpha-2 i draw:name ag gach cruth; tá Somáililéan, Tuaisceart na Cipire agus Oighearshruth Siachen mar chuid de SO, CY agus IN."
+  },
+  "_projection": "Teilgean {name}."
+}

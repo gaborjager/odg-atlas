@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "法国 - 大区",
+    "description": "法国本土 13 个大区地图。每个图形的 draw:name 中含有大区的 INSEE 代码。"
+  },
+  "departements": {
+    "title": "法国 - 省",
+    "description": "法国本土 96 个省地图。每个图形的 draw:name 中含有省的 INSEE 代码。"
+  },
+  "cantons": {
+    "title": "法国 - 县",
+    "description": "法国本土县级行政区地图，并补充了市辖区（巴黎、里昂、马赛）和罗讷省的市镇。每个图形的 draw:name 中含有其 INSEE 代码。"
+  },
+  "communes": {
+    "title": "法国 - 市镇",
+    "description": "法国本土市镇地图（约 35,000 个图形，文件较大）。每个图形的 draw:name 中含有市镇的 INSEE 代码。"
+  },
+  "eu-countries": {
+    "title": "欧盟 - 国家",
+    "description": "欧盟 27 个成员国地图（大陆及邻近岛屿；未显示最外围地区）。每个图形的 draw:name 中含有国家的 ISO 3166-1 alpha-2 代码（希腊为 GR，欧盟统计局使用 EL）。"
+  },
+  "world-continents": {
+    "title": "世界 - 大洲",
+    "description": "7 大洲地图（包括南极洲）。每个图形的 draw:name 中含有大洲的两字母代码（AF、AN、AS、EU、NA、OC、SA）。各国按 Natural Earth 分组，俄罗斯在东经 60° 经线（乌拉尔）处分割，海外领地归入其地理所在大洲。已移除面积小于 5,000 平方公里的岛屿。"
+  },
+  "world-countries": {
+    "title": "世界 - 国家",
+    "description": "世界各国家和地区地图（包括南极洲）。每个图形的 draw:name 中含有 ISO 3166-1 alpha-2 代码；索马里兰、北塞浦路斯和锡亚琴冰川分别归入 SO、CY 和 IN。"
+  },
+  "_projection": "{name} 投影。"
+}

@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Francie - Regiony",
+    "description": "Mapa 13 regionů metropolitní Francie. Každý tvar nese kód INSEE regionu v draw:name."
+  },
+  "departements": {
+    "title": "Francie - Departementy",
+    "description": "Mapa 96 departementů metropolitní Francie. Každý tvar nese kód INSEE departementu v draw:name."
+  },
+  "cantons": {
+    "title": "Francie - Kantony",
+    "description": "Mapa kantonů metropolitní Francie doplněná o městské obvody (Paříž, Lyon, Marseille) a obce departementu Rhône. Každý tvar nese svůj kód INSEE v draw:name."
+  },
+  "communes": {
+    "title": "Francie - Obce",
+    "description": "Mapa obcí metropolitní Francie (asi 35 000 tvarů, velký soubor). Každý tvar nese kód INSEE obce v draw:name."
+  },
+  "eu-countries": {
+    "title": "Evropská unie - Státy",
+    "description": "Mapa 27 členských států Evropské unie (pevnina a blízké ostrovy; nejvzdálenější regiony nejsou zobrazeny). Každý tvar nese kód ISO 3166-1 alpha-2 státu v draw:name (GR pro Řecko, v Eurostatu EL)."
+  },
+  "world-continents": {
+    "title": "Svět - Kontinenty",
+    "description": "Mapa 7 kontinentů (včetně Antarktidy). Každý tvar nese dvoupísmenný kód kontinentu v draw:name (AF, AN, AS, EU, NA, OC, SA). Státy jsou seskupeny jako v Natural Earth, Rusko je rozděleno poledníkem 60° v. d. (Ural) a zámořská území patří ke svému zeměpisnému kontinentu. Ostrovy menší než 5 000 km² jsou odstraněny."
+  },
+  "world-countries": {
+    "title": "Svět - Státy",
+    "description": "Mapa států a území světa (včetně Antarktidy). Každý tvar nese kód ISO 3166-1 alpha-2 v draw:name; Somaliland, Severní Kypr a ledovec Siačen jsou součástí SO, CY a IN."
+  },
+  "_projection": "Projekce {name}."
+}

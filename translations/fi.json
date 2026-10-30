@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Ranska - Alueet",
+    "description": "Kartta Manner-Ranskan 13 alueesta. Jokaisessa muodossa on alueen INSEE-koodi kentässä draw:name."
+  },
+  "departements": {
+    "title": "Ranska - Departementit",
+    "description": "Kartta Manner-Ranskan 96 departementista. Jokaisessa muodossa on departementin INSEE-koodi kentässä draw:name."
+  },
+  "cantons": {
+    "title": "Ranska - Kantonit",
+    "description": "Kartta Manner-Ranskan kantoneista, täydennetty kaupunginosilla (Pariisi, Lyon, Marseille) ja Rhônen kunnilla. Jokaisessa muodossa on sen INSEE-koodi kentässä draw:name."
+  },
+  "communes": {
+    "title": "Ranska - Kunnat",
+    "description": "Kartta Manner-Ranskan kunnista (noin 35 000 muotoa, suuri tiedosto). Jokaisessa muodossa on kunnan INSEE-koodi kentässä draw:name."
+  },
+  "eu-countries": {
+    "title": "Euroopan unioni - Maat",
+    "description": "Kartta Euroopan unionin 27 jäsenvaltiosta (manneralue ja lähisaaret; syrjäisimpiä alueita ei näytetä). Jokaisessa muodossa on maan ISO 3166-1 alpha-2 -koodi kentässä draw:name (GR Kreikalle, Eurostatissa EL)."
+  },
+  "world-continents": {
+    "title": "Maailma - Maanosat",
+    "description": "Kartta 7 maanosasta (Etelämanner mukaan lukien). Jokaisessa muodossa on maanosan kaksikirjaiminen koodi kentässä draw:name (AF, AN, AS, EU, NA, OC, SA). Maat on ryhmitelty kuten Natural Earthissa, Venäjä on jaettu pituuspiirin 60° I (Ural) kohdalta, ja merentakaiset alueet kuuluvat maantieteelliseen maanosaansa. Alle 5 000 km²:n saaret on poistettu."
+  },
+  "world-countries": {
+    "title": "Maailma - Maat",
+    "description": "Kartta maailman maista ja alueista (Etelämanner mukaan lukien). Jokaisessa muodossa on ISO 3166-1 alpha-2 -koodi kentässä draw:name; Somalimaa, Pohjois-Kypros ja Siachenin jäätikkö kuuluvat koodeihin SO, CY ja IN."
+  },
+  "_projection": "{name}-projektio."
+}

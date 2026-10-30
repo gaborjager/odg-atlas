@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Francuska - Regije",
+    "description": "Karta 13 regija metropolitanske Francuske. Svaki oblik sadrži INSEE kod regije u draw:name."
+  },
+  "departements": {
+    "title": "Francuska - Departmani",
+    "description": "Karta 96 departmana metropolitanske Francuske. Svaki oblik sadrži INSEE kod departmana u draw:name."
+  },
+  "cantons": {
+    "title": "Francuska - Kantoni",
+    "description": "Karta kantona metropolitanske Francuske, dopunjena gradskim okruzima (Pariz, Lyon, Marseille) i općinama departmana Rhône. Svaki oblik sadrži svoj INSEE kod u draw:name."
+  },
+  "communes": {
+    "title": "Francuska - Općine",
+    "description": "Karta općina metropolitanske Francuske (oko 35 000 oblika, velika datoteka). Svaki oblik sadrži INSEE kod općine u draw:name."
+  },
+  "eu-countries": {
+    "title": "Europska unija - Države",
+    "description": "Karta 27 država članica Europske unije (kopno i obližnji otoci; najudaljenije regije nisu prikazane). Svaki oblik sadrži ISO 3166-1 alpha-2 kod države u draw:name (GR za Grčku, EL kod Eurostata)."
+  },
+  "world-continents": {
+    "title": "Svijet - Kontinenti",
+    "description": "Karta 7 kontinenata (uključujući Antarktiku). Svaki oblik sadrži dvoslovni kod kontinenta u draw:name (AF, AN, AS, EU, NA, OC, SA). Države su grupirane kao u Natural Earthu, Rusija je podijeljena na meridijanu 60° I (Ural), a prekomorski teritoriji pripadaju svojem geografskom kontinentu. Otoci manji od 5000 km² uklonjeni su."
+  },
+  "world-countries": {
+    "title": "Svijet - Države",
+    "description": "Karta država i teritorija svijeta (uključujući Antarktiku). Svaki oblik sadrži ISO 3166-1 alpha-2 kod u draw:name; Somaliland, Sjeverni Cipar i ledenjak Siachen dio su SO, CY i IN."
+  },
+  "_projection": "Projekcija {name}."
+}

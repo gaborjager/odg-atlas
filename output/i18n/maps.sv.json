@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Frankrike - Regioner",
+    "description": "Karta över de 13 regionerna i det europeiska Frankrike. Varje form har regionens INSEE-kod i draw:name."
+  },
+  "departements": {
+    "title": "Frankrike - Departement",
+    "description": "Karta över de 96 departementen i det europeiska Frankrike. Varje form har departementets INSEE-kod i draw:name."
+  },
+  "cantons": {
+    "title": "Frankrike - Kantoner",
+    "description": "Karta över kantonerna i det europeiska Frankrike, kompletterad med stadsdistrikten (Paris, Lyon, Marseille) och kommunerna i Rhône. Varje form har sin INSEE-kod i draw:name."
+  },
+  "communes": {
+    "title": "Frankrike - Kommuner",
+    "description": "Karta över kommunerna i det europeiska Frankrike (~35 000 former, stor fil). Varje form har kommunens INSEE-kod i draw:name."
+  },
+  "eu-countries": {
+    "title": "Europeiska unionen - Länder",
+    "description": "Karta över Europeiska unionens 27 medlemsstater (fastland och närliggande öar; yttersta randområden visas inte). Varje form har landets ISO 3166-1 alpha-2-kod i draw:name (GR för Grekland, EL hos Eurostat)."
+  },
+  "world-continents-robinson": {
+    "title": "Världen - Kontinenter (Robinson)",
+    "description": "Karta över de 7 kontinenterna (inklusive Antarktis). Varje form har kontinentens tvåbokstavskod i draw:name (AF, AN, AS, EU, NA, OC, SA). Länderna är grupperade som i Natural Earth, Ryssland är delat vid meridianen 60° Ö (Ural) och utomeuropeiska territorier tillhör sin geografiska kontinent. Öar under 5 000 km² är borttagna. Robinson-projektion."
+  },
+  "world-continents-equal-earth": {
+    "title": "Världen - Kontinenter (Equal Earth)",
+    "description": "Karta över de 7 kontinenterna (inklusive Antarktis). Varje form har kontinentens tvåbokstavskod i draw:name (AF, AN, AS, EU, NA, OC, SA). Länderna är grupperade som i Natural Earth, Ryssland är delat vid meridianen 60° Ö (Ural) och utomeuropeiska territorier tillhör sin geografiska kontinent. Öar under 5 000 km² är borttagna. Equal Earth-projektion."
+  },
+  "world-continents-miller": {
+    "title": "Världen - Kontinenter (Miller)",
+    "description": "Karta över de 7 kontinenterna (inklusive Antarktis). Varje form har kontinentens tvåbokstavskod i draw:name (AF, AN, AS, EU, NA, OC, SA). Länderna är grupperade som i Natural Earth, Ryssland är delat vid meridianen 60° Ö (Ural) och utomeuropeiska territorier tillhör sin geografiska kontinent. Öar under 5 000 km² är borttagna. Miller-projektion."
+  },
+  "world-countries-robinson": {
+    "title": "Världen - Länder (Robinson)",
+    "description": "Karta över världens länder och territorier (inklusive Antarktis). Varje form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nordcypern och Siachenglaciären ingår i SO, CY och IN. Robinson-projektion."
+  },
+  "world-countries-equal-earth": {
+    "title": "Världen - Länder (Equal Earth)",
+    "description": "Karta över världens länder och territorier (inklusive Antarktis). Varje form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nordcypern och Siachenglaciären ingår i SO, CY och IN. Equal Earth-projektion."
+  },
+  "world-countries-miller": {
+    "title": "Världen - Länder (Miller)",
+    "description": "Karta över världens länder och territorier (inklusive Antarktis). Varje form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nordcypern och Siachenglaciären ingår i SO, CY och IN. Miller-projektion."
+  }
+}

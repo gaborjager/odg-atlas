@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Frankrike - Regioner",
+    "description": "Kart over de 13 regionene i det europeiske Frankrike. Hver form har regionens INSEE-kode i draw:name."
+  },
+  "departements": {
+    "title": "Frankrike - Departementer",
+    "description": "Kart over de 96 departementene i det europeiske Frankrike. Hver form har departementets INSEE-kode i draw:name."
+  },
+  "cantons": {
+    "title": "Frankrike - Kantoner",
+    "description": "Kart over kantonene i det europeiske Frankrike, supplert med bydistriktene (Paris, Lyon, Marseille) og kommunene i Rhône. Hver form har sin INSEE-kode i draw:name."
+  },
+  "communes": {
+    "title": "Frankrike - Kommuner",
+    "description": "Kart over kommunene i det europeiske Frankrike (~35 000 former, stor fil). Hver form har kommunens INSEE-kode i draw:name."
+  },
+  "eu-countries": {
+    "title": "Den europeiske union - Land",
+    "description": "Kart over de 27 medlemsstatene i Den europeiske union (fastland og nærliggende øyer; ytterområder er ikke vist). Hver form har landets ISO 3166-1 alpha-2-kode i draw:name (GR for Hellas, EL hos Eurostat)."
+  },
+  "world-continents": {
+    "title": "Verden - Kontinenter",
+    "description": "Kart over de 7 kontinentene (inkludert Antarktis). Hver form har kontinentets tobokstavskode i draw:name (AF, AN, AS, EU, NA, OC, SA). Landene er gruppert som i Natural Earth, Russland er delt ved meridianen 60° Ø (Ural), og oversjøiske territorier hører til sitt geografiske kontinent. Øyer under 5 000 km² er fjernet."
+  },
+  "world-countries": {
+    "title": "Verden - Land",
+    "description": "Kart over verdens land og territorier (inkludert Antarktis). Hver form har ISO 3166-1 alpha-2-koden i draw:name; Somaliland, Nord-Kypros og Siachen-breen inngår i SO, CY og IN."
+  },
+  "_projection": "{name}-projeksjon."
+}

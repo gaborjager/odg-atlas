@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "França - Regiões",
+    "description": "Mapa das 13 regiões da França metropolitana. Cada forma contém o código INSEE da região em draw:name."
+  },
+  "departements": {
+    "title": "França - Departamentos",
+    "description": "Mapa dos 96 departamentos da França metropolitana. Cada forma contém o código INSEE do departamento em draw:name."
+  },
+  "cantons": {
+    "title": "França - Cantões",
+    "description": "Mapa dos cantões da França metropolitana, completado pelos distritos municipais (Paris, Lyon, Marselha) e pelos municípios do Ródano. Cada forma contém o seu código INSEE em draw:name."
+  },
+  "communes": {
+    "title": "França - Municípios",
+    "description": "Mapa dos municípios da França metropolitana (~35 000 formas, ficheiro pesado). Cada forma contém o código INSEE do município em draw:name."
+  },
+  "eu-countries": {
+    "title": "União Europeia - Países",
+    "description": "Mapa dos 27 Estados-Membros da União Europeia (território continental e ilhas próximas; regiões ultraperiféricas não representadas). Cada forma contém o código ISO 3166-1 alfa-2 do país em draw:name (GR para a Grécia, codificada EL pelo Eurostat)."
+  },
+  "world-continents": {
+    "title": "Mundo - Continentes",
+    "description": "Mapa dos 7 continentes (Antártida incluída). Cada forma contém o código de duas letras do continente em draw:name (AF, AN, AS, EU, NA, OC, SA). Os países estão agrupados como na Natural Earth, a Rússia é cortada no meridiano 60° E (Urais) e os territórios ultramarinos pertencem ao seu continente geográfico. As ilhas com menos de 5000 km² foram removidas."
+  },
+  "world-countries": {
+    "title": "Mundo - Países",
+    "description": "Mapa dos países e territórios do mundo (Antártida incluída). Cada forma contém o código ISO 3166-1 alfa-2 em draw:name; a Somalilândia, o Chipre do Norte e o glaciar de Siachen fazem parte de SO, CY e IN."
+  },
+  "_projection": "Projeção {name}."
+}

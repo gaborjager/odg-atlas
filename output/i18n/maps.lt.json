@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Prancūzija - Regionai",
+    "description": "Žemyninės Prancūzijos 13 regionų žemėlapis. Kiekviena figūra draw:name lauke turi regiono INSEE kodą."
+  },
+  "departements": {
+    "title": "Prancūzija - Departamentai",
+    "description": "Žemyninės Prancūzijos 96 departamentų žemėlapis. Kiekviena figūra draw:name lauke turi departamento INSEE kodą."
+  },
+  "cantons": {
+    "title": "Prancūzija - Kantonai",
+    "description": "Žemyninės Prancūzijos kantonų žemėlapis, papildytas miestų rajonais (Paryžius, Lionas, Marselis) ir Ronos savivaldybėmis. Kiekviena figūra draw:name lauke turi savo INSEE kodą."
+  },
+  "communes": {
+    "title": "Prancūzija - Savivaldybės",
+    "description": "Žemyninės Prancūzijos savivaldybių žemėlapis (apie 35 000 figūrų, didelis failas). Kiekviena figūra draw:name lauke turi savivaldybės INSEE kodą."
+  },
+  "eu-countries": {
+    "title": "Europos Sąjunga - Šalys",
+    "description": "27 Europos Sąjungos valstybių narių žemėlapis (žemyninė dalis ir artimos salos; atokiausi regionai nerodomi). Kiekviena figūra draw:name lauke turi šalies ISO 3166-1 alpha-2 kodą (GR – Graikija, Eurostate EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Pasaulis - Žemynai (Robinson)",
+    "description": "7 žemynų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi dviejų raidžių žemyno kodą (AF, AN, AS, EU, NA, OC, SA). Šalys sugrupuotos kaip Natural Earth, Rusija padalyta ties 60° R dienovidiniu (Uralas), o užjūrio teritorijos priklauso savo geografiniam žemynui. Salos, mažesnės nei 5 000 km², pašalintos. Robinson projekcija."
+  },
+  "world-continents-equal-earth": {
+    "title": "Pasaulis - Žemynai (Equal Earth)",
+    "description": "7 žemynų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi dviejų raidžių žemyno kodą (AF, AN, AS, EU, NA, OC, SA). Šalys sugrupuotos kaip Natural Earth, Rusija padalyta ties 60° R dienovidiniu (Uralas), o užjūrio teritorijos priklauso savo geografiniam žemynui. Salos, mažesnės nei 5 000 km², pašalintos. Equal Earth projekcija."
+  },
+  "world-continents-miller": {
+    "title": "Pasaulis - Žemynai (Miller)",
+    "description": "7 žemynų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi dviejų raidžių žemyno kodą (AF, AN, AS, EU, NA, OC, SA). Šalys sugrupuotos kaip Natural Earth, Rusija padalyta ties 60° R dienovidiniu (Uralas), o užjūrio teritorijos priklauso savo geografiniam žemynui. Salos, mažesnės nei 5 000 km², pašalintos. Miller projekcija."
+  },
+  "world-countries-robinson": {
+    "title": "Pasaulis - Šalys (Robinson)",
+    "description": "Pasaulio šalių ir teritorijų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą; Somalilandas, Šiaurės Kipras ir Siačeno ledynas priklauso SO, CY ir IN. Robinson projekcija."
+  },
+  "world-countries-equal-earth": {
+    "title": "Pasaulis - Šalys (Equal Earth)",
+    "description": "Pasaulio šalių ir teritorijų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą; Somalilandas, Šiaurės Kipras ir Siačeno ledynas priklauso SO, CY ir IN. Equal Earth projekcija."
+  },
+  "world-countries-miller": {
+    "title": "Pasaulis - Šalys (Miller)",
+    "description": "Pasaulio šalių ir teritorijų žemėlapis (įskaitant Antarktidą). Kiekviena figūra draw:name lauke turi ISO 3166-1 alpha-2 kodą; Somalilandas, Šiaurės Kipras ir Siačeno ledynas priklauso SO, CY ir IN. Miller projekcija."
+  }
+}

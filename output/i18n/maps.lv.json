@@ -1,0 +1,46 @@
+{
+  "regions": {
+    "title": "Francija - Reģioni",
+    "description": "Kontinentālās Francijas 13 reģionu karte. Katrai formai draw:name laukā ir reģiona INSEE kods."
+  },
+  "departements": {
+    "title": "Francija - Departamenti",
+    "description": "Kontinentālās Francijas 96 departamentu karte. Katrai formai draw:name laukā ir departamenta INSEE kods."
+  },
+  "cantons": {
+    "title": "Francija - Kantoni",
+    "description": "Kontinentālās Francijas kantonu karte, papildināta ar pilsētu rajoniem (Parīze, Liona, Marseļa) un Ronas pašvaldībām. Katrai formai draw:name laukā ir tās INSEE kods."
+  },
+  "communes": {
+    "title": "Francija - Pašvaldības",
+    "description": "Kontinentālās Francijas pašvaldību karte (ap 35 000 formu, liels fails). Katrai formai draw:name laukā ir pašvaldības INSEE kods."
+  },
+  "eu-countries": {
+    "title": "Eiropas Savienība - Valstis",
+    "description": "Eiropas Savienības 27 dalībvalstu karte (kontinentālā daļa un tuvās salas; tālākie reģioni nav parādīti). Katrai formai draw:name laukā ir valsts ISO 3166-1 alpha-2 kods (GR Grieķijai, Eurostat apzīmē ar EL)."
+  },
+  "world-continents-robinson": {
+    "title": "Pasaule - Kontinenti (Robinson)",
+    "description": "7 kontinentu karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir kontinenta divburtu kods (AF, AN, AS, EU, NA, OC, SA). Valstis ir grupētas kā Natural Earth, Krievija ir sadalīta pie 60° A meridiāna (Urāli), un aizjūras teritorijas pieder savam ģeogrāfiskajam kontinentam. Salas, kas mazākas par 5000 km², ir noņemtas. Robinson projekcija."
+  },
+  "world-continents-equal-earth": {
+    "title": "Pasaule - Kontinenti (Equal Earth)",
+    "description": "7 kontinentu karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir kontinenta divburtu kods (AF, AN, AS, EU, NA, OC, SA). Valstis ir grupētas kā Natural Earth, Krievija ir sadalīta pie 60° A meridiāna (Urāli), un aizjūras teritorijas pieder savam ģeogrāfiskajam kontinentam. Salas, kas mazākas par 5000 km², ir noņemtas. Equal Earth projekcija."
+  },
+  "world-continents-miller": {
+    "title": "Pasaule - Kontinenti (Miller)",
+    "description": "7 kontinentu karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir kontinenta divburtu kods (AF, AN, AS, EU, NA, OC, SA). Valstis ir grupētas kā Natural Earth, Krievija ir sadalīta pie 60° A meridiāna (Urāli), un aizjūras teritorijas pieder savam ģeogrāfiskajam kontinentam. Salas, kas mazākas par 5000 km², ir noņemtas. Miller projekcija."
+  },
+  "world-countries-robinson": {
+    "title": "Pasaule - Valstis (Robinson)",
+    "description": "Pasaules valstu un teritoriju karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods; Somalilenda, Ziemeļkipra un Sjačenas ledājs ietilpst SO, CY un IN. Robinson projekcija."
+  },
+  "world-countries-equal-earth": {
+    "title": "Pasaule - Valstis (Equal Earth)",
+    "description": "Pasaules valstu un teritoriju karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods; Somalilenda, Ziemeļkipra un Sjačenas ledājs ietilpst SO, CY un IN. Equal Earth projekcija."
+  },
+  "world-countries-miller": {
+    "title": "Pasaule - Valstis (Miller)",
+    "description": "Pasaules valstu un teritoriju karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods; Somalilenda, Ziemeļkipra un Sjačenas ledājs ietilpst SO, CY un IN. Miller projekcija."
+  }
+}

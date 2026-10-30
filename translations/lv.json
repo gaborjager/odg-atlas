@@ -1,0 +1,31 @@
+{
+  "regions": {
+    "title": "Francija - Reģioni",
+    "description": "Kontinentālās Francijas 13 reģionu karte. Katrai formai draw:name laukā ir reģiona INSEE kods."
+  },
+  "departements": {
+    "title": "Francija - Departamenti",
+    "description": "Kontinentālās Francijas 96 departamentu karte. Katrai formai draw:name laukā ir departamenta INSEE kods."
+  },
+  "cantons": {
+    "title": "Francija - Kantoni",
+    "description": "Kontinentālās Francijas kantonu karte, papildināta ar pilsētu rajoniem (Parīze, Liona, Marseļa) un Ronas pašvaldībām. Katrai formai draw:name laukā ir tās INSEE kods."
+  },
+  "communes": {
+    "title": "Francija - Pašvaldības",
+    "description": "Kontinentālās Francijas pašvaldību karte (ap 35 000 formu, liels fails). Katrai formai draw:name laukā ir pašvaldības INSEE kods."
+  },
+  "eu-countries": {
+    "title": "Eiropas Savienība - Valstis",
+    "description": "Eiropas Savienības 27 dalībvalstu karte (kontinentālā daļa un tuvās salas; tālākie reģioni nav parādīti). Katrai formai draw:name laukā ir valsts ISO 3166-1 alpha-2 kods (GR Grieķijai, Eurostat apzīmē ar EL)."
+  },
+  "world-continents": {
+    "title": "Pasaule - Kontinenti",
+    "description": "7 kontinentu karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir kontinenta divburtu kods (AF, AN, AS, EU, NA, OC, SA). Valstis ir grupētas kā Natural Earth, Krievija ir sadalīta pie 60° A meridiāna (Urāli), un aizjūras teritorijas pieder savam ģeogrāfiskajam kontinentam. Salas, kas mazākas par 5000 km², ir noņemtas."
+  },
+  "world-countries": {
+    "title": "Pasaule - Valstis",
+    "description": "Pasaules valstu un teritoriju karte (ieskaitot Antarktīdu). Katrai formai draw:name laukā ir ISO 3166-1 alpha-2 kods; Somalilenda, Ziemeļkipra un Sjačenas ledājs ietilpst SO, CY un IN."
+  },
+  "_projection": "{name} projekcija."
+}

@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "static/**"
+      - "translations/**"
       - "scripts/generate_odg.py"
 
   # Manual run from the Actions tab
