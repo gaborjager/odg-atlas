@@ -46,9 +46,11 @@ Download a single map from the links above, or all of them from the latest
   municipal districts (Paris, Marseille) and the municipalities of the Rhône
   department (Lyon Metropolis).
 - European Union: same frame and projection as the *Europe* map (ETRS89-LAEA
-  Europe), so the two can be overlaid. The 27 member states are the zones; the
-  rest of the continent is a single white shape without countries and without
-  name, which is not a zone. Mainland and nearby islands; the outermost regions
+  Europe), so the two can be overlaid. The 27 member states are the zones. The
+  other countries of Europe are white *optional zones*, with their borders and
+  their ISO code (`draw:name`, and `svg:title` = `optional-zone`): CalcMap 0.24
+  or later colors them if the data has their code and leaves them white
+  otherwise; the catalog counts only the 27 members. Mainland and nearby islands; the outermost regions
   (Canary Islands, Azores, Madeira, overseas departments) are not shown. Greece is coded `GR` (ISO), not `EL` as in
   Eurostat data. Cyprus is the area under the control of the Republic of
   Cyprus, as in Natural Earth.

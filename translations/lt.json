@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Europos Sąjunga - Šalys",
-    "description": "27 Europos Sąjungos valstybių narių žemėlapis (žemyninė dalis ir artimos salos; atokiausi regionai nerodomi). Kiekviena figūra draw:name lauke turi šalies ISO 3166-1 alpha-2 kodą (GR – Graikija, Eurostate EL). Likusi Europos dalis nubraižyta balta spalva, be šalių."
+    "description": "27 Europos Sąjungos valstybių narių žemėlapis (žemyninė dalis ir artimos salos; atokiausi regionai nerodomi). Kiekviena figūra draw:name lauke turi šalies ISO 3166-1 alpha-2 kodą (GR – Graikija, Eurostate EL). Kitos Europos šalys yra baltos; jos taip pat turi kodą ir nuspalvinamos, jei yra duomenyse."
   },
   "world-continents": {
     "title": "Pasaulis - Žemynai",

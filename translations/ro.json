@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Uniunea Europeană - Țări",
-    "description": "Harta celor 27 de state membre ale Uniunii Europene (teritoriul continental și insulele apropiate; regiunile ultraperiferice nu sunt reprezentate). Fiecare formă conține codul ISO 3166-1 alpha-2 al țării în draw:name (GR pentru Grecia, codificată EL de Eurostat). Restul Europei este desenat în alb, fără țări."
+    "description": "Harta celor 27 de state membre ale Uniunii Europene (teritoriul continental și insulele apropiate; regiunile ultraperiferice nu sunt reprezentate). Fiecare formă conține codul ISO 3166-1 alpha-2 al țării în draw:name (GR pentru Grecia, codificată EL de Eurostat). Celelalte țări ale Europei sunt albe; au și ele cod și sunt colorate dacă datele le conțin."
   },
   "world-continents": {
     "title": "Lume - Continente",

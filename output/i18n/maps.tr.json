@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Avrupa Birliği - Ülkeler",
-    "description": "Avrupa Birliği'nin 27 üye devletinin haritası (anakara ve yakın adalar; en uzak bölgeler gösterilmez). Her şekil, draw:name alanında ülkenin ISO 3166-1 alpha-2 kodunu taşır (Yunanistan için GR, Eurostat'ta EL). Avrupa'nın geri kalanı ülkeler olmadan beyaz çizilmiştir."
+    "description": "Avrupa Birliği'nin 27 üye devletinin haritası (anakara ve yakın adalar; en uzak bölgeler gösterilmez). Her şekil, draw:name alanında ülkenin ISO 3166-1 alpha-2 kodunu taşır (Yunanistan için GR, Eurostat'ta EL). Avrupa'nın diğer ülkeleri beyazdır; onlar da kodlarını taşır ve verilerde varsa renklendirilir."
   },
   "world-continents-robinson": {
     "title": "Dünya - Kıtalar (Robinson)",

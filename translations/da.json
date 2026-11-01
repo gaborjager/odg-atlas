@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Den Europæiske Union - Lande",
-    "description": "Kort over Den Europæiske Unions 27 medlemsstater (fastland og nærliggende øer; regioner i EU's yderområder er ikke vist). Hver form har landets ISO 3166-1 alpha-2-kode i draw:name (GR for Grækenland, EL hos Eurostat). Resten af Europa er vist i hvidt, uden lande."
+    "description": "Kort over Den Europæiske Unions 27 medlemsstater (fastland og nærliggende øer; regioner i EU's yderområder er ikke vist). Hver form har landets ISO 3166-1 alpha-2-kode i draw:name (GR for Grækenland, EL hos Eurostat). Europas øvrige lande er hvide; de har også deres kode og farves, hvis dataene indeholder dem."
   },
   "world-continents": {
     "title": "Verden - Kontinenter",

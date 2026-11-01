@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Európska únia - Štáty",
-    "description": "Mapa 27 členských štátov Európskej únie (pevnina a blízke ostrovy; najvzdialenejšie regióny nie sú zobrazené). Každý tvar nesie kód ISO 3166-1 alpha-2 štátu v draw:name (GR pre Grécko, v Eurostate EL). Zvyšok Európy je vykreslený bielou farbou, bez štátov."
+    "description": "Mapa 27 členských štátov Európskej únie (pevnina a blízke ostrovy; najvzdialenejšie regióny nie sú zobrazené). Každý tvar nesie kód ISO 3166-1 alpha-2 štátu v draw:name (GR pre Grécko, v Eurostate EL). Ostatné štáty Európy sú biele; majú tiež svoj kód a zafarbia sa, ak sú v údajoch."
   },
   "world-continents-robinson": {
     "title": "Svet - Kontinenty (Robinson)",

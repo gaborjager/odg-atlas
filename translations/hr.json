@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Europska unija - Države",
-    "description": "Karta 27 država članica Europske unije (kopno i obližnji otoci; najudaljenije regije nisu prikazane). Svaki oblik sadrži ISO 3166-1 alpha-2 kod države u draw:name (GR za Grčku, EL kod Eurostata). Ostatak Europe prikazan je bijelo, bez država."
+    "description": "Karta 27 država članica Europske unije (kopno i obližnji otoci; najudaljenije regije nisu prikazane). Svaki oblik sadrži ISO 3166-1 alpha-2 kod države u draw:name (GR za Grčku, EL kod Eurostata). Ostale europske države su bijele; također imaju svoj kod i oboje se ako su u podacima."
   },
   "world-continents": {
     "title": "Svijet - Kontinenti",

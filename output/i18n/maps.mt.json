@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Unjoni Ewropea - Pajjiżi",
-    "description": "Mappa tas-27 Stat Membru tal-Unjoni Ewropea (it-territorju kontinentali u l-gżejjer fil-qrib; ir-reġjuni ultraperiferiċi mhumiex murija). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 tal-pajjiż f'draw:name (GR għall-Greċja, EL fl-Eurostat). Il-bqija tal-Ewropa hija mpinġija bl-abjad, mingħajr il-pajjiżi."
+    "description": "Mappa tas-27 Stat Membru tal-Unjoni Ewropea (it-territorju kontinentali u l-gżejjer fil-qrib; ir-reġjuni ultraperiferiċi mhumiex murija). Kull forma ġġorr il-kodiċi ISO 3166-1 alpha-2 tal-pajjiż f'draw:name (GR għall-Greċja, EL fl-Eurostat). Il-pajjiżi l-oħra tal-Ewropa huma bojod; għandhom ukoll il-kodiċi tagħhom u jitlewnu jekk ikunu fid-data."
   },
   "world-continents-robinson": {
     "title": "Dinja - Kontinenti (Robinson)",

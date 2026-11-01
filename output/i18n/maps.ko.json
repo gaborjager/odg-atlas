@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "유럽연합 - 국가",
-    "description": "유럽연합 27개 회원국 지도(본토와 인근 섬, 최외곽 지역은 표시되지 않음). 각 도형의 draw:name에 국가의 ISO 3166-1 alpha-2 코드가 들어 있습니다(그리스는 GR, Eurostat에서는 EL). 유럽의 나머지 지역은 국가 구분 없이 흰색으로 표시됩니다."
+    "description": "유럽연합 27개 회원국 지도(본토와 인근 섬, 최외곽 지역은 표시되지 않음). 각 도형의 draw:name에 국가의 ISO 3166-1 alpha-2 코드가 들어 있습니다(그리스는 GR, Eurostat에서는 EL). 유럽의 다른 국가는 흰색으로 표시됩니다. 이 국가들도 코드가 있으며 데이터에 포함되면 색이 칠해집니다."
   },
   "world-continents-robinson": {
     "title": "세계 - 대륙 (Robinson)",

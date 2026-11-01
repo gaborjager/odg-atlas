@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Európai Unió - Országok",
-    "description": "Az Európai Unió 27 tagállamának térképe (szárazföld és közeli szigetek; a legkülső régiók nem láthatók). Minden alakzat a draw:name mezőben tartalmazza az ország ISO 3166-1 alpha-2 kódját (Görögország: GR, az Eurostatnál EL). Európa többi része fehérrel látható, országok nélkül."
+    "description": "Az Európai Unió 27 tagállamának térképe (szárazföld és közeli szigetek; a legkülső régiók nem láthatók). Minden alakzat a draw:name mezőben tartalmazza az ország ISO 3166-1 alpha-2 kódját (Görögország: GR, az Eurostatnál EL). Európa többi országa fehér; nekik is van kódjuk, és kiszíneződnek, ha szerepelnek az adatokban."
   },
   "world-continents": {
     "title": "Világ - Kontinensek",

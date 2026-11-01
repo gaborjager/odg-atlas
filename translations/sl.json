@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Evropska unija - Države",
-    "description": "Zemljevid 27 držav članic Evropske unije (celina in bližnji otoki; najbolj oddaljene regije niso prikazane). Vsaka oblika ima kodo ISO 3166-1 alpha-2 države v draw:name (GR za Grčijo, pri Eurostatu EL). Preostala Evropa je narisana belo, brez držav."
+    "description": "Zemljevid 27 držav članic Evropske unije (celina in bližnji otoki; najbolj oddaljene regije niso prikazane). Vsaka oblika ima kodo ISO 3166-1 alpha-2 države v draw:name (GR za Grčijo, pri Eurostatu EL). Druge države Evrope so bele; imajo tudi svojo kodo in se obarvajo, če so v podatkih."
   },
   "world-continents": {
     "title": "Svet - Celine",

@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Euroopa Liit - Riigid",
-    "description": "Euroopa Liidu 27 liikmesriigi kaart (mandriosa ja lähisaared; äärepoolseimaid piirkondi ei näidata). Iga kujund sisaldab riigi ISO 3166-1 alpha-2 koodi väljal draw:name (Kreeka puhul GR, Eurostatis EL). Ülejäänud Euroopa on joonistatud valgena, ilma riikideta."
+    "description": "Euroopa Liidu 27 liikmesriigi kaart (mandriosa ja lähisaared; äärepoolseimaid piirkondi ei näidata). Iga kujund sisaldab riigi ISO 3166-1 alpha-2 koodi väljal draw:name (Kreeka puhul GR, Eurostatis EL). Euroopa ülejäänud riigid on valged; neil on samuti kood ja need värvitakse, kui andmed neid sisaldavad."
   },
   "world-continents-robinson": {
     "title": "Maailm - Maailmajaod (Robinson)",

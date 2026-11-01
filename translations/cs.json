@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Evropská unie - Státy",
-    "description": "Mapa 27 členských států Evropské unie (pevnina a blízké ostrovy; nejvzdálenější regiony nejsou zobrazeny). Každý tvar nese kód ISO 3166-1 alpha-2 státu v draw:name (GR pro Řecko, v Eurostatu EL). Zbytek Evropy je vykreslen bíle, bez států."
+    "description": "Mapa 27 členských států Evropské unie (pevnina a blízké ostrovy; nejvzdálenější regiony nejsou zobrazeny). Každý tvar nese kód ISO 3166-1 alpha-2 státu v draw:name (GR pro Řecko, v Eurostatu EL). Ostatní státy Evropy jsou bílé; mají také svůj kód a obarví se, pokud jsou v datech."
   },
   "world-continents": {
     "title": "Svět - Kontinenty",

@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "Uni Eropa - Negara",
-    "description": "Peta 27 negara anggota Uni Eropa (daratan utama dan pulau terdekat; wilayah terluar tidak ditampilkan). Setiap bentuk memuat kode ISO 3166-1 alpha-2 negara di draw:name (GR untuk Yunani, EL di Eurostat). Bagian Eropa lainnya digambar putih, tanpa negara."
+    "description": "Peta 27 negara anggota Uni Eropa (daratan utama dan pulau terdekat; wilayah terluar tidak ditampilkan). Setiap bentuk memuat kode ISO 3166-1 alpha-2 negara di draw:name (GR untuk Yunani, EL di Eurostat). Negara Eropa lainnya berwarna putih; negara-negara itu juga memiliki kode dan diwarnai jika ada dalam data."
   },
   "world-continents-robinson": {
     "title": "Dunia - Benua (Robinson)",

@@ -176,8 +176,8 @@
       "id": "eu-countries",
       "title": "European Union - Countries",
       "title_fr": "Union européenne - Pays",
-      "description": "Map of the 27 member states of the European Union (mainland and nearby islands; outermost regions not shown). Each shape carries the ISO 3166-1 alpha-2 code of the country in draw:name (GR for Greece, coded EL by Eurostat). The rest of Europe is drawn in white, without countries.",
-      "description_fr": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat). Le reste de l'Europe est dessiné en blanc, sans les pays.",
+      "description": "Map of the 27 member states of the European Union (mainland and nearby islands; outermost regions not shown). Each shape carries the ISO 3166-1 alpha-2 code of the country in draw:name (GR for Greece, coded EL by Eurostat). The other countries of Europe are white; they carry their code too and are colored if the data has them.",
+      "description_fr": "Carte des 27 États membres de l'Union européenne (territoire continental et îles proches ; régions ultrapériphériques non représentées). Chaque forme porte le code ISO 3166-1 alpha-2 du pays dans draw:name (GR pour la Grèce, codée EL par Eurostat). Les autres pays d'Europe sont en blanc ; ils portent aussi leur code et se colorient si les données les contiennent.",
       "area": "European Union",
       "code_type": "ISO 3166-1 alpha-2",
       "projection": "EPSG:3035 (ETRS89-LAEA Europe)",
@@ -187,8 +187,8 @@
       "url": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/eu-countries.odg",
       "filename": "eu-countries.odg",
       "format": "application/vnd.oasis.opendocument.graphics",
-      "size": 51343,
-      "sha256": "c4c0f551de45bbaff9c033862ce5e3f576b572517c7eecc1d667434da2c96ea0",
+      "size": 60001,
+      "sha256": "134a56748405a740795622306c89563b05aa24fec4f6d21c84e78ecaef24d98f",
       "objects": 27,
       "code_examples": [
         "AT",
@@ -204,7 +204,7 @@
       ],
       "codes": "AT|BE|BG|CY|CZ|DE|DK|EE|ES|FI|FR|GR|HR|HU|IE|IT|LT|LU|LV|MT|NL|PL|PT|RO|SE|SI|SK",
       "preview": "https://raw.githubusercontent.com/gaborjager/odg-atlas/main/output/previews/eu-countries.svg",
-      "preview_sha256": "a6712d967743da1edb7daf111cc19a40584c0a685b72949ee0ad9d4f6987df3b"
+      "preview_sha256": "f367bbbeefa2baa3d0be1d1b6c72c68a09139a7c3cbee4b339a80db1b3be4829"
     },
     {
       "id": "world-continents-robinson",

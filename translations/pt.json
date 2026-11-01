@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "União Europeia - Países",
-    "description": "Mapa dos 27 Estados-Membros da União Europeia (território continental e ilhas próximas; regiões ultraperiféricas não representadas). Cada forma contém o código ISO 3166-1 alfa-2 do país em draw:name (GR para a Grécia, codificada EL pelo Eurostat). O resto da Europa é desenhado a branco, sem países."
+    "description": "Mapa dos 27 Estados-Membros da União Europeia (território continental e ilhas próximas; regiões ultraperiféricas não representadas). Cada forma contém o código ISO 3166-1 alfa-2 do país em draw:name (GR para a Grécia, codificada EL pelo Eurostat). Os outros países da Europa estão a branco; também têm o seu código e são coloridos se os dados os incluírem."
   },
   "world-continents": {
     "title": "Mundo - Continentes",

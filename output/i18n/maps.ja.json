@@ -17,7 +17,7 @@
   },
   "eu-countries": {
     "title": "欧州連合 - 国",
-    "description": "欧州連合の加盟27か国の地図（本土と近隣の島。最遠隔地域は非表示）。各図形の draw:name に国の ISO 3166-1 alpha-2 コードが入っています（ギリシャは GR、Eurostat では EL）。 ヨーロッパのその他の地域は国境なしで白く描かれています。"
+    "description": "欧州連合の加盟27か国の地図（本土と近隣の島。最遠隔地域は非表示）。各図形の draw:name に国の ISO 3166-1 alpha-2 コードが入っています（ギリシャは GR、Eurostat では EL）。 ヨーロッパのその他の国は白で表示されます。これらの国にもコードがあり、データに含まれていれば色が付きます。"
   },
   "world-continents-robinson": {
     "title": "世界 - 大陸 (Robinson)",
